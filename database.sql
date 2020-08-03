@@ -8,7 +8,7 @@ CREATE TABLE "user"("id" SERIAL PRIMARY KEY,
  "password" VARCHAR(1000) NOT NULL,
  "is_coach" BOOLEAN, "bio" VARCHAR(300), 
  "goals" VARCHAR(300), 
- "email" VARCHAR(50)NOT NULL);
+ "email" VARCHAR(50);
  
 CREATE TABLE "skill" ("id" SERIAL PRIMARY KEY,
   "title" VARCHAR(80),
