@@ -48,7 +48,16 @@ class AddSkill extends Component {
 
     handleAdd = (event)=>{
         let array = this.state.thisCategory;
-        array.push(this.state.category);
+        let newCategory = this.state.category;
+        if (newCategory !== ''){
+            for(let i=0; i<array.length; i++){
+                if (array[i] === newCategory){
+                    console.log('match found')
+                    return;
+                }
+            }
+        array.push(newCategory);
+        }
         // console.log(array);
         this.setState({
             ...this.state,
