@@ -33,21 +33,32 @@ router.get('/category:id', (req, res) => {
 
 });
 
-/**
- * POST new skill into skill table
- */
-router.post('/', (req, res) => {
-  const queryText = `INSERT INTO "skill"("title", "url", "author", "description") 
-  VALUES($1, $2, $3, $4); `
-  pool.query(queryText, 
-    [req.body.title,
-    req.body.url,
-    req.body.author,
-    req.body.description])
-  .then(() => res.sendStatus(201))
-  .catch((error) => {res.sendStatus(500);
-   console.log(error)
-  });
-});
+
+
+router.post('/', async (req, res) =>  {
+
+  const client = await pool.connect()
+  try {
+    await client.query('BEGIN')
+    const queryText = `INSERT INTO "skill"("title", "url", "author", "description") 
+     VALUES($1, $2, $3, $4) RETURNING "id";`
+    const res = await client.query(queryText, [req.body.title,
+         req.body.url,
+         req.body.author,
+         req.body.description])
+    const insertText = `INSERT INTO "skill_category" ("skill_id", "category_id")
+              VALUES($1 , $2);`
+    for (let i =0; i<req.body.categories.length; i++ ){
+      await client.query(insertText, [res.rows[0].id, req.body.categories[i].id])
+    }
+    await client.query('COMMIT')
+  } catch (e) {
+    await client.query('ROLLBACK')
+    throw e
+  } finally {
+    client.release()
+  }
+})
+
 
 module.exports = router;
