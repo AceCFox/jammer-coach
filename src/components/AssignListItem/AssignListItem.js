@@ -31,7 +31,6 @@ const styles = theme => ({
 class AssignListItem extends Component {
   state = {
     selected: '',
-    tempSkater:['Homo Erratic', 'Tobi Determined', 'Polly Pocketknife', 'Animal', 'Moose Definitely', 'Whacks Poetic'],
     notes: '',
     submitted: false
     };
@@ -47,8 +46,13 @@ class AssignListItem extends Component {
       }
 
     handleAssign =()=>{
-       console.log('Assigned skill to ', this.state.selected, 'with notes:', this.state.notes);
-       //Figure out how to alert user of click
+       const postObject = {skill_id: this.props.skill.id,
+                            user_id: this.state.selected.id,
+                            coach_notes: this.state.notes }
+       console.log(postObject);
+       //call saga to POST postobject to user_skill
+
+       //alert user of successful assign
        this.setState({
             ...this.state,
             submitted:true})
@@ -78,7 +82,7 @@ class AssignListItem extends Component {
                <Grid item xs = {12} md = {4}> 
                     <Paper className = {classes.paper}>
                     {(this.state.submitted && this.state.selected )? 
-                    <i>Successsfully submitted to {this.state.selected}'s curriculum
+                    <i>Successsfully submitted to {this.state.selected.username}'s curriculum
                          <Button onClick = {this.handleOk}>ok</Button>    
                     </i> 
                     : ''
