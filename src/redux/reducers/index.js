@@ -4,6 +4,7 @@ import loginMode from './loginModeReducer';
 import user from './userReducer';
 import category from './categoryReducer';
 import skill from './skillReducer';
+import allSkater from './allSkaterReducer';
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
   user, // will have an id and username if someone is logged in
   category, //will have the array of category objects {id and name}
   skill, //will have an array of skill objects (title, author, url, id, description)
+  allSkater,//will have an array of skater obejcts (id, username, bio, goals)
 });
 
 export default rootReducer;

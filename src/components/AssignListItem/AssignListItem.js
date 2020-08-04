@@ -38,6 +38,8 @@ class AssignListItem extends Component {
 
     componentDidMount(){
         //dispatch saga to fetch username list
+        //displatch saga to fetch skaters
+        this.props.dispatch({type: 'GET_SKATER'})
     }
   
     handleChange = (event) => {
@@ -93,9 +95,9 @@ class AssignListItem extends Component {
                                     <MenuItem value="">
                                     <em></em>
                                     </MenuItem>
-                                    {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
-                                    {this.state.tempSkater.map((category, index) =>(
-                                        <MenuItem value={category} key ={index}>{category}</MenuItem>
+                                    {/* TO DO: CHANGE this.state.tempSkater to the skater reducer props */}
+                                    {this.props.reduxState.allSkater.map((skater) =>(
+                                        <MenuItem value={skater} key ={skater.id}>{skater.username}</MenuItem>
                                     ))}
                             </Select>
                         </FormControl>
