@@ -42,6 +42,11 @@ class AddSkill extends Component {
 
     componentDidMount(){
         //dispatch saga to fetch categories
+        this.props.dispatch({type: 'GET_CATEGORY'})
+        this.setState({
+            ...this.state,
+            allCategory: this.props.reduxState.category,
+        })
     }
 
     handleChange = (event) => {
@@ -94,6 +99,7 @@ class AddSkill extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
+          {/* {JSON.stringify(this.props.reduxState.category)} */}
           <Paper className = {classes.paper}>
                 <h2>Add A Skill</h2>
                 {/* Eventually, this next bit should be conditional upon user != coach */}
@@ -138,17 +144,17 @@ class AddSkill extends Component {
                             <em></em>
                             </MenuItem>
                             {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
-                            {this.state.allCategory.map((category, index) =>(
-                                <MenuItem value={category} key ={index}>{category}</MenuItem>
+                            {this.props.reduxState.category.map((category) =>(
+                                <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
                             ))}
                         </Select>
                         <Button color = "primary" onClick = {this.handleAdd}>Add category</Button>
                     </FormControl>
                     <ul className = {classes.categoryList} >
                         <label>Selected Categories</label>
-                        {this.state.thisCategory.map((category, index)=>(
-                           <li key = {index}>{category} 
-                           <Button value = {index} color="secondary" onClick = {this.handleRemove(index)}>
+                        {this.state.thisCategory.map((category)=>(
+                           <li key = {category.id}>{category.name} 
+                           <Button value = {category.id} color="secondary" onClick = {this.handleRemove(category.id)}>
                                Remove
                             </Button></li> 
                         ))}

@@ -6,11 +6,13 @@ const router = express.Router();
  * GET route template
  */
 router.get('/', (req, res) => {
-    const queryText = 'GET * FROM "category"';
+    const queryText = 'SELECT * FROM "category";';
     pool.query(queryText)
-      .then(() => res.send(result.rows))
+      .then((result) => {res.send(result.rows)
+     // console.log(result.rows)  
+    })    
       .catch((error) => {res.sendStatus(500);
-      // console.log(error)
+       // console.log(error);
       });
 });
 
