@@ -35,6 +35,7 @@ class AssignList extends Component {
 
     componentDidMount(){
         //dispatch saga to fetch categories
+        this.props.dispatch({type: 'GET_CATEGORY'})
     }
 
     handleChange = (event) => {
@@ -44,8 +45,9 @@ class AssignList extends Component {
     handleViewCategory = () => {
         this.setState({
             ...this.state,
-            viewing: this.state.selectedCategory
+            viewing: this.state.selectedCategory.name
         })
+        console.log('selcted category id:', this.state.selectedCategory.id)
         //dispatch saga to get all skill_category JOIN skill where id = category.id
         //set results to state
     }
@@ -82,8 +84,8 @@ class AssignList extends Component {
                             <em></em>
                             </MenuItem>
                             {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
-                            {this.state.tempCategory.map((category, index) =>(
-                                <MenuItem value={category} key ={index}>{category}</MenuItem>
+                            {this.props.reduxState.category.map((category) =>(
+                                <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
                             ))}
                         </Select>
                         <Button color = "primary" variant = "outlined" onClick = {this.handleViewCategory}>
