@@ -17,6 +17,7 @@ import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import AddSkill from '../AddSkill/AddSkill';
+import AssignList from '../AssignList/AssignList';
 import './App.css';
 
 class App extends Component {
@@ -60,6 +61,10 @@ class App extends Component {
               path="/addSkill"
               component={AddSkill}
             />
+            <ProtectedRoute 
+              path = "/AssignList"
+              component = {AssignList}
+              />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />
           </Switch>

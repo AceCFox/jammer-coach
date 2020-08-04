@@ -23,6 +23,9 @@ const Nav = (props) => (
             Info Page
           </Link>
           <LogOutButton className="nav-link"/>
+          <Link className="nav-link" to="/AssignList">
+            Assign Skills
+          </Link>
         </>
       )}
         {props.user.id && (
@@ -30,7 +33,6 @@ const Nav = (props) => (
           <Link className="nav-link" to="/AddSkill">
             Add a Skill
           </Link>
-          <LogOutButton className="nav-link"/>
         </>
       )}
       {/* Always show this link since the about page is not protected */}

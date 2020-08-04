@@ -8,13 +8,15 @@ import { connect } from 'react-redux';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        justify: 'center',
     },
     paper: {
         width: '90%',
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        justify: 'center',
     },
     textFeld:{
         width: 200,
