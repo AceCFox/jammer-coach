@@ -36,26 +36,23 @@ class AddSkill extends Component {
     url:'',
     description:'',
     thisCategory: [],
-    allCategory:['hockey stop', 'plow', 'edges', 'toe stop', 'agility', 'crossover'],
     category: ''
     };
 
     componentDidMount(){
         //dispatch saga to fetch categories
         this.props.dispatch({type: 'GET_CATEGORY'})
-        this.setState({
-            ...this.state,
-            allCategory: this.props.reduxState.category,
-        })
     }
 
     handleChange = (event) => {
         this.setState({ [event.target.name]: event.target.value });
       };
 
-    handleAdd = (event)=>{
+    handleAdd = ()=>{
         let array = this.state.thisCategory;
         let newCategory = this.state.category;
+        //check if a unique category has been selected
+        //skills can have multiple cateogories, but only needs a category once
         if (newCategory !== ''){
             for(let i=0; i<array.length; i++){
                 if (array[i] === newCategory){
@@ -63,14 +60,15 @@ class AddSkill extends Component {
                     return;
                 }
             }
-        array.push(newCategory);
-        }
-        // console.log(array);
+            array.push(newCategory);
+        //sets our state back to empty category input, 
+        //and updates our thisCategory array
         this.setState({
             ...this.state,
             thisCategory: array,
             category:'',
         })//end setState
+        }   
     }//end handleAdd
 
     handleRemove = (id) => (event) =>{
@@ -152,9 +150,9 @@ class AddSkill extends Component {
                     </FormControl>
                     <ul className = {classes.categoryList} >
                         <label>Selected Categories</label>
-                        {this.state.thisCategory.map((category)=>(
+                        {this.state.thisCategory.map((category, index)=>(
                            <li key = {category.id}>{category.name} 
-                           <Button value = {category.id} color="secondary" onClick = {this.handleRemove(category.id)}>
+                           <Button value = {category.id} color="secondary" onClick = {this.handleRemove(index)}>
                                Remove
                             </Button></li> 
                         ))}
