@@ -28,8 +28,6 @@ const styles = theme => ({
 class AssignList extends Component {
   state = {
     selectedCategory: '',
-    tempCategory:['hockey stop', 'plow', 'edges', 'toe stop', 'agility', 'crossover'],
-    skillList: [{id: 1}, {id: 2}, {id: 3}],
     viewing: '',
     };
 
@@ -50,6 +48,7 @@ class AssignList extends Component {
         console.log('selcted category id:', this.state.selectedCategory.id)
         //dispatch saga to get all skill_category JOIN skill where id = category.id
         //set results to state
+        this.props.dispatch({type:'GET_SKILL_CATEGORY', payload: this.state.selectedCategory.id})
     }
 
     handleViewAll = () => {
@@ -58,6 +57,7 @@ class AssignList extends Component {
             viewing: 'all skills',
         })
         //dispatch saga to get ALL THE SKILLS
+        this.props.dispatch({type: 'GET_ALL_SKILL'})
     }
   
 
@@ -99,7 +99,8 @@ class AssignList extends Component {
                 </Grid>
                 {this.state.viewing ? <h2> Viewing {this.state.viewing}</h2> :
                  ''}
-             {this.state.viewing ? this.state.skillList.map((item, index) =>(<AssignListItem key = {index}/>)) :
+             {this.state.viewing ? this.props.reduxState.skill.map((item) =>
+             (<AssignListItem skill = {item} key = {item.id}/>)) :
                  ''}
           </Paper>
       </div>

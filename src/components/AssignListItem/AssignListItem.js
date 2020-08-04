@@ -69,7 +69,7 @@ class AssignListItem extends Component {
                 spacing = {4}>
                <Grid item xs = {12} md = {8}>
                     <Paper className = {classes.paper}>
-                    <ReactPlayer url= 'https://www.youtube.com/watch?v=B0dxCne9zpc' controls = {true} 
+                    <ReactPlayer url= {this.props.skill.url} controls = {true} 
                         className = {classes.video}/>
                     </Paper>
                </Grid>
@@ -81,7 +81,7 @@ class AssignListItem extends Component {
                     </i> 
                     : ''
                     }
-                    <h2>Skill Name</h2>
+                    <h2>{this.props.skill.title}</h2>
                         <FormControl className={classes.formControl}>     
                         <InputLabel>Skater</InputLabel>
                             <Select
