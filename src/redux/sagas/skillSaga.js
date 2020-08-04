@@ -25,6 +25,7 @@ function* categorySkill(action) {
   }
 }
 
+
 function* skillSaga() {
   yield takeLatest('GET_ALL_SKILL', allSkill);
   yield takeLatest('GET_SKILL_CATEGORY', categorySkill)

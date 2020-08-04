@@ -34,10 +34,20 @@ router.get('/category:id', (req, res) => {
 });
 
 /**
- * POST route template
+ * POST new skill into skill table
  */
 router.post('/', (req, res) => {
-
+  const queryText = `INSERT INTO "skill"("title", "url", "author", "description") 
+  VALUES($1, $2, $3, $4); `
+  pool.query(queryText, 
+    [req.body.title,
+    req.body.url,
+    req.body.author,
+    req.body.description])
+  .then(() => res.sendStatus(201))
+  .catch((error) => {res.sendStatus(500);
+   console.log(error)
+  });
 });
 
 module.exports = router;

@@ -90,6 +90,7 @@ class AddSkill extends Component {
             description: this.state.description,
         }
         console.log('object to post:', submitObject);
+        this.props.dispatch({type: 'POST_SKILL', payload: submitObject})
         //dispatch a saga to post submitObject
     }
 
