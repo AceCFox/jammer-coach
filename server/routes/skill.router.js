@@ -33,10 +33,10 @@ router.get('/category:id', (req, res) => {
 
 });
 
-
-
+//this post route uses postgreSql transactions to allow a simultaneous
+//insert into the skill title and a new row for each of the categories
+//inserted in to the category_skill table
 router.post('/', async (req, res) =>  {
-
   const client = await pool.connect()
   try {
     await client.query('BEGIN')

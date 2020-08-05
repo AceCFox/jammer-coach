@@ -51,7 +51,7 @@ class AssignListItem extends Component {
                             coach_notes: this.state.notes }
        console.log(postObject);
        //call saga to POST postobject to user_skill
-
+       this.props.dispatch({type: 'ASSIGN_SKILL', payload: postObject}) 
        //alert user of successful assign
        this.setState({
             ...this.state,

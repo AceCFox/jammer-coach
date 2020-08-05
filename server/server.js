@@ -12,6 +12,7 @@ const passport = require('./strategies/user.strategy');
 const userRouter = require('./routes/user.router');
 const categoryRouter = require('./routes/category.router');
 const skillRouter = require('./routes/skill.router');
+const skaterRouter = require('./routes/skater.router')
 
 // Body parser middleware
 app.use(bodyParser.json());
@@ -28,6 +29,7 @@ app.use(passport.session());
 app.use('/api/user', userRouter);
 app.use('/api/category', categoryRouter);
 app.use('/api/skill', skillRouter);
+app.use('/api/skater', skaterRouter)
 
 // Serve static files
 app.use(express.static('build'));

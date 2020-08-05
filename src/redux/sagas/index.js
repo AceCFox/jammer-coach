@@ -6,6 +6,7 @@ import categorySaga from './categorySaga';
 import skillSaga from './skillSaga';
 import skaterSaga from './skaterSaga';
 import addSkillSaga from './addSkillSaga'
+import curriculumSaga from './curriculumSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -23,5 +24,6 @@ export default function* rootSaga() {
     skillSaga(),
     skaterSaga(),
     addSkillSaga(),
+    curriculumSaga(),
   ]);
 }
