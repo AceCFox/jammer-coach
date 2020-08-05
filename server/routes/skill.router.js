@@ -1,6 +1,8 @@
 const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
+const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+
 
 /**
  * GET all skills
@@ -36,7 +38,7 @@ router.get('/category:id', (req, res) => {
 //this post route uses postgreSql transactions to allow a simultaneous
 //insert into the skill title and a new row for each of the categories
 //inserted in to the category_skill table
-router.post('/', async (req, res) =>  {
+router.post('/', rejectUnauthenticated, async (req, res) =>  {
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
@@ -52,9 +54,11 @@ router.post('/', async (req, res) =>  {
       await client.query(insertText, [res.rows[0].id, req.body.categories[i].id])
     }
     await client.query('COMMIT')
-  } catch (e) {
+    res.sendStatus(201);
+  } catch (error) {
     await client.query('ROLLBACK')
-    throw e
+    console.log(error);
+    res.sendStatus(500);
   } finally {
     client.release()
   }

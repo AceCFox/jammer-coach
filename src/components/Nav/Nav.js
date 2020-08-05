@@ -3,43 +3,50 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
+import {Button, Toolbar, AppBar, Typography } from '@material-ui/core';
 
 const Nav = (props) => (
   <div className="nav">
-    <Link to="/home">
-      <h2 className="nav-title">Jammer Coach</h2>
-    </Link>
-    <div className="nav-right">
-      <Link className="nav-link" to="/home">
-        {/* Show this link if they are logged in or not,
-        but call this link 'Home' if they are logged in,
-        and call this link 'Login / Register' if they are not */}
-        {props.user.id ? 'Home' : 'Login / Register'}
-      </Link>
-      {/* Show the link to the info page and the logout button if the user is logged in */}
-      {props.user.id && (
-        <>
-          <Link className="nav-link" to="/info">
-            Info Page
+    <AppBar position = 'static'>
+      <Toolbar>
+        <Link className = 'nav-link' to="/home">
+           <b>Jammer Coach</b> 
+        </Link>
+        <div className="nav-right">
+          <Link className="nav-link" to="/home">
+            {/* Show this link if they are logged in or not,
+            but call this link 'Home' if they are logged in,
+            and call this link 'Login / Register' if they are not */}
+            {props.user.id ? 'Home' : 'Login / Register'}
           </Link>
-          <LogOutButton className="nav-link"/>
-          <Link className="nav-link" to="/AssignList">
-            Assign Skills
+          {/* Show the link to the info page and the logout button if the user is logged in */}
+          {props.user.id && (
+            <>
+              <Link className="nav-link" to="/info">
+                Info Page
+              </Link>
+              <Link className="nav-link" to="/AddSkill">
+                Add a Skill
+              </Link>
+            </>    
+          )}
+            {props.user.is_coach && (
+           <>
+             <Link className="nav-link" to="/AssignList">
+             Assign Skills
+           </Link>
+         </>
+          )}
+          {/* Always show this link since the about page is not protected */}
+          <Link className="nav-link" to="/about">
+            About
           </Link>
-        </>
-      )}
-        {props.user.id && (
-        <>
-          <Link className="nav-link" to="/AddSkill">
-            Add a Skill
-          </Link>
-        </>
-      )}
-      {/* Always show this link since the about page is not protected */}
-      <Link className="nav-link" to="/about">
-        About
-      </Link>
-    </div>
+        </div>
+        <div className = 'nav-end'>
+        <LogOutButton className="nav-link"/>
+        </div>
+      </Toolbar>
+    </AppBar>
   </div>
 );
 

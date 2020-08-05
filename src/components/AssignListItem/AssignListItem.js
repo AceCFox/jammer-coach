@@ -76,8 +76,10 @@ class AssignListItem extends Component {
                 spacing = {4}>
                <Grid item xs = {12} md = {8}>
                     <Paper className = {classes.paper}>
-                    <ReactPlayer url= {this.props.skill.url} controls = {true} 
-                        className = {classes.video}/>
+                        <ReactPlayer url= {this.props.skill.url} 
+                            controls = {true} 
+                            alt = {this.props.skill.description} 
+                            className = {classes.video}/>
                     </Paper>
                </Grid>
                <Grid item xs = {12} md = {4}> 
@@ -100,7 +102,7 @@ class AssignListItem extends Component {
                                     <MenuItem value="">
                                     <em></em>
                                     </MenuItem>
-                                    {/* TO DO: CHANGE this.state.tempSkater to the skater reducer props */}
+                                    {/* populates list with all usernames from redux state */}
                                     {this.props.reduxState.allSkater.map((skater) =>(
                                         <MenuItem value={skater} key ={skater.id}>{skater.username}</MenuItem>
                                     ))}
