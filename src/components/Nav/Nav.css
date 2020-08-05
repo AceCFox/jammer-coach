@@ -38,3 +38,10 @@
 .nav-end{
 margin-right: 10;
 }
+
+.icon{
+  height: 50px;
+  width: auto;
+  color: white;
+  margin-right: 50px;
+}

@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import LogOutButton from '../LogOutButton/LogOutButton';
 import './Nav.css';
 import {Button, Toolbar, AppBar, Typography } from '@material-ui/core';
+import favicon from './favicon.ico'
 
 const Nav = (props) => (
   <div className="nav">
@@ -12,6 +13,7 @@ const Nav = (props) => (
         <Link className = 'nav-link' to="/home">
            <b>Jammer Coach</b> 
         </Link>
+        <img className = "icon" src = {require ('./favicon.ico') }alt = 'roller skate icon'/>
         <div className="nav-right">
           <Link className="nav-link" to="/home">
             {/* Show this link if they are logged in or not,
@@ -34,6 +36,9 @@ const Nav = (props) => (
            <>
              <Link className="nav-link" to="/AssignList">
              Assign Skills
+           </Link>
+           <Link className="nav-link" to="/EditSkill">
+             Edit Skills
            </Link>
          </>
           )}
