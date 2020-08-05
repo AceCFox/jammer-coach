@@ -69,7 +69,13 @@ class EditSkill extends Component {
     return (
       <div className={classes.root}>
           <Paper className = {classes.paper}>
-            <h1>Assign a Skill:</h1>
+            <p><i>Note: you are currently editing the GENREAL DIRECTORY
+                of skills, and changes made here will be reflected in all 
+                skater's curriculi.
+                {/* To edit the curriculum of a single skater, please visit th
+                LINK TO MANAGE SKATERS PAGE */}
+            </i></p>
+            <h1>Edit A Skill:</h1>
               <Grid  container
                 direction="row"
                 justify="center"
@@ -86,9 +92,9 @@ class EditSkill extends Component {
                             <MenuItem value="">
                             <em></em>
                             </MenuItem>
-                            {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
-                            {this.props.reduxState.category.map((category) =>(
-                                <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
+                            {/* DONE: maps categories from the category reducer props */}
+                            {this.props.reduxState.category.map((category, index) =>(
+                                <MenuItem value={category} key ={index}>{category.name}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>
@@ -100,7 +106,7 @@ class EditSkill extends Component {
                         View All Skills
                     </Button>
                 </Grid>
-                {this.state.viewing ? <h2> Viewing {this.state.viewing}</h2> :
+                {this.state.viewing ? <h2> Editing {this.state.viewing}</h2> :
                  ''}
              {this.state.viewing ? this.props.reduxState.skill.map((item) =>
              (<EditSkillItem skill = {item} key = {item.id}/>)) :

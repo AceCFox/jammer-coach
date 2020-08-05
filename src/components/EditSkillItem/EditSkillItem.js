@@ -8,17 +8,19 @@ import ReactPlayer from 'react-player/lazy'
 
 const styles = theme => ({
     root: {
-        flexGrow: 1,
+        flexGrow: 2,
         alignItems: 'center'
     },
     paper: {
-        width: '90%',
+        width: '95%' ,
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
     video :{
         maxWidth: '100%',
+        width: '200px',
+        maxHeight: '175px',
     },
     formControl: {
         minWidth: 200,
@@ -29,40 +31,19 @@ const styles = theme => ({
   });
 
 class EditSkillItem extends Component {
-  state = {
-    selected: '',
-    notes: '',
-    submitted: false
-    };
+    state = {
+        edit: false,
+        catagories: []
+    }
 
     componentDidMount(){
-        //dispatch saga to fetch username list
-        //displatch saga to fetch skaters
-        this.props.dispatch({type: 'GET_SKATER'})
+       // dispatching a saga to get all the skill_catagory
+      this.setCatagories();
     }
-  
-    handleChange = (event) => {
-        this.setState({ [event.target.name]: event.target.value });
-      }
-
-    handleAssign =()=>{
-       const postObject = {skill_id: this.props.skill.id,
-                            user_id: this.state.selected.id,
-                            coach_notes: this.state.notes }
-       console.log(postObject);
-       //call saga to POST postobject to user_skill
-       this.props.dispatch({type: 'ASSIGN_SKILL', payload: postObject}) 
-       //alert user of successful assign
-       this.setState({
-            selected: '',
-            notes: '',
-            submitted: true,})
-    }
-
-    handleOk = () =>{
-        this.setState({
-            ...this.state,
-            submitted:false})
+    
+    setCatagories = () =>{
+      //to do
+     
     }
 
   render() {
@@ -73,58 +54,84 @@ class EditSkillItem extends Component {
                 direction="row"
                 justify="center"
                 alignItems="center"
-                spacing = {4}>
-               <Grid item xs = {12} md = {8}>
+                spacing = {2}>
+               <Grid item xs = {12} sm = {6} md = {4}>
                     <Paper className = {classes.paper}>
-                        <ReactPlayer url= {this.props.skill.url} 
+                       {!this.state.edit ? <ReactPlayer url= {this.props.skill.url} 
                             controls = {true} 
                             alt = {this.props.skill.description} 
+                            light = {true}
                             className = {classes.video}/>
+                        :<TextField></TextField>}
                     </Paper>
                </Grid>
-               <Grid item xs = {12} md = {4}> 
+               <Grid item xs = {12} sm = {6} md = {8} minHeight = '300px'> 
                     <Paper className = {classes.paper}>
-                    {(this.state.submitted && this.state.selected )? 
-                    <i>Successsfully submitted to {this.state.selected.username}'s curriculum
-                         <Button onClick = {this.handleOk}>ok</Button>    
-                    </i> 
-                    : ''
-                    }
-                    <h2>{this.props.skill.title}</h2>
-                        <FormControl className={classes.formControl}>     
-                        <InputLabel>Skater</InputLabel>
-                            <Select
-                                value = {this.state.selected}
-                                onChange={this.handleChange}
-                                inputProps={{
-                                    name: 'selected', 
-                                }}>
-                                    <MenuItem value="">
-                                    <em></em>
-                                    </MenuItem>
-                                    {/* populates list with all usernames from redux state */}
-                                    {this.props.reduxState.allSkater.map((skater) =>(
-                                        <MenuItem value={skater} key ={skater.id}>{skater.username}</MenuItem>
-                                    ))}
-                            </Select>
-                        </FormControl>
-                        
-                        <TextField
-                            label="Notes"
-                            name ='notes'
-                            value = {this.state.notes}
-                            onChange = {this.handleChange}
-                            multiline
-                            rowsMax="4"
-                            className={classes.longField}
-                            margin="normal"
-                            />
-                            <br/>
-                            <br/>
-                            <br/>
-                        <Button variant = 'contained' color = 'primary' onClick = {this.handleAssign}>
-                            Assign Skill
-                        </Button>
+                    <Grid container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        minHeight = '235px'
+                        spacing = {1}>
+                           <Grid item xs = {4}>
+                                 {!this.state.edit ?
+                                   <>
+                                    <h3>{this.props.skill.title}</h3>
+                                    <p>Catagories:
+                                        a lot of
+                                        catagories
+                                        will go here
+                                        {/* {JSON.stringify(this.props.reduxState.category)} */}
+                                        {this.state.catagories.map((catagory, i) =>(
+                                            {catagory}
+                                         ))}
+                                    </p>
+                                  </>
+                                 :
+                                 <p>   
+                                    lorem impsemskldfjslk
+                                    gsfklgj
+                                    sgmkl;
+                                    jksfldgj'
+                                    jklgfsdgjsklfop
+                                </p>}
+                            </Grid>
+                            <Grid item xs = {4}>
+                            {!this.state.edit ?
+                            <p>{this.props.skill.description}</p>
+                            :
+                                <p>
+                            lorem impsemskldfjslk
+                            gsfklgj
+                            sgmkl;
+                            jksfldgj'
+                            jklgfsdgjsklfop
+                             </p>
+                            }
+                            </Grid>
+                            <Grid item xs = {4}>
+                                {!this.state.edit? 
+                                <>
+                                    <Button variant = 'contained'>
+                                        Edit
+                                    </Button>
+                                    <br/>
+                                    <br/>
+                                    <Button variant = 'contained'>
+                                        Delete
+                                    </Button>
+                                </>
+                                :
+                                <p>
+                            lorem impsemskldfjslk
+                            gsfklgj
+                            sgmkl;
+                            jksfldgj'
+                            jklgfsdgjsklfop
+                             </p>
+                             }
+                            </Grid>
+                        </Grid>    
                     </Paper>
                </Grid>
           </Grid>

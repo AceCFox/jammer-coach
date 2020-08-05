@@ -87,8 +87,8 @@ class AssignList extends Component {
                             <em></em>
                             </MenuItem>
                             {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
-                            {this.props.reduxState.category.map((category) =>(
-                                <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
+                            {this.props.reduxState.category.map((category, index) =>(
+                                <MenuItem value={category} key ={index}>{category.name}</MenuItem>
                             ))}
                         </Select>
                     </FormControl>
