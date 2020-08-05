@@ -54,8 +54,9 @@ class AssignListItem extends Component {
        this.props.dispatch({type: 'ASSIGN_SKILL', payload: postObject}) 
        //alert user of successful assign
        this.setState({
-            ...this.state,
-            submitted:true})
+            selected: '',
+            notes: '',
+            submitted: true,})
     }
 
     handleOk = () =>{

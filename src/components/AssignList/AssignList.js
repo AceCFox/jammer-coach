@@ -11,7 +11,7 @@ import AssignListItem from '../AssignListItem/AssignListItem';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        alignItems: 'center'
+        alignItems: 'flex-end'
     },
     paper: {
         width: '90%',
@@ -20,8 +20,11 @@ const styles = theme => ({
         color: theme.palette.text.secondary,    
     },
     grid: {
-        alignItems: 'center',
+        alignItems: 'flex-end',
         justify: 'center',
+    },
+    formControl:{
+        width: 200
     }
   });
 
@@ -70,7 +73,7 @@ class AssignList extends Component {
               <Grid  container
                 direction="row"
                 justify="center"
-                alignItems="center">
+                alignItems="flex-end">
                 <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="age-simple">Category</InputLabel>
                     <Select
@@ -88,10 +91,10 @@ class AssignList extends Component {
                                 <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
                             ))}
                         </Select>
-                        <Button color = "primary" variant = "outlined" onClick = {this.handleViewCategory}>
+                    </FormControl>
+                    <Button color = "primary" variant = "outlined" onClick = {this.handleViewCategory}>
                             View category
                         </Button>
-                    </FormControl>
                     {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'}
                     <Button variant = 'outlined' color = 'primary' onClick = {this.handleViewAll}>
                         View All Skills
