@@ -37,6 +37,8 @@ class EditSkill extends Component {
     componentDidMount(){
         //dispatch saga to fetch categories
         this.props.dispatch({type: 'GET_CATEGORY'})
+        //dispatch saga to set skillCategory reducer
+        this.props.dispatch({type: 'GET_JUNCTION'})
     }
 
     handleChange = (event) => {
@@ -71,7 +73,7 @@ class EditSkill extends Component {
           <Paper className = {classes.paper}>
             <p><i>Note: you are currently editing the GENREAL DIRECTORY
                 of skills, and changes made here will be reflected in all 
-                skater's curriculi.
+                skaters' curriculi.
                 {/* To edit the curriculum of a single skater, please visit th
                 LINK TO MANAGE SKATERS PAGE */}
             </i></p>

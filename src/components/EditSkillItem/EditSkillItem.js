@@ -20,7 +20,7 @@ const styles = theme => ({
     video :{
         maxWidth: '100%',
         width: '200px',
-        maxHeight: '175px',
+        maxHeight: '225px',
     },
     formControl: {
         minWidth: 200,
@@ -28,65 +28,84 @@ const styles = theme => ({
     longField:{
         width: '85%',
     },
+    smallList:{
+        margins: '2px',
+        padding: '1px',
+        listStyle:'none',
+    }
   });
 
 class EditSkillItem extends Component {
     state = {
         edit: false,
-        catagories: []
+        categories: []
     }
 
     componentDidMount(){
-       // dispatching a saga to get all the skill_catagory
+       // dispatching a saga to get all the skill_catagory   
       this.setCatagories();
     }
     
     setCatagories = () =>{
-      //to do
-     
+      let array = [];
+      let junction = this.props.reduxState.skillCategory;
+      const id =this.props.skill.id;
+      for (let i =0; i<junction.length; i++){
+          if (junction[i].skill_id == id){
+              array.push(junction[i])
+          }//end if
+      }//end for
+     console.log(array)
+     this.setState({
+         ...this.state,
+         categories: array,
+     })
+    }//end setCatagories
+
+    handleEditTrue = () =>{
+        this.setState({
+            ...this.state,
+            edit: true,
+        })
+    }
+    
+    handleEditFalse = () =>{
+        this.setState({
+            ...this.state,
+            edit: false,
+        })
     }
 
   render() {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-          <Grid container
+         <Paper className = {classes.paper}> 
+            <Grid container
                 direction="row"
                 justify="center"
                 alignItems="center"
-                spacing = {2}>
-               <Grid item xs = {12} sm = {6} md = {4}>
-                    <Paper className = {classes.paper}>
+                spacing = {2}> 
+                    <Grid item xs = {12} sm = {6} md = {4}>
                        {!this.state.edit ? <ReactPlayer url= {this.props.skill.url} 
                             controls = {true} 
                             alt = {this.props.skill.description} 
                             light = {true}
                             className = {classes.video}/>
-                        :<TextField></TextField>}
-                    </Paper>
-               </Grid>
-               <Grid item xs = {12} sm = {6} md = {8} minHeight = '300px'> 
-                    <Paper className = {classes.paper}>
-                    <Grid container
+                        :<TextField></TextField>}  
+                    </Grid>
+                    <Grid item xs = {12} sm = {6} md = {8}> 
+                        <Grid container
                         direction="row"
                         justify="center"
                         alignItems="center"
-                        minHeight = '235px'
                         spacing = {1}>
                            <Grid item xs = {4}>
                                  {!this.state.edit ?
-                                   <>
+                                   <div>
                                     <h3>{this.props.skill.title}</h3>
-                                    <p>Catagories:
-                                        a lot of
-                                        catagories
-                                        will go here
-                                        {/* {JSON.stringify(this.props.reduxState.category)} */}
-                                        {this.state.catagories.map((catagory, i) =>(
-                                            {catagory}
-                                         ))}
-                                    </p>
-                                  </>
+                                    <p>{this.props.skill.description}</p>
+                                  </div>
                                  :
                                  <p>   
                                     lorem impsemskldfjslk
@@ -98,7 +117,12 @@ class EditSkillItem extends Component {
                             </Grid>
                             <Grid item xs = {4}>
                             {!this.state.edit ?
-                            <p>{this.props.skill.description}</p>
+                            <ul className = {classes.smallList}>
+                            <label>Categories:</label>  
+                              {this.state.categories.map((category, i) =>(
+                                 <li key = {i}>{category.name}</li> 
+                               ))}
+                            </ul> 
                             :
                                 <p>
                             lorem impsemskldfjslk
@@ -112,7 +136,8 @@ class EditSkillItem extends Component {
                             <Grid item xs = {4}>
                                 {!this.state.edit? 
                                 <>
-                                    <Button variant = 'contained'>
+                                    <Button variant = 'contained'
+                                        onClick = {this.handleEditTrue}>
                                         Edit
                                     </Button>
                                     <br/>
@@ -122,19 +147,23 @@ class EditSkillItem extends Component {
                                     </Button>
                                 </>
                                 :
-                                <p>
-                            lorem impsemskldfjslk
-                            gsfklgj
-                            sgmkl;
-                            jksfldgj'
-                            jklgfsdgjsklfop
-                             </p>
+                                <div>
+                                    <Button>
+                                        Save Changes
+                                    </Button>
+                                    <br/>
+                                    <br/>
+                                    <Button onClick = {this.handleEditFalse}>
+                                        Discard Changes
+                                    </Button>
+                                </div>
                              }
                             </Grid>
                         </Grid>    
-                    </Paper>
-               </Grid>
-          </Grid>
+                    </Grid>
+                </Grid>
+             </Paper>
+          <br/>
       </div>
     );
   }
