@@ -117,6 +117,8 @@ class EditSkillItem extends Component {
 
         //dispatch DELETE from skill_category if deleteCategories is truthy
 
+        //dispatch the GET skill_category saga to show changes
+        
         //"flip" the card
         this.setState({
             ...this.state,

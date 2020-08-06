@@ -36,7 +36,9 @@ class AddSkill extends Component {
     url:'',
     description:'',
     thisCategory: [],
-    category: ''
+    category: '',
+    lastTitle: '',
+    submitted: false,
     };
 
     componentDidMount(){
@@ -90,16 +92,40 @@ class AddSkill extends Component {
             description: this.state.description,
         }
         console.log('object to post:', submitObject);
-        this.props.dispatch({type: 'POST_SKILL', payload: submitObject})
         //dispatch a saga to post submitObject
+        if (submitObject.title&&submitObject.url){
+        this.props.dispatch({type: 'POST_SKILL', payload: submitObject})
+        }
+        //reset state and throw confirm
+        this.setState({
+            title:'',
+            author:'',
+            url:'',
+            description:'',
+            thisCategory: [],
+            category: '',
+            lastTitle: submitObject.title,
+            submitted: true,  
+        })
     }
+
+    handelOk = () =>{
+        this.setState({
+            ...this.state,
+            submitted:false,
+        })
+    }
+
 
   render() {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-          {/* {JSON.stringify(this.props.reduxState.category)} */}
           <Paper className = {classes.paper}>
+            {this.state.submitted &&
+            <i>Successfully submitted {this.state.lastTitle}
+            <Button onClick = {this.handelOk}>ok</Button>
+            </i> }
                 <h2>Add A Skill</h2>
                 {/* Eventually, this next bit should be conditional upon user != coach */}
                 <p><i>Note: skill videos are accessable by all users</i></p>
@@ -172,9 +198,15 @@ class AddSkill extends Component {
                 />
                 <br/>
                 <br/>
+                {(this.state.title&& this.state.url) ?
             <Button variant ='contained' color = 'primary' size = "large" onClick = {this.handleSubmit}>
                 Submit
             </Button>
+                :
+                <Button variant ='contained' disabled size = "large">
+                Submit
+                </Button>
+                 }
           </Paper> 
       </div>
     );

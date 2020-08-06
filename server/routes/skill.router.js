@@ -86,9 +86,20 @@ router.put('/', rejectUnauthenticated, (req, res) => {
   .then(() => res.sendStatus(201))
   .catch((error) => {res.sendStatus(500);
     console.log(error);
-    console.log(req.body)
+    //console.log(req.body)
   });
 });
 
+
+router.post('/cat', rejectUnauthenticated, (req,res) => {
+  const queryText = `INSERT INTO "skill_category"
+  ("skill_id", "category_id")
+  VALUES ($1, $2);`;
+  pool.query(queryText, [req.body.skill_id, req.body.category_id])
+  .then(() => res.sendStatus(201))
+  .catch((error) => {res.sendStatus(500);
+    console.log(error);
+  });
+})
 
 module.exports = router;
