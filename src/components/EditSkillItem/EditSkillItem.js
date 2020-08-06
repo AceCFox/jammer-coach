@@ -100,7 +100,10 @@ class EditSkillItem extends Component {
     }
 
     handleSave = () =>{
-        const addArray = this.state.addCategories;
+        const addObject = {
+            categories: this.state.addCategories,
+            id: this.props.skill.id
+        };
         const deleteArray = this.state.deleteCategories;
         const updateObject = {
             title: this.state.title,
@@ -109,16 +112,16 @@ class EditSkillItem extends Component {
             description: this.state.description,
             id: this.props.skill.id,
         }
-        console.log('deleting: ', deleteArray, 'adding:', addArray, 'updating:', updateObject );
+        console.log('deleting: ', deleteArray, 'adding:', addObject, 'updating:', updateObject );
 
         //dispatch Saga to make UPDATE call
-        this.props.dispatch({type: 'UPDATE_SKILL', payload: updateObject})
+        this.props.dispatch({type: 'UPDATE_SKILL', payload: updateObject});
         //dispatch POST to skill_category if addCategories is truthy
-
+        this.props.dispatch({type:'POST_JUNCTION', payload:addObject});
         //dispatch DELETE from skill_category if deleteCategories is truthy
 
         //dispatch the GET skill_category saga to show changes
-        
+
         //"flip" the card
         this.setState({
             ...this.state,

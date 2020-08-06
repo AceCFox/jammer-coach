@@ -44,7 +44,7 @@ router.post('/', rejectUnauthenticated, async (req, res) =>  {
     await client.query('BEGIN')
     const queryText = `INSERT INTO "skill"("title", "url", "author", "description") 
      VALUES($1, $2, $3, $4) RETURNING "id";`
-    const res = await client.query(queryText, [req.body.title,
+    const result = await client.query(queryText, [req.body.title,
          req.body.url,
          req.body.author,
          req.body.description])
@@ -54,7 +54,7 @@ router.post('/', rejectUnauthenticated, async (req, res) =>  {
       await client.query(insertText, [res.rows[0].id, req.body.categories[i].id])
     }
     await client.query('COMMIT')
-   // res.sendStatus(201)
+    res.sendStatus(201)
   } catch (error) {
     await client.query('ROLLBACK')
     console.log(error)
@@ -91,15 +91,38 @@ router.put('/', rejectUnauthenticated, (req, res) => {
 });
 
 
-router.post('/cat', rejectUnauthenticated, (req,res) => {
-  const queryText = `INSERT INTO "skill_category"
-  ("skill_id", "category_id")
-  VALUES ($1, $2);`;
-  pool.query(queryText, [req.body.skill_id, req.body.category_id])
-  .then(() => res.sendStatus(201))
-  .catch((error) => {res.sendStatus(500);
-    console.log(error);
-  });
+// router.post('/cat:id', rejectUnauthenticated, (req,res) => {
+//   const queryText = `INSERT INTO "skill_category"
+//   ("skill_id", "category_id")
+//   VALUES ($1, $2)`;
+//   //for let
+//   pool.query(queryText, [req.body.skill_id, req.body.category_id])
+//   .then(() => res.sendStatus(201))
+//   .catch((error) => {res.sendStatus(500);
+//     console.log(error);
+//   });
+// })
+
+router.post('/cat/', rejectUnauthenticated, async (req, res) =>  {
+  const client = await pool.connect()
+  try {
+    await client.query('BEGIN')
+    const insertText = `INSERT INTO "skill_category" ("skill_id", "category_id")
+              VALUES($1 , $2);`
+    for (let i =0; i<req.body.categories.length; i++ ){
+      await client.query(insertText, [req.body.id, req.body.categories[i].id])
+    }
+    await client.query('COMMIT')
+    res.sendStatus(201)
+  } catch (error) {
+    await client.query('ROLLBACK')
+    console.log(error)
+    res.sendStatus(500);
+  } finally {
+    client.release()
+  }
 })
+
+
 
 module.exports = router;

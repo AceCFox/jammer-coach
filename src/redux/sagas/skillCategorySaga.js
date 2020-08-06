@@ -11,10 +11,19 @@ function* getJunction(){
     }
 }
 
+function*postJunction(action){
+    try{
+        yield axios.post('/api/skill/cat', action.payload);
+    }catch (error) {
+        console.log('Error with skill_category GET:', error);
+    }
+}
+
 
 
 function* skillCategorySaga() {
   yield takeLatest('GET_JUNCTION', getJunction);
+  yield takeLatest('POST_JUNCTION', postJunction);
 }
 
 export default skillCategorySaga;
