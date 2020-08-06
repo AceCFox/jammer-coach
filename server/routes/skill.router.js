@@ -8,7 +8,8 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
  * GET all skills
  */
 router.get('/', (req, res) => {
-    const queryText = 'SELECT * FROM "skill";';
+    const queryText = `SELECT * FROM "skill"
+      ORDER BY "id" ASC;`;
     pool.query(queryText)
       .then((result) => {res.send(result.rows)
      // console.log(result.rows)  
@@ -24,7 +25,8 @@ router.get('/', (req, res) => {
 router.get('/category:id', (req, res) => {
     const queryText = `SELECT * FROM "skill" 
     JOIN skill_category  on skill.id = skill_category.skill_id
-    WHERE skill_category.category_id = $1;`
+    WHERE skill_category.category_id = $1
+    ORDER BY "id" ASC;`;
     pool.query(queryText, [req.params.id])
     .then((result) => {res.send(result.rows)
    // console.log(result.rows)  
@@ -65,7 +67,7 @@ router.post('/', rejectUnauthenticated, async (req, res) =>  {
 })
 
 /**
- * UPDATE a skill by 
+ * UPDATE a skill from edit component
  */
 router.put('/', rejectUnauthenticated, (req, res) => {
   const queryText = 
@@ -91,18 +93,8 @@ router.put('/', rejectUnauthenticated, (req, res) => {
 });
 
 
-// router.post('/cat:id', rejectUnauthenticated, (req,res) => {
-//   const queryText = `INSERT INTO "skill_category"
-//   ("skill_id", "category_id")
-//   VALUES ($1, $2)`;
-//   //for let
-//   pool.query(queryText, [req.body.skill_id, req.body.category_id])
-//   .then(() => res.sendStatus(201))
-//   .catch((error) => {res.sendStatus(500);
-//     console.log(error);
-//   });
-// })
-
+//transactional post into skill_category to allow multiple
+//rows added simultaneously from edit view
 router.post('/cat/', rejectUnauthenticated, async (req, res) =>  {
   const client = await pool.connect()
   try {
@@ -123,6 +115,26 @@ router.post('/cat/', rejectUnauthenticated, async (req, res) =>  {
   }
 })
 
+//transactional delete multiple rows from skill_category from edit component
+router.delete('/cat/', rejectUnauthenticated, async (req, res) =>  {
+  const client = await pool.connect()
+  try {
+    await client.query('BEGIN')
+    const insertText = `DELETE FROM "skill_category" 
+    WHERE "skill_id" = $1 AND "category_id"= $2;`
+    for (let i =0; i<req.body.categories.length; i++ ){
+      await client.query(insertText, [req.body.id, req.body.categories[i].id])
+    }
+    await client.query('COMMIT')
+    res.sendStatus(201)
+  } catch (error) {
+    await client.query('ROLLBACK')
+    console.log(error)
+    res.sendStatus(500);
+  } finally {
+    client.release()
+  }
+})
 
 
 module.exports = router;

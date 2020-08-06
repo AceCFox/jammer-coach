@@ -11,11 +11,19 @@ function* getJunction(){
     }
 }
 
-function*postJunction(action){
+function* postJunction(action){
     try{
         yield axios.post('/api/skill/cat', action.payload);
     }catch (error) {
-        console.log('Error with skill_category GET:', error);
+        console.log('Error with skill_category POST:', error);
+    }
+}
+
+function* deleteJunction(action){
+    try{
+        yield axios.delete('/api/skill/cat', action.payload);
+    }catch (error) {
+        console.log('Error with skill_category DELETE:', error);
     }
 }
 
@@ -24,6 +32,7 @@ function*postJunction(action){
 function* skillCategorySaga() {
   yield takeLatest('GET_JUNCTION', getJunction);
   yield takeLatest('POST_JUNCTION', postJunction);
+  yield takeLatest('DELTE_JUNCTION', deleteJunction);
 }
 
 export default skillCategorySaga;

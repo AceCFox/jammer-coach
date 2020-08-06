@@ -104,7 +104,9 @@ class EditSkillItem extends Component {
             categories: this.state.addCategories,
             id: this.props.skill.id
         };
-        const deleteArray = this.state.deleteCategories;
+        const deleteObject = {
+            categories: this.state.deleteCategories,
+            id: this.props.skill.id,};
         const updateObject = {
             title: this.state.title,
             url: this.state.url,
@@ -112,14 +114,14 @@ class EditSkillItem extends Component {
             description: this.state.description,
             id: this.props.skill.id,
         }
-        console.log('deleting: ', deleteArray, 'adding:', addObject, 'updating:', updateObject );
+        console.log('deleting: ', deleteObject, 'adding:', addObject, 'updating:', updateObject );
 
         //dispatch Saga to make UPDATE call
         this.props.dispatch({type: 'UPDATE_SKILL', payload: updateObject});
         //dispatch POST to skill_category if addCategories is truthy
         this.props.dispatch({type:'POST_JUNCTION', payload:addObject});
         //dispatch DELETE from skill_category if deleteCategories is truthy
-
+        this.props.dispatch({type:'DELETE_JUNCTION', payload: deleteObject})
         //dispatch the GET skill_category saga to show changes
 
         //"flip" the card
