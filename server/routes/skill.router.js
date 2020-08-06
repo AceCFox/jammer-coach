@@ -54,15 +54,41 @@ router.post('/', rejectUnauthenticated, async (req, res) =>  {
       await client.query(insertText, [res.rows[0].id, req.body.categories[i].id])
     }
     await client.query('COMMIT')
-    res.sendStatus(201);
+   // res.sendStatus(201)
   } catch (error) {
     await client.query('ROLLBACK')
-    console.log(error);
+    console.log(error)
     res.sendStatus(500);
   } finally {
     client.release()
   }
 })
+
+/**
+ * UPDATE a skill by 
+ */
+router.put('/', rejectUnauthenticated, (req, res) => {
+  const queryText = 
+  `UPDATE "skill"
+  SET "title" = $1,
+    "url" = $2,
+    "author" = $3,
+    "description" = $4
+  WHERE "id" = $5;`;
+  const queryInput = [
+    req.body.title,
+    req.body.url,
+    req.body.author,
+    req.body.description,
+    req.body.id,
+  ];
+  pool.query(queryText, queryInput)
+  .then(() => res.sendStatus(201))
+  .catch((error) => {res.sendStatus(500);
+    console.log(error);
+    console.log(req.body)
+  });
+});
 
 
 module.exports = router;

@@ -39,10 +39,9 @@ const styles = theme => ({
 class EditSkillItem extends Component {
     state = {
         edit: false,
-        originalCategories: [],
         title:'',
         author:'',
-        url:'',
+        url: '',
         description:'',
         thisCategory:'',
         viewCategories: [],
@@ -57,7 +56,7 @@ class EditSkillItem extends Component {
       this.setState({
           ...this.state.categories,
           title: skill.title,
-          author:skill.author,
+          author: skill.author,
           url: skill.url,
           description: skill.description,
       })
@@ -75,10 +74,9 @@ class EditSkillItem extends Component {
                 })
           }//end if
       }//end for
-     console.log(array)
+    // console.log(array)
      this.setState({
          ...this.state,
-         originalCategories: array,
          viewCategories:array,
      })
     }//end setCatagories
@@ -102,9 +100,19 @@ class EditSkillItem extends Component {
     }
 
     handleSave = () =>{
+        const addArray = this.state.addCategories;
+        const deleteArray = this.state.deleteCategories;
+        const updateObject = {
+            title: this.state.title,
+            url: this.state.url,
+            author: this.state.author,
+            description: this.state.description,
+            id: this.props.skill.id,
+        }
+        console.log('deleting: ', deleteArray, 'adding:', addArray, 'updating:', updateObject );
 
         //dispatch Saga to make UPDATE call
-
+        this.props.dispatch({type: 'UPDATE_SKILL', payload: updateObject})
         //dispatch POST to skill_category if addCategories is truthy
 
         //dispatch DELETE from skill_category if deleteCategories is truthy
@@ -126,7 +134,7 @@ class EditSkillItem extends Component {
         let notAdd = true
         //check if it's already viewed on the DOM, (view Array)
         //if it's not in the viewCategories array, add it to that so it displays
-        console.log(viewArray)
+        //console.log(viewArray)
         for (let i=0; i<viewArray.length; i++){
             if (viewArray[i].id ===newCat.id)
                {
@@ -136,7 +144,6 @@ class EditSkillItem extends Component {
         if (notView&&newCat){viewArray.push(newCat)}
         //check if it's already set up to be added (add Array)
         //if it's not in the view array or add array, add it to the add array
-        console.log(addArray)
         for (let i=0; i<addArray.length; i++){
             if (addArray[i].id === newCat.id){
               //  console.log('match found')
@@ -151,11 +158,11 @@ class EditSkillItem extends Component {
             addCategories: addArray,
             thisCategory:'',
         })
-        console.log(addArray);
+       // console.log(addArray);
     }
  
     handleRemove = (thisCat) =>(event) =>{
-        console.log(thisCat);
+       // console.log(thisCat);
         const viewArray = this.state.viewCategories;
         const addArray = this.state.addCategories;
         const deleteArray = this.state.deleteCategories;
@@ -175,7 +182,6 @@ class EditSkillItem extends Component {
         }
         //if it is not in the add array, add it to the delete array
         if(!inAdd){deleteArray.push(thisCat)};
-        console.log('deleteing: ', deleteArray, 'adding:', addArray);
         //setState to 'save changes'
         this.setState({
             ...this.state,
