@@ -11,12 +11,14 @@ import EditSkillItem from '../EditSkillItem/EditSkillItem';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        alignItems: 'flex-end'
+        alignItems: 'flex-end',
+        justify: 'center',
     },
     paper: {
-        width: '90%',
+        width: '95%',
         padding: theme.spacing(2),
         textAlign: 'center',
+        alignItems: 'canter',
         color: theme.palette.text.secondary,    
     },
     grid: {
@@ -107,7 +109,7 @@ class EditSkill extends Component {
                             View category
                         </Button>
                     :
-                    <Button color = "disabled" disabled variant = "outlined"> 
+                    <Button  disabled variant = "outlined"> 
                             View category
                         </Button>
                     }

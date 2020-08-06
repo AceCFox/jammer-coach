@@ -39,12 +39,15 @@ const styles = theme => ({
 class EditSkillItem extends Component {
     state = {
         edit: false,
-        categories: [],
+        originalCategories: [],
         title:'',
         author:'',
         url:'',
         description:'',
         thisCategory:'',
+        viewCategories: [],
+        addCategories: [],
+        deleteCategories: [],
     }
 
     componentDidMount(){
@@ -66,13 +69,17 @@ class EditSkillItem extends Component {
       const id =this.props.skill.id;
       for (let i =0; i<junction.length; i++){
           if (junction[i].skill_id === id){
-              array.push(junction[i])
+              array.push({
+                  id: junction[i].category_id,
+                  name: junction[i].name   
+                })
           }//end if
       }//end for
      console.log(array)
      this.setState({
          ...this.state,
-         categories: array,
+         originalCategories: array,
+         viewCategories:array,
      })
     }//end setCatagories
 
@@ -94,20 +101,88 @@ class EditSkillItem extends Component {
         })
     }
 
-    handleSubmit = () =>{
+    handleSave = () =>{
+
         //dispatch Saga to make UPDATE call
+
+        //dispatch POST to skill_category if addCategories is truthy
+
+        //dispatch DELETE from skill_category if deleteCategories is truthy
+
+        //"flip" the card
         this.setState({
             ...this.state,
             edit: false,
         })
     }
 
+    //this function both displays a category and adds it to the add array if it's 
+    //not alreay part of the add or view arrays, we will POST the add aray on submit
     handleAdd = () =>{
-
+        const newCat = this.state.thisCategory;
+        const viewArray = this.state.viewCategories;
+        const addArray = this.state.addCategories;
+        let notView = true
+        let notAdd = true
+        //check if it's already viewed on the DOM, (view Array)
+        //if it's not in the viewCategories array, add it to that so it displays
+        console.log(viewArray)
+        for (let i=0; i<viewArray.length; i++){
+            if (viewArray[i].id ===newCat.id)
+               {
+                notView = false;
+            }
+        }
+        if (notView&&newCat){viewArray.push(newCat)}
+        //check if it's already set up to be added (add Array)
+        //if it's not in the view array or add array, add it to the add array
+        console.log(addArray)
+        for (let i=0; i<addArray.length; i++){
+            if (addArray[i].id === newCat.id){
+              //  console.log('match found')
+                notAdd = false;
+            }
+        }
+        if (newCat&&notView&notAdd){addArray.push(newCat)}
+        //set state to reflect changes
+        this.setState({
+            ...this.state,
+            viewCategories: viewArray,
+            addCategories: addArray,
+            thisCategory:'',
+        })
+        console.log(addArray);
     }
  
-    handleRemove = () =>{
-
+    handleRemove = (thisCat) =>(event) =>{
+        console.log(thisCat);
+        const viewArray = this.state.viewCategories;
+        const addArray = this.state.addCategories;
+        const deleteArray = this.state.deleteCategories;
+        let inAdd = false
+        //remove it from viewCategories so it doesn't display
+        for (let i=0; i<viewArray.length; i++){
+            if (viewArray[i]===thisCat){
+                viewArray.splice(i, 1)
+            }
+        }
+        //if it is in the add array, remove it
+        for (let i=0; i<addArray.length; i++){
+            if (addArray[i] ===thisCat){
+                addArray.splice(i, 1)
+                inAdd = true;
+            }
+        }
+        //if it is not in the add array, add it to the delete array
+        if(!inAdd){deleteArray.push(thisCat)};
+        console.log('deleteing: ', deleteArray, 'adding:', addArray);
+        //setState to 'save changes'
+        this.setState({
+            ...this.state,
+            deleteCategories: deleteArray,
+            addCategories: addArray,
+            viewCategories: viewArray,
+        })
     }    
 
   render() {
@@ -148,14 +223,6 @@ class EditSkillItem extends Component {
                                 className={classes.longField}
                                 margin="normal"/>
                             <br/>
-                            <TextField
-                                id="author-in"
-                                label="Creator"
-                                name='author'
-                                value = {this.state.author}
-                                onChange = {this.handleChange}
-                                className={classes.textField}
-                                margin="normal"/>  
                         </div>
                         }  
                     </Grid>
@@ -172,36 +239,28 @@ class EditSkillItem extends Component {
                                     <p>{this.props.skill.description}</p>
                                   </div>
                                  :
-                                 <>   
-                                <FormControl className={classes.formControl}>
-                                <InputLabel htmlFor="age-simple">Category</InputLabel>
-                                {/* TO DO: CONTROLL ALL THESE INPUTS */}
-                                <Select
-                                    value = {this.state.category}
-                                    onChange={this.handleChange}
-                                    inputProps={{
-                                        name: 'category',
-                                        id: 'category-in',  
-                                    }}>
-                                        <MenuItem value="">
-                                        <em></em>
-                                        </MenuItem>
-                                        {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
-                                        {this.props.reduxState.category.map((category) =>(
-                                            <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
-                                        ))}
-                                    </Select>
-                                    <Button color = "primary" onClick = {this.handleAdd}>Add</Button>
-                                </FormControl>
-                                <ul className = {classes.smallList} >
-                                    {this.state.categories.map((category, index)=>(
-                                    <li key = {category.id}>{category.name} 
-                                    <Button value = {category.id} color="secondary" onClick = {this.handleRemove(index)}>
-                                        Remove
-                                        </Button></li> 
-                                    ))}
-                                </ul>
-                                </>}
+                                 <>
+                                    <TextField
+                                        id="author-in"
+                                        label="Creator"
+                                        name='author'
+                                        value = {this.state.author}
+                                        onChange = {this.handleChange}
+                                        className={classes.textField}
+                                        margin="normal"
+                                        />  
+                                    <TextField
+                                        label="Description"
+                                        name ='description'
+                                        value = {this.state.description}
+                                        onChange = {this.handleChange}
+                                        multiline
+                                        rowsMax="6"
+                                        className={classes.longField}
+                                        margin="normal"
+                                    />
+                                </>
+                                }
                             </Grid>
                             <Grid item xs = {4}>
                             {!this.state.edit ?
@@ -210,24 +269,45 @@ class EditSkillItem extends Component {
                             <ul className = {classes.smallList}>
                             <label>Categories:</label>  
                                 {/* {JSON.stringify(this.state)} */}
-                              {this.state.categories.map((category, i) =>(
+                              {this.state.viewCategories.map((category, i) =>(
                                  <li key = {i}>{category.name}</li> 
                                ))}
                             </ul> 
                             </div>
                             :
-                            <TextField
-                                id="standard-multiline-flexible"
-                                label="Description"
-                                name ='description'
-                                value = {this.state.description}
-                                onChange = {this.handleChange}
-                                multiline
-                                rowsMax="6"
-                                className={classes.longField}
-                                margin="normal"
-                            />
-                            }
+                            <>  
+                                <FormControl className={classes.formControl}>
+                                    <InputLabel>Category</InputLabel>
+                                    {/* input controlled to state.thisCategory */}
+                                    <Select
+                                        value = {this.state.thisCategory}
+                                        onChange={this.handleChange}
+                                        inputProps={{
+                                            name: 'thisCategory',
+                                            id: 'category-in',  
+                                        }}>
+                                        <MenuItem value="">
+                                        <em></em>
+                                        </MenuItem>
+                                        {/* populated from the category reducer props */}
+                                        {this.props.reduxState.category.map((category) =>(
+                                            <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
+                                        ))}
+                                    </Select>
+                                    <Button color = "primary" onClick = {this.handleAdd}>Add</Button>
+                                </FormControl>
+                                <ul className = {classes.smallList} >
+                                    {this.state.viewCategories.map((category, index)=>(
+                                    <li key = {category.id}>
+                                        {category.name} 
+                                        <Button value = {category.id} color="secondary" 
+                                            onClick = {this.handleRemove(category)}>
+                                            Remove
+                                        </Button>
+                                    </li> 
+                                    ))}
+                                </ul>
+                             </>}
                             </Grid>
                             <Grid item xs = {4}>
                                 {!this.state.edit? 
