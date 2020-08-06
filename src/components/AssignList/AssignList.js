@@ -92,9 +92,15 @@ class AssignList extends Component {
                             ))}
                         </Select>
                     </FormControl>
+                    {this.state.selectedCategory ?
                     <Button color = "primary" variant = "outlined" onClick = {this.handleViewCategory}>
                             View category
                         </Button>
+                    :
+                    <Button color = "disabled" disabled variant = "outlined"> 
+                            View category
+                        </Button>
+                    }   
                     {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'}
                     <Button variant = 'outlined' color = 'primary' onClick = {this.handleViewAll}>
                         View All Skills

@@ -53,7 +53,9 @@ class EditSkill extends Component {
         console.log('selcted category id:', this.state.selectedCategory.id)
         //dispatch saga to get all skill_category JOIN skill where id = category.id
         //set results to state
+        if(this.state.selectedCategory){
         this.props.dispatch({type:'GET_SKILL_CATEGORY', payload: this.state.selectedCategory.id})
+        }
     }
 
     handleViewAll = () => {
@@ -100,9 +102,15 @@ class EditSkill extends Component {
                             ))}
                         </Select>
                     </FormControl>
+                    {this.state.selectedCategory ?
                     <Button color = "primary" variant = "outlined" onClick = {this.handleViewCategory}>
                             View category
                         </Button>
+                    :
+                    <Button color = "disabled" disabled variant = "outlined"> 
+                            View category
+                        </Button>
+                    }
                     {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'}
                     <Button variant = 'outlined' color = 'primary' onClick = {this.handleViewAll}>
                         View All Skills

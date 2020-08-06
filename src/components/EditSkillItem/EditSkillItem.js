@@ -191,7 +191,7 @@ class EditSkillItem extends Component {
                                             <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
                                         ))}
                                     </Select>
-                                    <Button color = "primary" onClick = {this.handleAdd}>Add category</Button>
+                                    <Button color = "primary" onClick = {this.handleAdd}>Add</Button>
                                 </FormControl>
                                 <ul className = {classes.smallList} >
                                     {this.state.categories.map((category, index)=>(

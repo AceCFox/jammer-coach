@@ -32,7 +32,8 @@ class AssignListItem extends Component {
   state = {
     selected: '',
     notes: '',
-    submitted: false
+    submitted: false,
+    lastSelected: ''
     };
 
     componentDidMount(){
@@ -54,6 +55,7 @@ class AssignListItem extends Component {
        this.props.dispatch({type: 'ASSIGN_SKILL', payload: postObject}) 
        //alert user of successful assign
        this.setState({
+            lastSelected: this.state.selected.username,
             selected: '',
             notes: '',
             submitted: true,})
@@ -84,8 +86,8 @@ class AssignListItem extends Component {
                </Grid>
                <Grid item xs = {12} md = {4}> 
                     <Paper className = {classes.paper}>
-                    {(this.state.submitted && this.state.selected )? 
-                    <i>Successsfully submitted to {this.state.selected.username}'s curriculum
+                    {this.state.submitted ? 
+                    <i>Successsfully submitted to {this.state.lastSelected}'s curriculum
                          <Button onClick = {this.handleOk}>ok</Button>    
                     </i> 
                     : ''
