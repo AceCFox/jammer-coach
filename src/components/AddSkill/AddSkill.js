@@ -129,6 +129,7 @@ class AddSkill extends Component {
                 onChange = {this.handleChange}
                 className={classes.longField}
                 margin="normal"/>
+                <br/>
                 <FormControl className={classes.formControl}>
                     <InputLabel htmlFor="age-simple">Category</InputLabel>
                     {/* TO DO: CONTROLL ALL THESE INPUTS */}
