@@ -1,11 +1,14 @@
 import React, {Component} from 'react';
-import {Button, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid} from '@material-ui/core';
+import {Button, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid, Dialog, DialogContent, DialogContentText, DialogActions} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
-import ReactPlayer from 'react-player/lazy'
-
-
+import ReactPlayer from 'react-player/lazy';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
+import CloseIcon from '@material-ui/icons/Close';
+import FastRewindIcon from '@material-ui/icons/FastRewind';
 
 const styles = theme => ({
     root: {
@@ -47,6 +50,7 @@ class EditSkillItem extends Component {
         viewCategories: [],
         addCategories: [],
         deleteCategories: [],
+        open: false,
     }
 
     componentDidMount(){
@@ -114,7 +118,9 @@ class EditSkillItem extends Component {
             description: this.state.description,
             id: this.props.skill.id,
         }
-        console.log('deleting: ', deleteObject, 'adding:', addObject, 'updating:', updateObject );
+        console.log('deleting: ', deleteObject,
+         'adding:', addObject, 
+         'updating:', updateObject );
 
         //dispatch Saga to make UPDATE call
         this.props.dispatch({type: 'UPDATE_SKILL', payload: updateObject});
@@ -123,7 +129,7 @@ class EditSkillItem extends Component {
         //dispatch DELETE from skill_category if deleteCategories is truthy
         this.props.dispatch({type:'DELETE_JUNCTION', payload: deleteObject})
         //dispatch the GET skill_category saga to show changes
-
+        this.props.dispatch({type:'GET_JUNCTION'});
         //"flip" the card
         this.setState({
             ...this.state,
@@ -196,7 +202,23 @@ class EditSkillItem extends Component {
             addCategories: addArray,
             viewCategories: viewArray,
         })
-    }    
+    } 
+    
+    handleClickOpen = () => {
+        this.setState({ ...this.state, open: true });
+      };
+    
+    handleClose = () => {
+        this.setState({ ...this.state, open: false });
+      };
+
+    handleDelete = () =>{
+        let id = this.props.skill.id;
+        console.log('deleting skill #', id);
+        //dispatch saga to run a delete call
+        this.props.dispatch({type: 'DELETE_SKILL', payload: id});
+        this.handleClose();
+    }
 
   render() {
     const {classes} = this.props;
@@ -304,7 +326,9 @@ class EditSkillItem extends Component {
                                         </MenuItem>
                                         {/* populated from the category reducer props */}
                                         {this.props.reduxState.category.map((category) =>(
-                                            <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
+                                            <MenuItem value={category} key ={category.id}>
+                                                {category.name}
+                                            </MenuItem>
                                         ))}
                                     </Select>
                                     <Button color = "primary" onClick = {this.handleAdd}>Add</Button>
@@ -325,25 +349,28 @@ class EditSkillItem extends Component {
                             <Grid item xs = {4}>
                                 {!this.state.edit? 
                                 <>
-                                    <Button variant = 'contained'
+                                    <Button variant = 'contained' color = 'primary'
                                         onClick = {this.handleEditTrue}>
-                                        Edit
+                                        <EditIcon/> Edit
                                     </Button>
                                     <br/>
                                     <br/>
-                                    <Button variant = 'contained'>
-                                        Delete
+                                    <Button variant = 'contained' color = 'secondary'
+                                        onClick = {this.handleClickOpen}>
+                                        <DeleteIcon/> Delete
                                     </Button>
                                 </>
                                 :
                                 <div>
-                                    <Button variant = 'contained' onClick = {this.handleSave}>
-                                        Save Changes
+                                    <Button variant = 'contained' onClick = {this.handleSave}
+                                        color= 'primary'>
+                                       <SaveAltIcon/> Save Changes
                                     </Button>
                                     <br/>
                                     <br/>
-                                    <Button variant = 'contained' onClick = {this.handleEditFalse}>
-                                        Exit without saving
+                                    <Button variant = 'contained' onClick = {this.handleEditFalse}
+                                        color = 'secondary'>
+                                        <CloseIcon/> Exit without saving
                                     </Button>
                                 </div>
                              }
@@ -353,6 +380,23 @@ class EditSkillItem extends Component {
                 </Grid>
              </Paper>
           <br/>
+          <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}>
+              <DialogContent>
+                  <DialogContentText>
+                     Are you certain you want to permanently delete {this.props.skill.title} from the database?
+                  </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button variant = "outlined" color = "primary" onClick = {this.handleClose}>
+                    <FastRewindIcon/> Oops, NO
+                </Button>
+                <Button variant = "outlined" color = "secondary" onClick = {this.handleDelete}>
+                    <DeleteIcon/> YES, delete permanently
+                </Button>
+              </DialogActions>
+          </Dialog>
       </div>
     );
   }

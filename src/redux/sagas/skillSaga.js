@@ -25,10 +25,20 @@ function* categorySkill(action) {
   }
 }
 
+function* deleteSkill(action){
+  try{
+    yield axios.delete('/api/skill/' + action.payload);
+    yield put({type: 'GET_ALL_SKILL'});
+  } catch(error){
+    console.log('error deleting skill:', error);
+  }
+}
+
 
 function* skillSaga() {
   yield takeLatest('GET_ALL_SKILL', allSkill);
-  yield takeLatest('GET_SKILL_CATEGORY', categorySkill)
+  yield takeLatest('GET_SKILL_CATEGORY', categorySkill);
+  yield takeLatest('DELETE_SKILL', deleteSkill);
 }
 
 export default skillSaga;

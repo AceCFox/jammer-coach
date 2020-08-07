@@ -26,7 +26,7 @@ router.get('/category:id', (req, res) => {
     const queryText = `SELECT * FROM "skill" 
     JOIN skill_category  on skill.id = skill_category.skill_id
     WHERE skill_category.category_id = $1
-    ORDER BY "id" ASC;`;
+    ORDER BY "skill"."id" ASC;`;
     pool.query(queryText, [req.params.id])
     .then((result) => {res.send(result.rows)
    // console.log(result.rows)  
@@ -134,6 +134,32 @@ router.delete('/cat/', rejectUnauthenticated, async (req, res) =>  {
   } finally {
     client.release()
   }
+})
+
+//delete a skill
+//this also deletes the dependant rows in skill_category before 
+//deleting the skill itself from the skill table
+router.delete('/:id', rejectUnauthenticated, async (req, res)=>{
+    const client = await pool.connect()
+    const queryText = `
+    DELETE FROM "skill_category"
+    WHERE "skill_id" = $1;`
+    const query2 = `DELETE FROM "skill" 
+    WHERE "id" = $1;`;
+    try{
+      await client.query('BEGIN')
+      await client.query(queryText, [req.params.id])
+      await client.query (query2, [req.params.id])
+      await client.query('COMMIT')
+      res.sendStatus(201)
+    } catch (error) {
+      await client.query('ROLLBACK')
+      console.log(error)
+      res.sendStatus(500);
+    } finally {
+      client.release()
+    }
+ 
 })
 
 
