@@ -53,7 +53,7 @@ router.post('/', rejectUnauthenticated, async (req, res) =>  {
     const insertText = `INSERT INTO "skill_category" ("skill_id", "category_id")
               VALUES($1 , $2);`
     for (let i =0; i<req.body.categories.length; i++ ){
-      await client.query(insertText, [res.rows[0].id, req.body.categories[i].id])
+      await client.query(insertText, [result.rows[0].id, req.body.categories[i].id])
     }
     await client.query('COMMIT')
     res.sendStatus(201)

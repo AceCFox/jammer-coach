@@ -97,7 +97,7 @@ class AssignList extends Component {
                             View category
                         </Button>
                     :
-                    <Button color = "disabled" disabled variant = "outlined"> 
+                    <Button  disabled variant = "outlined"> 
                             View category
                         </Button>
                     }   
