@@ -20,6 +20,7 @@ import AddSkill from '../AddSkill/AddSkill';
 import AssignList from '../AssignList/AssignList';
 import './App.css';
 import EditSkill from '../EditSkill/EditSkill';
+import Curriculum  from '../Curriculum/Curriculum'
 
 class App extends Component {
   componentDidMount () {
@@ -69,6 +70,10 @@ class App extends Component {
               <ProtectedRoute 
               path = "/EditSkill"
               component = {EditSkill}
+              />
+              <ProtectedRoute 
+              path = "/curriculum"
+              component = {Curriculum}
               />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

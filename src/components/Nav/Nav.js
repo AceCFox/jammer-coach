@@ -30,6 +30,9 @@ const Nav = (props) => (
               <Link className="nav-link" to="/AddSkill">
                 Add a Skill
               </Link>
+              <Link className="nav-link" to="/curriculum">
+                My Curriculum
+              </Link>
             </>    
           )}
             {props.user.is_coach && (
