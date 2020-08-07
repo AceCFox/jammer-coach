@@ -77,7 +77,7 @@ class CurriculumItem extends Component {
                                 spacing = {2}>
                                     <Grid item xs = {12}>
                                         <h2>{this.props.skill.title}</h2>
-                                        <p>Coach notes will go here </p>
+                                        <p>{this.props.skill.coach_notes}</p>
                                     </Grid>
                                     <Grid item xs = {12} >
                                       {this.state.submitted ?

@@ -41,7 +41,7 @@ class Curriculum extends Component {
 
     componentDidMount(){
         //to do: replace this with the call to get skills assigned to user
-        this.props.dispatch({type: 'GET_ALL_SKILL'})
+        this.props.dispatch({type: 'GET_CURRICULUM', payload: this.state.skater.id})
     }
 
   
@@ -62,8 +62,8 @@ class Curriculum extends Component {
                 </Grid>  
                 <Grid item xs = {12}>   
                     {/* TO DO: REPLACE skill with user_skill */}
-                    {this.state.skater ? this.props.reduxState.skill.map((item) =>
-                    (<CurriculumItem skill = {item} key = {item.id}/>)) :
+                    {this.state.skater ? this.props.reduxState.curriculum.map((item, index) =>
+                    (<CurriculumItem skill = {item} key = {index}/>)) :
                         ''} 
                 </Grid> 
             </Grid>          
