@@ -110,7 +110,6 @@ class AssignListItem extends Component {
                                     ))}
                             </Select>
                         </FormControl>
-                        
                         <TextField
                             label="Notes"
                             name ='notes'
