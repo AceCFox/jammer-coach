@@ -30,7 +30,7 @@ const styles = theme => ({
 
 class CurriculumItem extends Component {
   state = {
-    notes: '',
+    notes: this.props.skill.skater_notes,
     submitted: false,
     };
 
@@ -38,13 +38,33 @@ class CurriculumItem extends Component {
         this.setState({ [event.target.name]: event.target.value });
       }
     
+    componentDidMount(){
+        if (this.state.notes){
+            this.setState({
+                ...this.state,
+                submitted:true
+            })
+        }
+    }
+    
     submitNotes= () => {
         this.setState({
             ...this.state.notes,
             submitted: true
         })
-         
+        const submitObject = {
+            user_id: this.props.reduxState.user.id,
+            skill_id: this.props.skill.id,
+            notes: this.state.notes,
+        };
+        console.log(submitObject);
+        //dispatch Saga with action type 'UPDATE_SKATER_NOTE'
+        this.props.dispatch({type: 'UPDATE_SKATER_NOTE', payload: submitObject})
     }  
+
+    handleEdit = () => {
+        this.setState({...this.state, submitted: false,})
+    }
       
 
   render() {
@@ -99,8 +119,9 @@ class CurriculumItem extends Component {
                                         <br/>
                                         <br/>
                                         {this.state.submitted ?
-                                            <Button variant = 'outlined' disabled>
-                                                Submit Notes
+                                            <Button variant = 'outlined'
+                                                onClick={this.handleEdit}>
+                                               Edit Notes
                                             </Button>
                                         :
                                             <Button variant = 'outlined' color = 'primary'

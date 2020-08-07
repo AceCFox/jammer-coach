@@ -39,4 +39,25 @@ router.get('/skill/:id', rejectUnauthenticated, (req, res) => {
     })    
 });
 
+
+/**
+ update skater_notes
+ */
+router.put('/skatenote', rejectUnauthenticated, (req, res) => {
+    const queryString = `UPDATE "user_skill"
+    SET "skater_notes" =$1
+    WHERE "skill_id" = $2 AND "user_id"= $3;`;
+    const postValues = [
+        req.body.notes,
+        req.body.skill_id,
+        req.body.user_id,
+    ]
+    pool.query(queryString, postValues)
+    .then(()=>{res.sendStatus(201)})
+    .catch((error)=>{
+     res.sendStatus(500)
+     console.log(error);
+   })
+});
+
 module.exports = router;
