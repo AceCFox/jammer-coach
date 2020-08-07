@@ -125,9 +125,13 @@ class EditSkillItem extends Component {
         //dispatch Saga to make UPDATE call
         this.props.dispatch({type: 'UPDATE_SKILL', payload: updateObject});
         //dispatch POST to skill_category if addCategories is truthy
+        if(addObject){
         this.props.dispatch({type:'POST_JUNCTION', payload:addObject});
+        }
         //dispatch DELETE from skill_category if deleteCategories is truthy
+        if(deleteObject){
         this.props.dispatch({type:'DELETE_JUNCTION', payload: deleteObject})
+        }
         //dispatch the GET skill_category saga to show changes
         this.props.dispatch({type:'GET_JUNCTION'});
         //"flip" the card

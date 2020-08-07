@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import {connect} from 'react-redux';
-import {Button} from '@material-ui/core';
+import {Button, TextField, InputLabel, MenuItem, Select, FormControl} from '@material-ui/core';
 
 class RegisterPage extends Component {
   state = {
     username: '',
     password: '',
+    is_coach: false,
+    email: ''
   };
 
   registerUser = (event) => {
@@ -17,6 +19,8 @@ class RegisterPage extends Component {
         payload: {
           username: this.state.username,
           password: this.state.password,
+          is_coach: this.state.is_coach,
+          email: this.state.email
         },
       });
     } else {
@@ -41,48 +45,59 @@ class RegisterPage extends Component {
             {this.props.errors.registrationMessage}
           </h2>
         )}
-        <form onSubmit={this.registerUser}>
-          <h1>Register User</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <input
-              className="register"
-              type="submit"
-              name="submit"
-              value="Register"
-            />
-          </div>
+        <form>
+          <center>
+            <h1>New User</h1>
+            <i>Are you a coach?</i>
+            {'\u00A0'} {'\u00A0'} 
+            <FormControl>
+              <InputLabel>user type</InputLabel>
+              <Select
+                  value = {this.state.is_coach}
+                  onChange={this.handleInputChangeFor('is_coach')}
+                  width = '100px'
+                  inputProps={{
+                      name: 'is_coach'  
+                  }}>
+                      <MenuItem value = {true}>Coach</MenuItem>
+                      <MenuItem value = {false}>Skater</MenuItem>
+                  </Select>
+                  {/* <Button color = "primary" onClick = {this.handleAdd}>Add category</Button> */}
+              </FormControl>
+           <TextField
+              name= 'username'
+              label = 'username'
+              value = {this.state.username}
+              onChange = {this.handleInputChangeFor('username')}/>
+
+            <TextField
+              name= 'password'
+              label = 'password'
+              type="password"git
+              value = {this.state.password}
+              onChange = {this.handleInputChangeFor('password')}/>
+            <TextField
+              name= 'email'
+              label = 'email'
+              value = {this.state.email}
+              onChange = {this.handleInputChangeFor('email')}/>
+              <br/>
+              <br/>
+              <Button
+                color = 'primary'
+                variant = 'contained'
+                onClick = {this.registerUser}>
+                Register
+              </Button>
+              {'\u00A0'} {'\u00A0'} 
+              <Button
+                color = 'primary'
+                variant = 'outlined'
+                onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}} >
+                log in
+              </Button>
+           </center>
         </form>
-        <center>
-          <button
-            type="button"
-            className="link-button"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_LOGIN_MODE'})}}
-          >
-            Login
-          </button>
-        </center>
       </div>
     );
   }
