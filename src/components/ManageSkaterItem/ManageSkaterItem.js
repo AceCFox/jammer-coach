@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Paper, TextField, Grid} from '@material-ui/core';
+import {Button, Paper, TextField, Grid, } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -30,7 +30,7 @@ const styles = theme => ({
 
 class ManageSkaterItem extends Component {
   state = {
-    notes: this.props.skill.skater_notes,
+    notes: this.props.skill.coach_notes,
     submitted: false,
     };
 
@@ -59,7 +59,7 @@ class ManageSkaterItem extends Component {
         };
         console.log(submitObject);
         //dispatch Saga with action type 'UPDATE_SKATER_NOTE'
-        this.props.dispatch({type: 'UPDATE_SKATER_NOTE', payload: submitObject})
+        this.props.dispatch({type: 'UPDATE_COACH_NOTE', payload: submitObject})
     }  
 
     handleEdit = () => {
@@ -88,6 +88,10 @@ class ManageSkaterItem extends Component {
                                     controls = {true} 
                                     alt = {this.props.skill.description} 
                                     className = {classes.video}/>
+                                <br/>
+                                <Button variant = "contained" color = "secondary">
+                                     Remove skill
+                                </Button> 
                         </Grid>
                         <Grid item xs = {12} md = {4}> 
                             <Grid container
@@ -97,17 +101,15 @@ class ManageSkaterItem extends Component {
                                 spacing = {2}>
                                     <Grid item xs = {12}>
                                         <h2>{this.props.skill.title}</h2>
-                                        <p>{this.props.skill.coach_notes}</p>
-                                    </Grid>
-                                    <Grid item xs = {12} >
-                                      {this.state.submitted ?
+                                        {this.state.submitted ?
                                          <>
-                                            <i>Note Submitted:</i>
+                                            <h4>Instructions</h4>
                                             <p>{this.state.notes}</p>
                                          </>
                                       :
+                                      <>
                                         <TextField
-                                            label="Notes"
+                                            label="instructions"
                                             name ='notes'
                                             value = {this.state.notes}
                                             onChange = {this.handleChange}
@@ -115,24 +117,34 @@ class ManageSkaterItem extends Component {
                                             rowsMax="4"
                                             className={classes.longField}
                                             margin="normal"
-                                            />}
+                                            />
                                         <br/>
+                                        </>}
                                         <br/>
                                         {this.state.submitted ?
-                                            <Button variant = 'outlined'
+                                            <Button variant = 'contained'
                                                 onClick={this.handleEdit}>
-                                               Edit Notes
+                                               Edit Instructions
                                             </Button>
                                         :
-                                            <Button variant = 'outlined' color = 'primary'
+                                            <Button variant = 'contained' color = 'primary'
                                                 onClick  = {this.submitNotes}>
-                                                 Submit Notes
+                                                 Save Instructions
                                             </Button>
+                                        } 
+                                    </Grid>
+                                    <Grid item xs = {12} >
+                                    { this.props.skill.skater_notes ?
+                                        <>
+                                        <h4>{this.props.skater.username}'s notes:</h4>
+                                        <p>{this.props.skill.skater_notes}</p>
+                                        </>
+                                        : ''
                                         }
                                     </Grid>
                                 </Grid>
                             </Grid>      
-                    </Grid>
+                     </Grid>
                 </Paper>
             </Grid>
           </Grid>

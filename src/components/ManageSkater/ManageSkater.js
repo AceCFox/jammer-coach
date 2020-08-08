@@ -11,7 +11,7 @@ import ManageSkaterItem from  '../ManageSkaterItem/ManageSkaterItem';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        alignItems: 'flex-end'
+        alignItems: 'center'
     },
     paper: {
         width: '98%',
@@ -20,15 +20,15 @@ const styles = theme => ({
         color: theme.palette.text.secondary,    
     },
     grid: {
-        alignItems: 'flex-end',
+        alignItems: 'center',
         justify: 'center',
     },
     formControl:{
         width: 200
     },
     paper2: {
-        width: '90%',
-        padding: theme.spacing(2),
+        width: '85%',
+        padding: theme.spacing(4),
         textAlign: 'center',
         color: theme.palette.text.secondary, 
     }
@@ -122,7 +122,7 @@ class ManageSkater extends Component {
                 :
                  ''}
              {this.state.viewing ? this.props.reduxState.curriculum.map((item) =>
-             (<ManageSkaterItem skill = {item} key = {item.id}/>)) :
+             (<ManageSkaterItem skater = {this.state.viewing} skill = {item} key = {item.id}/>)) :
                  ''}
           </Paper>
       </div>
