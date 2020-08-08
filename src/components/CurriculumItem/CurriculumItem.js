@@ -39,19 +39,18 @@ class CurriculumItem extends Component {
       }
     
     componentDidMount(){
-        if (this.state.notes){
+        if (this.props.skill.skater_notes){
             this.setState({
-                ...this.state,
+                notes: this.props.skill.skater_notes,
                 submitted:true
             })
         }
+
+    
     }
     
     submitNotes= () => {
-        this.setState({
-            ...this.state.notes,
-            submitted: true
-        })
+       
         const submitObject = {
             user_id: this.props.reduxState.user.id,
             skill_id: this.props.skill.id,
@@ -60,7 +59,13 @@ class CurriculumItem extends Component {
         console.log(submitObject);
         //dispatch Saga with action type 'UPDATE_SKATER_NOTE'
         this.props.dispatch({type: 'UPDATE_SKATER_NOTE', payload: submitObject})
+
+        this.setState({
+            ...this.state,
+            submitted: true,
+        })
     }  
+
 
     handleEdit = () => {
         this.setState({...this.state, submitted: false,})

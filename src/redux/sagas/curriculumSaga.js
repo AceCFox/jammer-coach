@@ -35,6 +35,16 @@ function* updateSkaterNote(action){
     }
 }
 
+//this saga will update a coach_note on a skill_skater row
+//it will fire with every 'UPDATE_COACH_NOTE' action
+function* updateCoachNote(action){
+    try {
+        yield axios.put('/api/skater/coachnote', action.payload);
+        yield put({ type: 'GET_CURRICULUM', payload: action.payload.user_id });
+    }  catch (error) {
+        console.log('Error on update skater note:', error);
+    }
+}
 
 
 
@@ -42,6 +52,7 @@ function* curriculumSaga() {
   yield takeLatest('ASSIGN_SKILL', assignSkill);
   yield takeLatest('GET_CURRICULUM', getCurriculum);
   yield takeLatest('UPDATE_SKATER_NOTE', updateSkaterNote);
+  yield takeLatest('UPDATE_COACH_NOTE', updateCoachNote);
 }
 
 export default curriculumSaga;

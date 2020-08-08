@@ -4,6 +4,9 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player/lazy'
+import CreateIcon from '@material-ui/icons/Create';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const styles = theme => ({
@@ -90,7 +93,7 @@ class ManageSkaterItem extends Component {
                                     className = {classes.video}/>
                                 <br/>
                                 <Button variant = "contained" color = "secondary">
-                                     Remove skill
+                                     <DeleteIcon/>Remove skill
                                 </Button> 
                         </Grid>
                         <Grid item xs = {12} md = {4}> 
@@ -124,12 +127,12 @@ class ManageSkaterItem extends Component {
                                         {this.state.submitted ?
                                             <Button variant = 'contained'
                                                 onClick={this.handleEdit}>
-                                               Edit Instructions
+                                               <CreateIcon/>Edit Instructions
                                             </Button>
                                         :
                                             <Button variant = 'contained' color = 'primary'
                                                 onClick  = {this.submitNotes}>
-                                                 Save Instructions
+                                                <SaveAltIcon/> Save Instructions
                                             </Button>
                                         } 
                                     </Grid>

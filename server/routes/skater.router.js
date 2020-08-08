@@ -30,7 +30,8 @@ router.get('/skill/:id', rejectUnauthenticated, (req, res) => {
     const user_id = [req.params.id];
     const queryText  = `SELECT * FROM "user_skill"
     JOIN "skill" on "user_skill"."skill_id" = "skill"."id"
-    WHERE "user_skill"."user_id" = $1; `
+    WHERE "user_skill"."user_id" = $1
+    ORDER BY "skill"."id" ASC;`;
     pool.query(queryText, user_id)
     .then((result)=>{res.send(result.rows)})
     .catch((error)=>{
@@ -46,6 +47,26 @@ router.get('/skill/:id', rejectUnauthenticated, (req, res) => {
 router.put('/skatenote', rejectUnauthenticated, (req, res) => {
     const queryString = `UPDATE "user_skill"
     SET "skater_notes" =$1
+    WHERE "skill_id" = $2 AND "user_id"= $3;`;
+    const postValues = [
+        req.body.notes,
+        req.body.skill_id,
+        req.body.user_id,
+    ]
+    pool.query(queryString, postValues)
+    .then(()=>{res.sendStatus(201)})
+    .catch((error)=>{
+     res.sendStatus(500)
+     console.log(error);
+   })
+});
+
+/**
+ update coach_notes
+ */
+router.put('/coachnote', rejectUnauthenticated, (req, res) => {
+    const queryString = `UPDATE "user_skill"
+    SET "coach_notes" =$1
     WHERE "skill_id" = $2 AND "user_id"= $3;`;
     const postValues = [
         req.body.notes,
