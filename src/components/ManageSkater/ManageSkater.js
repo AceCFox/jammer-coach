@@ -121,8 +121,8 @@ class ManageSkater extends Component {
                 </div>
                 :
                  ''}
-             {this.state.viewing ? this.props.reduxState.curriculum.map((item) =>
-             (<ManageSkaterItem skater = {this.state.viewing} skill = {item} key = {item.id}/>)) :
+             {this.state.viewing ? this.props.reduxState.curriculum.map((item, index) =>
+             (<ManageSkaterItem key = {index} skater = {this.state.viewing} skill = {item}/>)) :
                  ''}
           </Paper>
       </div>

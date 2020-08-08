@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Paper, TextField, Grid, } from '@material-ui/core';
+import {Button, Paper, TextField, Grid, Dialog, DialogActions, DialogContentText, DialogContent} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -7,6 +7,7 @@ import ReactPlayer from 'react-player/lazy'
 import CreateIcon from '@material-ui/icons/Create';
 import SaveAltIcon from '@material-ui/icons/SaveAlt';
 import DeleteIcon from '@material-ui/icons/Delete';
+import FastRewindIcon from '@material-ui/icons/FastRewind';
 
 
 const styles = theme => ({
@@ -35,6 +36,7 @@ class ManageSkaterItem extends Component {
   state = {
     notes: this.props.skill.coach_notes,
     submitted: false,
+    open: false,
     };
 
     handleChange = (event) => {
@@ -68,7 +70,25 @@ class ManageSkaterItem extends Component {
     handleEdit = () => {
         this.setState({...this.state, submitted: false,})
     }
+
+    handleDelete = () =>{
+        //dispatch saga to delete row from skater_skill
+        this.handleClose();
+    }
+
+    handleOpen = () =>{
+        this.setState({
+            ...this.state,
+            open: true
+        })
+    }
       
+    handleClose = () =>{
+        this.setState({
+            ...this.state,
+            open: false
+        })
+    }
 
   render() {
     const {classes} = this.props;
@@ -92,7 +112,8 @@ class ManageSkaterItem extends Component {
                                     alt = {this.props.skill.description} 
                                     className = {classes.video}/>
                                 <br/>
-                                <Button variant = "contained" color = "secondary">
+                                <Button variant = "contained" color = "secondary"
+                                    onClick = {this.handleOpen}>
                                      <DeleteIcon/>Remove skill
                                 </Button> 
                         </Grid>
@@ -151,6 +172,23 @@ class ManageSkaterItem extends Component {
                 </Paper>
             </Grid>
           </Grid>
+          <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}>
+              <DialogContent>
+                  <DialogContentText>
+                     Are you sure you want to remove {this.props.skill.title} from {this.props.skater.username}'s curriculum?
+                  </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button variant = "outlined" color = "primary" onClick = {this.handleClose}>
+                    <FastRewindIcon/> Oops, NO
+                </Button>
+                <Button variant = "outlined" color = "secondary" onClick = {this.handleDelete}>
+                    <DeleteIcon/> YES, remove skill
+                </Button>
+              </DialogActions>
+          </Dialog>
       </div>
     );
   }
