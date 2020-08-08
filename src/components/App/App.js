@@ -20,7 +20,8 @@ import AddSkill from '../AddSkill/AddSkill';
 import AssignList from '../AssignList/AssignList';
 import './App.css';
 import EditSkill from '../EditSkill/EditSkill';
-import Curriculum  from '../Curriculum/Curriculum'
+import Curriculum  from '../Curriculum/Curriculum';
+import ManageSkater from '../ManageSkater/ManageSkater';
 
 class App extends Component {
   componentDidMount () {
@@ -74,6 +75,10 @@ class App extends Component {
               <ProtectedRoute 
               path = "/curriculum"
               component = {Curriculum}
+              />
+               <ProtectedRoute 
+              path = "/manage"
+              component = {ManageSkater}
               />
             {/* If none of the other routes matched, we will show a 404. */}
             <Route render={() => <h1>404</h1>} />

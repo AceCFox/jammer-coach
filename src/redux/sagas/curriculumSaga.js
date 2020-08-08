@@ -29,7 +29,7 @@ function* getCurriculum(action){
 function* updateSkaterNote(action){
     try {
         yield axios.put('/api/skater/skatenote', action.payload);
-        yield put({ type: 'get_CURRICULUM', payload: action.payload.user_id });
+        yield put({ type: 'GET_CURRICULUM', payload: action.payload.user_id });
     }  catch (error) {
         console.log('Error on update skater note:', error);
     }

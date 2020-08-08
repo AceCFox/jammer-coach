@@ -40,6 +40,9 @@ const Nav = (props) => (
              <Link className="nav-link" to="/AssignList">
              Assign Skills
            </Link>
+           <Link className="nav-link" to="/manage">
+             Manage Skaters
+           </Link>
            <Link className="nav-link" to="/EditSkill">
              Edit Skills
            </Link>
