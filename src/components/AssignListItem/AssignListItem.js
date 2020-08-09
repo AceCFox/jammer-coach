@@ -47,7 +47,7 @@ class AssignListItem extends Component {
       }
 
     handleAssign =()=>{
-       const postObject = {skill_id: this.props.skill.id,
+       const postObject = {skill_id: this.props.skill.skill_id,
                             user_id: this.state.selected.id,
                             coach_notes: this.state.notes }
        console.log(postObject);

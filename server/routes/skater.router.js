@@ -73,7 +73,7 @@ router.put('/coachnote', rejectUnauthenticated, (req, res) => {
         req.body.data.skill_id,
         req.body.data.user_id,
     ]
-    console.log('in/api/skater.coachnote with', req.body)
+    //console.log('in/api/skater.coachnote with', req.body)
     pool.query(queryString, postValues)
     .then(()=>{res.sendStatus(201)})
     .catch((error)=>{

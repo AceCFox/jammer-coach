@@ -133,8 +133,8 @@ class ManageSkaterItem extends Component {
                                         <h2>{this.props.skill.title}</h2>
                                         {this.state.submitted ?
                                          <>
-                                            <h4>Instructions</h4>
-                                            <p>{this.state.notes}</p>
+                                            {<h4>Instructions</h4> &&
+                                            <p>{this.state.notes}</p>}
                                          </>
                                       :
                                       <>
