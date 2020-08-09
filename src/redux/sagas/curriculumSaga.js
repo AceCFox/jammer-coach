@@ -18,7 +18,7 @@ function* assignSkill(action){
 function* getCurriculum(action){
     try {
         const response = yield axios.get('/api/skater/skill/' + action.payload);
-        yield put({ type: 'SET_CURRICULUM', payload: response.data });
+      //  yield put({ type: 'SET_CURRICULUM', payload: response.data });
     }  catch (error) {
         console.log('Error with curriculumGet:', error);
     }
@@ -30,6 +30,7 @@ function* updateSkaterNote(action){
     try {
         yield axios.put('/api/skater/skatenote', action.payload);
         yield put({ type: 'GET_CURRICULUM', payload: action.payload.user_id });
+        //console.log('updading user:', action.payload.user_id)
     }  catch (error) {
         console.log('Error on update skater note:', error);
     }
@@ -41,6 +42,19 @@ function* updateCoachNote(action){
     try {
         yield axios.put('/api/skater/coachnote', action.payload);
         yield put({ type: 'GET_CURRICULUM', payload: action.payload.user_id });
+        console.log(`in update coach note saga`, action.payload);
+    }  catch (error) {
+        console.log('Error on update skater note:', error);
+    }
+}
+
+//this saga will delete a row from user_skill
+//it will fire with every 'DELETE_USER_SKILL' action
+function* deleteUserSkill(action){
+    try {
+        yield axios.delete('/api/skater/skill', action.payload);
+        //let id = action.payload.user_id;
+       // yield put({ type: 'GET_CURRICULUM', payload: id });
     }  catch (error) {
         console.log('Error on update skater note:', error);
     }
@@ -53,6 +67,7 @@ function* curriculumSaga() {
   yield takeLatest('GET_CURRICULUM', getCurriculum);
   yield takeLatest('UPDATE_SKATER_NOTE', updateSkaterNote);
   yield takeLatest('UPDATE_COACH_NOTE', updateCoachNote);
+  yield takeLatest('DELETE_USER_SKILL', deleteUserSkill);
 }
 
 export default curriculumSaga;

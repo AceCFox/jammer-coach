@@ -81,4 +81,22 @@ router.put('/coachnote', rejectUnauthenticated, (req, res) => {
    })
 });
 
+/**
+ delete a row from skater_skill
+ */
+router.delete('/skill', rejectUnauthenticated, (req, res) => {
+    const queryString = `DELETE FROM "user_skill"
+    WHERE "user_id" = $1 AND "skill_id"= $2;`;
+    const postValues = [
+        req.body.user_id,
+        req.body.skill_id,
+    ]
+    pool.query(queryString, postValues)
+    .then(()=>{res.sendStatus(200)})
+    .catch((error)=>{
+     res.sendStatus(500)
+     console.log(error);
+   })
+});
+
 module.exports = router;
