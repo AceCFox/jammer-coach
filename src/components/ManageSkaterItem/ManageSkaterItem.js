@@ -34,8 +34,8 @@ const styles = theme => ({
 
 class ManageSkaterItem extends Component {
   state = {
-    notes: this.props.skill.coach_notes,
-    submitted: false,
+    notes: '',
+    submitted: true,
     open: false,
     };
 
@@ -44,12 +44,11 @@ class ManageSkaterItem extends Component {
       }
     
     componentDidMount(){
-        if (this.state.notes){
-            this.setState({
-                ...this.state,
-                submitted:true
-            })
-        }
+        this.setState({
+            ...this.state,
+            notes:this.props.skill.coach_notes
+        })
+        
     }
     
     submitNotes= () => {
@@ -58,7 +57,7 @@ class ManageSkaterItem extends Component {
             submitted: true
         })
         const submitObject = {
-            user_id: this.props.reduxState.user.id,
+            user_id: this.props.skill.user_id,
             skill_id: this.props.skill.id,
             notes: this.state.notes,
         };
@@ -72,8 +71,15 @@ class ManageSkaterItem extends Component {
     }
 
     handleDelete = () =>{
+        const deleteObject = {
+            user_id: this.props.skill.user_id,
+            skill_id: this.props.skill.id,  
+        }
+        console.log('deleting', deleteObject);
+        this.props.dispatch({type: 'DELETE_USER_SKILL', payload: deleteObject})
         //dispatch saga to delete row from skater_skill
         this.handleClose();
+         
     }
 
     handleOpen = () =>{

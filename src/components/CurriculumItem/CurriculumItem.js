@@ -45,8 +45,6 @@ class CurriculumItem extends Component {
                 submitted:true
             })
         }
-
-    
     }
     
     submitNotes= () => {

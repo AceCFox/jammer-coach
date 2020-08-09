@@ -66,13 +66,14 @@ router.put('/skatenote', rejectUnauthenticated, (req, res) => {
  */
 router.put('/coachnote', rejectUnauthenticated, (req, res) => {
     const queryString = `UPDATE "user_skill"
-    SET "coach_notes" =$1
+    SET "coach_notes" = $1
     WHERE "skill_id" = $2 AND "user_id"= $3;`;
     const postValues = [
-        req.body.notes,
-        req.body.skill_id,
-        req.body.user_id,
+        req.body.data.notes,
+        req.body.data.skill_id,
+        req.body.data.user_id,
     ]
+    console.log('in/api/skater.coachnote with', req.body)
     pool.query(queryString, postValues)
     .then(()=>{res.sendStatus(201)})
     .catch((error)=>{
@@ -91,6 +92,7 @@ router.delete('/skill', rejectUnauthenticated, (req, res) => {
         req.body.user_id,
         req.body.skill_id,
     ]
+   // console.log('in delete /api/skater/skill with', req.body)
     pool.query(queryString, postValues)
     .then(()=>{res.sendStatus(200)})
     .catch((error)=>{

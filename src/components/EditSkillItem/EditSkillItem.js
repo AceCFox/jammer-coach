@@ -118,7 +118,7 @@ class EditSkillItem extends Component {
             description: this.state.description,
             id: this.props.skill.id,
         }
-        console.log('deleting: ', deleteObject,
+        console.log('deleting:', deleteObject,
          'adding:', addObject, 
          'updating:', updateObject );
 
@@ -385,8 +385,8 @@ class EditSkillItem extends Component {
              </Paper>
           <br/>
           <Dialog
-          open={this.state.open}
-          onClose={this.handleClose}>
+            open={this.state.open}
+            onClose={this.handleClose}>
               <DialogContent>
                   <DialogContentText>
                      Are you certain you want to permanently delete {this.props.skill.title} from the database?
