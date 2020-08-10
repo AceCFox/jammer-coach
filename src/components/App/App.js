@@ -18,7 +18,7 @@ import UserPage from '../UserPage/UserPage';
 import InfoPage from '../InfoPage/InfoPage';
 import AddSkill from '../AddSkill/AddSkill';
 import AssignList from '../AssignList/AssignList';
-import './App.css';
+//import './App.css';
 import EditSkill from '../EditSkill/EditSkill';
 import Curriculum  from '../Curriculum/Curriculum';
 import ManageSkater from '../ManageSkater/ManageSkater';

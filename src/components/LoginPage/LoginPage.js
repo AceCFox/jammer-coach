@@ -1,6 +1,42 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import {Button} from '@material-ui/core'
+import { connect, } from 'react-redux';
+import {Button,  TextField, Grid, Paper,} from '@material-ui/core'
+import PropTypes from 'prop-types';
+import { withStyles } from '@material-ui/core/styles';
+
+const styles = theme => ({
+  root: {
+      flexGrow: 1,
+      alignItems: 'center',
+      justify: 'center',
+      backgroundImage: 'url(https://s3.amazonaws.com/ezusrevent/EFBB7EBD90553C784141DD8D25197029D540EE1F92DAF3EC12.jpg)',
+      height: "1350px"
+      
+  },
+  paper: {
+      width: '100%',
+      padding: theme.spacing(2),
+      textAlign: 'center',
+      color: theme.palette.text.secondary,
+      justify: 'center',
+      margin: '0px',
+      borderRadius: '5px'
+  },
+  textFeld:{
+      width: 300,
+  },
+  longField:{
+      width: '85%',
+  },
+  login:{
+    fontFamily: 'Sans-serif',
+    fontSize: '60px',
+    width: '100%',
+    padding: theme.spacing(1),
+    margin:0
+  }
+
+});
 
 class LoginPage extends Component {
   state = {
@@ -31,8 +67,9 @@ class LoginPage extends Component {
   }
 
   render() {
+    const {classes} = this.props;
     return (
-      <div>
+      <div className = {classes.root}>
         {this.props.errors.loginMessage && (
           <h2
             className="alert"
@@ -41,56 +78,67 @@ class LoginPage extends Component {
             {this.props.errors.loginMessage}
           </h2>
         )}
-        <form onSubmit={this.login}>
-          <h1>Login</h1>
-          <div>
-            <label htmlFor="username">
-              Username:
-              <input
-                type="text"
-                name="username"
-                value={this.state.username}
-                onChange={this.handleInputChangeFor('username')}
-              />
-            </label>
-          </div>
-          <div>
-            <label htmlFor="password">
-              Password:
-              <input
-                type="password"
-                name="password"
-                value={this.state.password}
-                onChange={this.handleInputChangeFor('password')}
-              />
-            </label>
-          </div>
-          <div>
-            <br/>
-            <Button
-              onClick ={this.login}
-              name="submit"
-              value="Log In"
-              variant = "contained"
-              color = "primary"
-            >
-              Log in
-            </Button>
-          </div>
-          <br/>
-           <center>
-             <i>New skater? </i>
-             {'\u00A0'} {'\u00A0'}
-          <Button 
-            variant = 'outlined' color = "primary"
-            onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
+        <br/>
+        <br/>
+        <Grid container
+         direction = 'column'>
+          <Grid container
+            direction="row"
+            justify="center"
+            alignItems="center"
           >
-            Register Here
-          </Button>
-          </center> 
-        </form>
-        <center>
-        </center>
+            <Grid item xs = {12} sm = {9} md = {7} lg = {5} xl = {3}>
+              <Paper className = {classes.paper}>
+                <form onSubmit={this.login}>
+                  <h1 className = {classes.login}>LOG IN</h1>
+                  <i>Ready for practice?</i>
+                  <br/>
+                    <TextField name="username"
+                    label = "username"
+                    name="username"
+                    value={this.state.username}
+                    onChange={this.handleInputChangeFor('username')}/>
+                    
+                  
+                  <div>
+                   
+                      <TextField
+                        type="password"
+                        name="password"
+                        label = "password"
+                        value={this.state.password}
+                        onChange={this.handleInputChangeFor('password')}
+                      />
+                
+                  </div>
+                  <div>
+                    <br/>
+                    <Button
+                      onClick ={this.login}
+                      name="submit"
+                      value="Log In"
+                      variant = "contained"
+                      color = "primary"
+                    >
+                      Log in
+                    </Button>
+                  </div>
+                  <br/>   
+                    <i>New skater? </i>
+                    {'\u00A0'} {'\u00A0'}
+                  <Button 
+                    variant = 'outlined' color = "primary"
+                    onClick={() => {this.props.dispatch({type: 'SET_TO_REGISTER_MODE'})}}
+                  >
+                    Register Here
+                  </Button> 
+                </form>
+                </Paper>
+            </Grid>
+          </Grid>
+        </Grid>
+        <br/>
+        <br/>
       </div>
     );
   }
@@ -103,4 +151,9 @@ const mapStateToProps = state => ({
   errors: state.errors,
 });
 
-export default connect(mapStateToProps)(LoginPage);
+LoginPage.propTypes = {
+  classes: PropTypes.object.isRequired
+};
+
+
+export default withStyles(styles)(connect(mapStateToProps)(LoginPage));

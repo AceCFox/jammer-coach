@@ -91,7 +91,7 @@ class CurriculumItem extends Component {
                                     controls = {true} 
                                     alt = {this.props.skill.description} 
                                     className = {classes.video}
-                                    light = {true}/>
+                                    />
                         </Grid>
                         <Grid item xs = {12} md = {4}> 
                             <Grid container
