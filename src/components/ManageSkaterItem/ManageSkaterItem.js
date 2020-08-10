@@ -34,7 +34,7 @@ const styles = theme => ({
 
 class ManageSkaterItem extends Component {
   state = {
-    notes: '',
+    notes: this.props.skill.coach_notes || '',
     submitted: true,
     open: false,
     };

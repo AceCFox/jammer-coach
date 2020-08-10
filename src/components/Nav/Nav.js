@@ -83,7 +83,7 @@ class Nav extends Component{
             <ListItem button component = {Link} to = '/manage'>
               <ListItemText primary ='Manage Skaters'/>
             </ListItem>     
-            <ListItem button component = {Link} to = '/EditSkills'>
+            <ListItem button component = {Link} to = '/EditSkill'>
               <ListItemText primary ='Edit Skills'/>
             </ListItem>   
           </List>

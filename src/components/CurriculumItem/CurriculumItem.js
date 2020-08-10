@@ -30,8 +30,8 @@ const styles = theme => ({
 
 class CurriculumItem extends Component {
   state = {
-    notes: this.props.skill.skater_notes,
-    submitted: false,
+    notes: this.props.skill.skater_notes || '',
+    submitted: !!this.props.skill.skater_notes,
     };
 
     handleChange = (event) => {
@@ -42,7 +42,7 @@ class CurriculumItem extends Component {
         if (this.props.skill.skater_notes){
             this.setState({
                 notes: this.props.skill.skater_notes,
-                submitted:true
+                submitted: true
             })
         }
     }
@@ -90,7 +90,8 @@ class CurriculumItem extends Component {
                                 <ReactPlayer url= {this.props.skill.url} 
                                     controls = {true} 
                                     alt = {this.props.skill.description} 
-                                    className = {classes.video}/>
+                                    className = {classes.video}
+                                    light = {true}/>
                         </Grid>
                         <Grid item xs = {12} md = {4}> 
                             <Grid container
