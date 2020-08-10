@@ -1,5 +1,7 @@
 import React from 'react';
 import './Footer.css'
+import TwitterIcon from '@material-ui/icons/Twitter';
+import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
 // This is one of our simplest components
 // It doesn't have local state, so it can be a function component.
@@ -8,7 +10,7 @@ import './Footer.css'
 
 const Footer = () => (
   <footer>
-    &copy; Prime Digital Academy
+    &copy; Paxos Cohort <TwitterIcon/>  <ArrowUpwardIcon/>
   </footer>
 );
 
