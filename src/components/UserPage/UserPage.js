@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import LogOutButton from "../LogOutButton/LogOutButton";
-import {Button, Paper, Grid, TextField, InputLabel, MenuItem, Select, FormControl} from '@material-ui/core';
+import {Button, Paper, Grid, TextField} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 
@@ -35,9 +35,9 @@ const styles = theme => ({
 
 class UserPage extends Component {
   state = {
-    email: '',
-    bio: '',
-    goals: '',
+    email: this.props.user.email || '',
+    bio: this.props.user.bio || '',
+    goals: this.props.user.goals || '',
     editEmail: false,
     editBio: false,
     editGoals: false, 
@@ -45,12 +45,24 @@ class UserPage extends Component {
 
   componentDidMount(){
     //this.props.dispatch({type: 'FETCH_USER'})
-    this.setState({
-      ...this.state,
-      email: '' && this.props.user.email,
-      bio: '' && this.props.user.bio,
-      goals: '' && this.props.user.goals,
-    })
+    if(this.props.user.email){
+      this.setState({
+        ...this.state,
+        email: this.props.user.email
+      })
+    }
+    if(this.props.user.bio){
+      this.setState({
+        ...this.state,
+        bio: this.props.user.bio
+      })
+    }
+    if(this.props.user.goals){
+      this.setState({
+        ...this.state,
+        goals: this.props.user.goals
+      })
+    }
   }
 
   handleChange = (event) => {
@@ -68,8 +80,11 @@ class UserPage extends Component {
 
   saveEmail = () => {
     //dispatch Saga to UPDATE EMAIL
-
-
+    const putObject = {
+      email: this.state.email,
+      id: this.props.user.id,
+    }
+    this.props.dispatch({type: 'PUT_EMAIL', payload: putObject})
     this.setState({
       ...this.state,
       editEmail: false,
@@ -84,8 +99,13 @@ class UserPage extends Component {
   }
 
   saveBio = () => {
+    const putObject = {
+      bio: this.state.bio,
+      id: this.props.user.id,
+    }
     //dispatch Saga to UPDATE BIO
-
+    this.props.dispatch({type: 'PUT_BIO', payload: putObject})
+    //set back to Not edit
     this.setState({
       ...this.state,
       editBio:false,
@@ -100,8 +120,13 @@ class UserPage extends Component {
   }
 
   saveGoals = () => {
-    //dispatch Saga to UPDATE goals
-
+    const putObject = {
+      goals: this.state.goals,
+      id: this.props.user.id,
+    }
+    //dispatch Saga to UPDATE BIO
+    this.props.dispatch({type: 'PUT_GOALS', payload: putObject})
+    //set back to Not edit
     this.setState({
       ...this.state,
       editGoals:false,
@@ -246,7 +271,7 @@ class UserPage extends Component {
              </Button>
             </Grid>
            :
-           this.state.bio?
+           this.state.goals?
            <Grid  container
             direction="column"
             justify="center"

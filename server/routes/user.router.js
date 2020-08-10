@@ -56,4 +56,46 @@ router.post('/logout', (req, res) => {
   res.sendStatus(200);
 });
 
+//update a user's saved email address
+router.put('/email', rejectUnauthenticated, (req,res)=>{
+  const email = req.body.email;
+  const id = req.body.id;
+  const queryText = `UPDATE "user"
+  SET "email" = $1 
+  WHERE "id" = $2`
+  pool.query(queryText, [ email, id])
+  .then(() => res.sendStatus(201))
+  .catch((error) => {res.sendStatus(500);
+   console.log(error)
+  });
+})
+
+//update a user's bio
+router.put('/bio', rejectUnauthenticated, (req,res)=>{
+  const bio = req.body.bio;
+  const id = req.body.id;
+  const queryText = `UPDATE "user"
+  SET "bio" = $1 
+  WHERE "id" = $2`
+  pool.query(queryText, [bio, id])
+  .then(() => res.sendStatus(201))
+  .catch((error) => {res.sendStatus(500);
+   console.log(error)
+  });
+})
+
+//update a user's goals
+router.put('/goals', rejectUnauthenticated, (req,res)=>{
+  const goals = req.body.goals;
+  const id = req.body.id;
+  const queryText = `UPDATE "user"
+  SET "goals" = $1 
+  WHERE "id" = $2`
+  pool.query(queryText, [goals, id])
+  .then(() => res.sendStatus(201))
+  .catch((error) => {res.sendStatus(500);
+   console.log(error)
+  });
+})
+
 module.exports = router;
