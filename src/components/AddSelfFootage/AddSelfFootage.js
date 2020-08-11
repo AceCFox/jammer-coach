@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid} from '@material-ui/core';
+import {Button, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid, Typography} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -11,12 +11,15 @@ const styles = theme => ({
         backgroundColor: '#f39f86',
         backgroundImage: 'linear-gradient(315deg, #f39f86 0%, #f9d976 74%)',
         height: '700px',
+        alignItems: 'center',
+        justify: 'center',
     },
     paper: {
-        width: '100%',
+        width: '95%',
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        justify: 'center',
     },
     textFeld:{
         width: 200,
@@ -82,7 +85,8 @@ class AddSelfFootage extends Component {
           <Grid container
            direction = "column"
            alignItems = "center"
-           justify = 'space-between'>
+           justify = 'space-between'
+           >
             <Grid item xs = {12} md = {10} lg = {8} >
                 <Paper className = {classes.paper}>
                     {this.state.submitted &&
@@ -91,7 +95,7 @@ class AddSelfFootage extends Component {
                     </i> }
                         <h2>Add Self Footage</h2>
                         {/* Eventually, this next bit should be conditional upon user != coach */}
-                        <p><i>Your coach will be able to view this video of yourself completing a skill</i></p>
+                        <Typography nowrap>Your coach will be able to view this video of yourself completing a skill</Typography>
                         {/* A link to the add self footage page will appear here if the user is not a coach */}
                        
                         {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}

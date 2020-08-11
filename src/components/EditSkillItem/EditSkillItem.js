@@ -13,7 +13,8 @@ import FastRewindIcon from '@material-ui/icons/FastRewind';
 const styles = theme => ({
     root: {
         flexGrow: 2,
-        alignItems: 'center'
+        alignItems: 'center',
+        justify: 'center'
     },
     paper: {
         width: '95%' ,
@@ -228,161 +229,165 @@ class EditSkillItem extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-         <Paper className = {classes.paper}> 
-            <Grid container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                spacing = {2}> 
-                    <Grid item xs = {12} sm = {6} md = {4}>
-                       {!this.state.edit ? <ReactPlayer url= {this.props.skill.url} 
-                            controls = {true} 
-                            alt = {this.props.skill.description} 
-                            light = {true}
-                            className = {classes.video}/>
-                        :
-                        <div>
-                            <TextField
-                                id="title-in"
-                                label="Title"
-                                name='title'
-                                value = {this.state.title}
-                                onChange = {this.handleChange}
-                                className={classes.textField}
-                                margin="normal"/>
-                            <br/>
-                            <TextField
-                                id="url-in"
-                                label="Url"
-                                multiline
-                                rowsMax="3"
-                                name='url'
-                                value = {this.state.url}
-                                onChange = {this.handleChange}
-                                className={classes.longField}
-                                margin="normal"/>
-                            <br/>
-                        </div>
-                        }  
-                    </Grid>
-                    <Grid item xs = {12} sm = {6} md = {8}> 
-                        <Grid container
-                        direction="row"
-                        justify="center"
-                        alignItems="center"
-                        spacing = {1}>
-                           <Grid item xs = {4}>
-                                 {!this.state.edit ?
-                                   <div>
-                                    <h3>{this.props.skill.title}</h3>
-                                    <p>{this.props.skill.description}</p>
-                                  </div>
-                                 :
-                                 <>
-                                    <TextField
-                                        id="author-in"
-                                        label="Creator"
-                                        name='author'
-                                        value = {this.state.author}
-                                        onChange = {this.handleChange}
-                                        className={classes.textField}
-                                        margin="normal"
-                                        />  
-                                    <TextField
-                                        label="Description"
-                                        name ='description'
-                                        value = {this.state.description}
-                                        onChange = {this.handleChange}
-                                        multiline
-                                        rowsMax="6"
-                                        className={classes.longField}
-                                        margin="normal"
-                                    />
-                                </>
-                                }
-                            </Grid>
-                            <Grid item xs = {4}>
-                            {!this.state.edit ?
-                            <div>
-                            <p>Trainer: {this.props.skill.author}</p>
-                            <ul className = {classes.smallList}>
-                            <label>Categories:</label>  
-                                {/* {JSON.stringify(this.state)} */}
-                              {this.state.viewCategories.map((category, i) =>(
-                                 <li key = {i}>{category.name}</li> 
-                               ))}
-                            </ul> 
-                            </div>
+         <Grid container direction = 'column'
+                justify = 'center'
+                alignContent = 'center'>
+            <Paper className = {classes.paper}> 
+                <Grid container
+                    direction="row"
+                    justify="center"
+                    alignItems="center"
+                    spacing = {2}> 
+                        <Grid item xs = {12} sm = {6} md = {4}>
+                        {!this.state.edit ? <ReactPlayer url= {this.props.skill.url} 
+                                controls = {true} 
+                                alt = {this.props.skill.description} 
+                                light = {true}
+                                className = {classes.video}/>
                             :
-                            <>  
-                                <FormControl className={classes.formControl}>
-                                    <InputLabel>Category</InputLabel>
-                                    {/* input controlled to state.thisCategory */}
-                                    <Select
-                                        value = {this.state.thisCategory}
-                                        onChange={this.handleChange}
-                                        inputProps={{
-                                            name: 'thisCategory',
-                                            id: 'category-in',  
-                                        }}>
-                                        <MenuItem value="">
-                                        <em></em>
-                                        </MenuItem>
-                                        {/* populated from the category reducer props */}
-                                        {this.props.reduxState.category.map((category) =>(
-                                            <MenuItem value={category} key ={category.id}>
-                                                {category.name}
-                                            </MenuItem>
-                                        ))}
-                                    </Select>
-                                    <Button color = "primary" onClick = {this.handleAdd}>Add</Button>
-                                </FormControl>
-                                <ul className = {classes.smallList} >
-                                    {this.state.viewCategories.map((category, index)=>(
-                                    <li key = {category.id}>
-                                        {category.name} 
-                                        <Button value = {category.id} color="secondary" 
-                                            onClick = {this.handleRemove(category)}>
-                                            Remove
-                                        </Button>
-                                    </li> 
-                                    ))}
-                                </ul>
-                             </>}
-                            </Grid>
+                            <div>
+                                <TextField
+                                    id="title-in"
+                                    label="Title"
+                                    name='title'
+                                    value = {this.state.title}
+                                    onChange = {this.handleChange}
+                                    className={classes.textField}
+                                    margin="normal"/>
+                                <br/>
+                                <TextField
+                                    id="url-in"
+                                    label="Url"
+                                    multiline
+                                    rowsMax="3"
+                                    name='url'
+                                    value = {this.state.url}
+                                    onChange = {this.handleChange}
+                                    className={classes.longField}
+                                    margin="normal"/>
+                                <br/>
+                            </div>
+                            }  
+                        </Grid>
+                        <Grid item xs = {12} sm = {6} md = {8}> 
+                            <Grid container
+                            direction="row"
+                            justify="center"
+                            alignItems="center"
+                            spacing = {1}>
                             <Grid item xs = {4}>
-                                {!this.state.edit? 
-                                <>
-                                    <Button variant = 'contained' color = 'primary'
-                                        onClick = {this.handleEditTrue}>
-                                        <EditIcon/> Edit
-                                    </Button>
-                                    <br/>
-                                    <br/>
-                                    <Button variant = 'contained' color = 'secondary'
-                                        onClick = {this.handleClickOpen}>
-                                        <DeleteIcon/> Delete
-                                    </Button>
-                                </>
-                                :
+                                    {!this.state.edit ?
+                                    <div>
+                                        <h3>{this.props.skill.title}</h3>
+                                        <p>{this.props.skill.description}</p>
+                                    </div>
+                                    :
+                                    <>
+                                        <TextField
+                                            id="author-in"
+                                            label="Creator"
+                                            name='author'
+                                            value = {this.state.author}
+                                            onChange = {this.handleChange}
+                                            className={classes.textField}
+                                            margin="normal"
+                                            />  
+                                        <TextField
+                                            label="Description"
+                                            name ='description'
+                                            value = {this.state.description}
+                                            onChange = {this.handleChange}
+                                            multiline
+                                            rowsMax="6"
+                                            className={classes.longField}
+                                            margin="normal"
+                                        />
+                                    </>
+                                    }
+                                </Grid>
+                                <Grid item xs = {4}>
+                                {!this.state.edit ?
                                 <div>
-                                    <Button variant = 'contained' onClick = {this.handleSave}
-                                        color= 'primary'>
-                                       <SaveAltIcon/> Save Changes
-                                    </Button>
-                                    <br/>
-                                    <br/>
-                                    <Button variant = 'contained' onClick = {this.handleEditFalse}
-                                        color = 'secondary'>
-                                        <CloseIcon/> Exit without saving
-                                    </Button>
+                                <p>Trainer: {this.props.skill.author}</p>
+                                <ul className = {classes.smallList}>
+                                <label>Categories:</label>  
+                                    {/* {JSON.stringify(this.state)} */}
+                                {this.state.viewCategories.map((category, i) =>(
+                                    <li key = {i}>{category.name}</li> 
+                                ))}
+                                </ul> 
                                 </div>
-                             }
-                            </Grid>
-                        </Grid>    
+                                :
+                                <>  
+                                    <FormControl className={classes.formControl}>
+                                        <InputLabel>Category</InputLabel>
+                                        {/* input controlled to state.thisCategory */}
+                                        <Select
+                                            value = {this.state.thisCategory}
+                                            onChange={this.handleChange}
+                                            inputProps={{
+                                                name: 'thisCategory',
+                                                id: 'category-in',  
+                                            }}>
+                                            <MenuItem value="">
+                                            <em></em>
+                                            </MenuItem>
+                                            {/* populated from the category reducer props */}
+                                            {this.props.reduxState.category.map((category) =>(
+                                                <MenuItem value={category} key ={category.id}>
+                                                    {category.name}
+                                                </MenuItem>
+                                            ))}
+                                        </Select>
+                                        <Button color = "primary" onClick = {this.handleAdd}>Add</Button>
+                                    </FormControl>
+                                    <ul className = {classes.smallList} >
+                                        {this.state.viewCategories.map((category, index)=>(
+                                        <li key = {category.id}>
+                                            {category.name} 
+                                            <Button value = {category.id} color="secondary" 
+                                                onClick = {this.handleRemove(category)}>
+                                                Remove
+                                            </Button>
+                                        </li> 
+                                        ))}
+                                    </ul>
+                                </>}
+                                </Grid>
+                                <Grid item xs = {4}>
+                                    {!this.state.edit? 
+                                    <>
+                                        <Button variant = 'contained' color = 'primary'
+                                            onClick = {this.handleEditTrue}>
+                                            <EditIcon/> Edit
+                                        </Button>
+                                        <br/>
+                                        <br/>
+                                        <Button variant = 'contained' color = 'secondary'
+                                            onClick = {this.handleClickOpen}>
+                                            <DeleteIcon/> Delete
+                                        </Button>
+                                    </>
+                                    :
+                                    <div>
+                                        <Button variant = 'contained' onClick = {this.handleSave}
+                                            color= 'primary'>
+                                        <SaveAltIcon/> Save Changes
+                                        </Button>
+                                        <br/>
+                                        <br/>
+                                        <Button variant = 'contained' onClick = {this.handleEditFalse}
+                                            color = 'secondary'>
+                                            <CloseIcon/> Exit without saving
+                                        </Button>
+                                    </div>
+                                }
+                                </Grid>
+                            </Grid>    
+                        </Grid>
                     </Grid>
-                </Grid>
-             </Paper>
+                </Paper>
+             </Grid>
           <br/>
           <Dialog
             open={this.state.open}

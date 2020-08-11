@@ -11,13 +11,16 @@ import AssignListItem from '../AssignListItem/AssignListItem';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        alignItems: 'flex-end'
+        alignItems: 'center',
+        backgroundColor: '#e288f9',
+        backgroundImage: 'linear-gradient(315deg, #e288f9 0%, #ffc988 74%)',
     },
     paper: {
-        width: '90%',
+        width: '95%',
         padding: theme.spacing(2),
         textAlign: 'center',
-        color: theme.palette.text.secondary,    
+        color: theme.palette.text.secondary, 
+        margin: 2   
     },
     grid: {
         alignItems: 'flex-end',
@@ -68,50 +71,60 @@ class AssignList extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-          <Paper className = {classes.paper}>
-            <h1>Assign a Skill:</h1>
-              <Grid  container
+          <Grid container
                 direction="row"
                 justify="center"
-                alignItems="flex-end">
-                <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="age-simple">Category</InputLabel>
-                    <Select
-                        value = {this.state.selectedCategory}
-                        onChange={this.handleChange}
-                        inputProps={{
-                            name: 'selectedCategory',
-                            id: 'category-in',  
-                        }}>
-                            <MenuItem value="">
-                            <em></em>
-                            </MenuItem>
-                            {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
-                            {this.props.reduxState.category.map((category, index) =>(
-                                <MenuItem value={category} key ={index}>{category.name}</MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    {this.state.selectedCategory ?
-                    <Button color = "primary" variant = "outlined" onClick = {this.handleViewCategory}>
-                            View category
-                        </Button>
-                    :
-                    <Button  disabled variant = "outlined"> 
-                            View category
-                        </Button>
-                    }   
-                    {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'}
-                    <Button variant = 'outlined' color = 'primary' onClick = {this.handleViewAll}>
-                        View All Skills
-                    </Button>
-                </Grid>
-                {this.state.viewing ? <h2> Viewing {this.state.viewing}</h2> :
-                 ''}
-             {this.state.viewing ? this.props.reduxState.skill.map((item) =>
-             (<AssignListItem skill = {item} key = {item.id}/>)) :
-                 ''}
-          </Paper>
+                alignItems="center"
+                spacing = {2}>
+            <Grid item  xs = {12} lg = {9} xl = {7}>
+                <Paper className = {classes.paper}>
+                    <h1>Assign a Skill:</h1>
+                    <Grid  container
+                        direction="row"
+                        justify="center"
+                        alignItems="flex-end">
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="age-simple">Category</InputLabel>
+                            <Select
+                                value = {this.state.selectedCategory}
+                                onChange={this.handleChange}
+                                inputProps={{
+                                    name: 'selectedCategory',
+                                    id: 'category-in',  
+                                }}>
+                                    <MenuItem value="">
+                                    <em></em>
+                                    </MenuItem>
+                                    {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
+                                    {this.props.reduxState.category.map((category, index) =>(
+                                        <MenuItem value={category} key ={index}>{category.name}</MenuItem>
+                                    ))}
+                                </Select>
+                            </FormControl>
+                            {this.state.selectedCategory ?
+                            <Button color = "primary" variant = "outlined" onClick = {this.handleViewCategory}>
+                                    View category
+                                </Button>
+                            :
+                            <Button  disabled variant = "outlined"> 
+                                    View category
+                                </Button>
+                            }   
+                            {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'}
+                            <Button variant = 'outlined' color = 'primary' onClick = {this.handleViewAll}>
+                                View All Skills
+                            </Button>
+                        </Grid>
+                        
+                        {this.state.viewing ? <h2> Viewing {this.state.viewing}</h2> :
+                        ''}
+                 </Paper>
+            </Grid>
+          </Grid>
+        {this.state.viewing ? this.props.reduxState.skill.map((item) =>
+        (<AssignListItem skill = {item} key = {item.id}/>)) :
+            ''}
+          
       </div>
     );
   }

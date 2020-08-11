@@ -92,11 +92,11 @@ class CurriculumItem extends Component {
             <Grid item  xs = {12} lg = {9} xl = {7}>
                 <Paper className = {classes.paper}>
                     <Grid container
-                            direction="row"
-                            justify="center"
-                            alignItems="center"
-                            spacing = {4}>
-                            <Grid item xs = {12} md = {8}>
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        spacing = {4}>
+                        <Grid item xs = {12} md = {8}>
                                 <ReactPlayer url= {this.props.skill.url} 
                                     controls = {true} 
                                     alt = {this.props.skill.description} 

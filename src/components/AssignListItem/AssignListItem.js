@@ -9,11 +9,11 @@ import ReactPlayer from 'react-player/lazy'
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        alignItems: 'center'
+        alignItems: 'center',  
     },
     paper: {
-        width: '90%',
-        padding: theme.spacing(2),
+        width: '97%',
+        padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
@@ -71,28 +71,38 @@ class AssignListItem extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-          <Grid container
-                direction="row"
-                justify="center"
-                alignItems="center"
-                spacing = {4}>
-               <Grid item xs = {12} md = {8}>
-                    <Paper className = {classes.paper}>
-                        <ReactPlayer url= {this.props.skill.url} 
-                            controls = {true} 
-                            alt = {this.props.skill.description} 
-                            className = {classes.video}/>
-                    </Paper>
-               </Grid>
-               <Grid item xs = {12} md = {4}> 
-                    <Paper className = {classes.paper}>
-                    {this.state.submitted ? 
-                    <i>Successsfully submitted to {this.state.lastSelected}'s curriculum
-                         <Button onClick = {this.handleOk}>ok</Button>    
-                    </i> 
-                    : ''
-                    }
-                    <h2>{this.props.skill.title}</h2>
+         <Grid container
+            direction="row"
+            justify="center"
+            alignItems="center"
+            spacing = {4}>
+             <Grid item xs = {12} lg = {9} xl = {7}>         
+                <Paper className = {classes.paper}>
+                    <Grid container
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        spacing = {0}>
+                        <Grid item xs = {12} md = {8}>
+                            <Grid container
+                                direction="column"
+                                justify="center"
+                                alignItems="center">
+                                <ReactPlayer url= {this.props.skill.url} 
+                                    controls = {true} 
+                                    alt = {this.props.skill.description} 
+                                    className = {classes.video}/> 
+                            </Grid>
+                        </Grid>
+                    <Grid item xs = {12} md = {4}> 
+                        
+                            {this.state.submitted ? 
+                            <i>Successsfully submitted to {this.state.lastSelected}'s curriculum
+                                <Button onClick = {this.handleOk}>ok</Button>    
+                            </i> 
+                            : ''
+                            }
+                            <h2>{this.props.skill.title}</h2>
                         <FormControl className={classes.formControl}>     
                         <InputLabel>Skater</InputLabel>
                             <Select
@@ -126,8 +136,10 @@ class AssignListItem extends Component {
                         <Button variant = 'contained' color = 'primary' onClick = {this.handleAssign}>
                             Assign Skill
                         </Button>
-                    </Paper>
-               </Grid>
+                    </Grid>
+                  </Grid>
+                </Paper>
+             </Grid>  
           </Grid>
       </div>
     );
