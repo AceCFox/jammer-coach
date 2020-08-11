@@ -77,17 +77,14 @@ class LoginPage extends Component {
           >
             {this.props.errors.loginMessage}
           </h2>
-        )}
-        <br/>
-        <br/>
-        <Grid container
-         direction = 'column'>
+        )
+        }
           <Grid container
             direction="row"
             justify="center"
             alignItems="center"
           >
-            <Grid item xs = {12} sm = {9} md = {7} lg = {5} xl = {3}>
+            <Grid item xs = {12} sm = {8} md = {6} lg = {4} xl = {3}>
               <Paper className = {classes.paper}>
                 <form onSubmit={this.login}>
                   <h1 className = {classes.login}>LOG IN</h1>
@@ -97,11 +94,8 @@ class LoginPage extends Component {
                     label = "username"
                     name="username"
                     value={this.state.username}
-                    onChange={this.handleInputChangeFor('username')}/>
-                    
-                  
+                    onChange={this.handleInputChangeFor('username')}/>     
                   <div>
-                   
                       <TextField
                         type="password"
                         name="password"
@@ -133,10 +127,9 @@ class LoginPage extends Component {
                     Register Here
                   </Button> 
                 </form>
-                </Paper>
+              </Paper>
             </Grid>
           </Grid>
-        </Grid>
         <br/>
         <br/>
       </div>
