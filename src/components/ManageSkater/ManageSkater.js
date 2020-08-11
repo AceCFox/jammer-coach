@@ -10,11 +10,13 @@ import ManageSkaterItem from  '../ManageSkaterItem/ManageSkaterItem';
 
 const styles = theme => ({
     root: {
-        flexGrow: 1,
-        alignItems: 'center'
+        flexGrow: 2,
+        alignItems: 'center',
+        backgroundColor: '#bbf0f3',
+        backgroundImage: 'linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%)',
     },
     paper: {
-        width: '98%',
+        width: '96%',
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,    
@@ -26,12 +28,6 @@ const styles = theme => ({
     formControl:{
         width: 200
     },
-    paper2: {
-        width: '85%',
-        padding: theme.spacing(4),
-        textAlign: 'center',
-        color: theme.palette.text.secondary, 
-    }
   });
 
 class ManageSkater extends Component {
@@ -66,77 +62,90 @@ class ManageSkater extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-          <Paper className = {classes.paper}>
-            <h1>Manage Skaters</h1>
-              <Grid  container
+      <Grid container
                 direction="row"
                 justify="center"
-                alignItems="flex-end">
-                <FormControl className={classes.formControl}>
-                    <InputLabel >Skaters</InputLabel>
-                    <Select
-                        value = {this.state.selectedSkater}
-                        onChange={this.handleChange}
-                        inputProps={{
-                            name: 'selectedSkater',
-                            id: 'category-in',  
-                        }}>
-                            <MenuItem value="">
-                            <em></em>
-                            </MenuItem>
-                            {this.props.reduxState.allSkater.map((user, index) =>(
-                                <MenuItem value={user} key ={index}>{user.username}</MenuItem>
-                            ))}
-                        </Select>
-                    </FormControl>
-                    {this.state.selectedSkater ?
-                    <Button color = "primary" variant = "outlined" onClick = {this.handleViewskater}>
-                            View Skater's Curriculum
-                        </Button>
-                    :
-                    <Button  disabled variant = "outlined"> 
-                            View Skater's Curriculum
-                        </Button>
-                    }   
-                </Grid>
-                {this.state.viewing ? 
-                <div>
-                    <h2> Viewing {this.state.viewing.username}'s Curriculum</h2> 
-                    <i>{this.state.viewing.email}</i>
-                    <Paper className = {classes.paper2}>
-                    <Grid  container
-                        direction="row"
-                        justify="center"
-                        alignItems="flex-end"
-                        spacing = {2}>
-                        <Grid item xs = {6}>
-                            {this.state.viewing.bio 
-                            ? 
-                            <>
-                                <h3>Bio</h3> 
-                                <p>{this.state.viewing.bio}</p>
-                            </>
-                            :
-                            ''
-                            }
-                        </Grid>
-                        <Grid item xs = {6}>
-                            {this.state.viewing.goals ?
-                            <>
-                                <h3>Skater Goals</h3> 
-                                <p>{this.state.viewing.goals}</p>
-                            </>
-                        : '' }
-                        </Grid>
+                alignItems="center"
+                spacing = {4}>
+            <Grid item  xs = {12} lg = {9} xl = {7}>
+            <Paper className = {classes.paper}>
+                <h1>Manage Skaters</h1>
+                <Grid  container
+                    direction="row"
+                    justify="center"
+                    alignItems="flex-end">
+                    
+                    <FormControl className={classes.formControl}>
+                        <InputLabel >Skaters</InputLabel>
+                        <Select
+                            value = {this.state.selectedSkater}
+                            onChange={this.handleChange}
+                            inputProps={{
+                                name: 'selectedSkater',
+                                id: 'category-in',  
+                            }}>
+                                <MenuItem value="">
+                                <em></em>
+                                </MenuItem>
+                                {this.props.reduxState.allSkater.map((user, index) =>(
+                                    <MenuItem value={user} key ={index}>{user.username}</MenuItem>
+                                ))}
+                            </Select>
+                        </FormControl>
+                        {this.state.selectedSkater ?
+                        <Button color = "primary" variant = "outlined" onClick = {this.handleViewskater}>
+                                View Skater's Curriculum
+                            </Button>
+                        :
+                        <Button  disabled variant = "outlined"> 
+                                View Skater's Curriculum
+                            </Button>
+                        }   
                     </Grid>
-                    </Paper>
-                </div>
-                :
-                 ''}
+                   
+                    {this.state.viewing ? 
+                    <div>
+                        <h2> Viewing {this.state.viewing.username}'s Curriculum</h2> 
+                        <i>{this.state.viewing.email}</i>
+                        
+                        <Grid  container
+                            direction="row"
+                            justify="center"
+                            alignItems="flex-end"
+                            spacing = {4}
+                            padding = {2}>
+                            <Grid item xs = {12} md= {6}>
+                                {this.state.viewing.bio 
+                                ? 
+                                <>
+                                    <h3>Bio</h3> 
+                                    <p>{this.state.viewing.bio}</p>
+                                </>
+                                :
+                                ''
+                                }
+                            </Grid>
+                            <Grid item xs = {12} md = {6}>
+                                {this.state.viewing.goals ?
+                                <>
+                                    <h3>Skater Goals</h3> 
+                                    <p>{this.state.viewing.goals}</p>
+                                </>
+                            : '' }
+                            </Grid>
+                        </Grid>
+                        </div>
+                        
+                    
+                    :
+                    ''}
+                     </Paper>
+                    </Grid>
+                </Grid>
              {this.state.viewing ? this.props.reduxState.curriculum.map((item, index) =>
              (<ManageSkaterItem key = {index} skater = {this.state.viewing} skill = {item}/>)) :
                  ''}
-          </Paper>
+        
       </div>
     );
   }

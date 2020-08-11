@@ -30,8 +30,8 @@ const styles = theme => ({
 
 class CurriculumItem extends Component {
   state = {
-    notes: this.props.skill.skater_notes || '',
-    submitted: !!this.props.skill.skater_notes,
+    notes: '',
+    submitted: false,
     };
 
     handleChange = (event) => {
@@ -43,6 +43,16 @@ class CurriculumItem extends Component {
             this.setState({
                 notes: this.props.skill.skater_notes,
                 submitted: true
+            }) 
+        }
+    }
+
+
+    componentDidUpdate(previousProps){
+        if (previousProps.skill.skater_notes !== this.props.skill.skater_notes){
+            this.setState({
+                notes: this.props.skill.skater_notes,
+                submitted: true
             })
         }
     }
@@ -50,7 +60,7 @@ class CurriculumItem extends Component {
     submitNotes= () => {
        
         const submitObject = {
-            user_id: this.props.reduxState.user.id,
+            user_id: this.props.skill.user.id,
             skill_id: this.props.skill.id,
             notes: this.state.notes,
         };

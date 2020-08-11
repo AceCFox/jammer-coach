@@ -16,13 +16,13 @@ const styles = theme => ({
         alignItems: 'center'
     },
     paper: {
-        width: '95%',
+        width: '96%',
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
     video :{
-        maxWidth: '100%',
+        maxWidth: '95%',
     },
     formControl: {
         minWidth: 200,
@@ -34,8 +34,8 @@ const styles = theme => ({
 
 class ManageSkaterItem extends Component {
   state = {
-    notes: this.props.skill.coach_notes || '',
-    submitted: true,
+    notes:  '',
+    submitted: false,
     open: false,
     };
 
@@ -44,11 +44,23 @@ class ManageSkaterItem extends Component {
       }
     
     componentDidMount(){
-        this.setState({
-            ...this.state,
-            notes:this.props.skill.coach_notes
-        })
-        
+        if (this.props.skill.coach_notes){
+            this.setState({
+                ...this.state,
+                notes:this.props.skill.coach_notes,
+                submitted: true
+            })
+        } 
+    }
+
+    componentDidUpdate(previousProps){
+        if (previousProps.skill.coach_notes !== this.props.skill.coach_notes){
+            this.setState({
+                ...this.state.open,
+                notes: this.props.skill.coach_notes,
+                submitted: true
+            })
+        }
     }
     
     submitNotes= () => {

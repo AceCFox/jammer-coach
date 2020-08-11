@@ -37,3 +37,4 @@ INSERT INTO "category" ("name") VALUES('hockey stop')
     ('other stop'), ('contact'), ('lateral movement'), ('jump'),
     ('juke'), ('cut'), ('weave'), ('level change'), 
     ('single foot'), ('assist'), ('spread eagle'); 
+
