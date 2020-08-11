@@ -10,7 +10,7 @@ const styles = theme => ({
       alignItems: 'center',
       justify: 'center',
       backgroundImage: 'url(https://s3.amazonaws.com/ezusrevent/EFBB7EBD90553C784141DD8D25197029D540EE1F92DAF3EC12.jpg)',
-      height: "1350px"
+      height: "1360px"
       
   },
   paper: {
@@ -84,7 +84,7 @@ class LoginPage extends Component {
             justify="center"
             alignItems="center"
           >
-            <Grid item xs = {12} sm = {8} md = {6} lg = {4} xl = {3}>
+            <Grid item xs = {12} sm = {8} md = {5} lg = {4} xl = {3}>
               <Paper className = {classes.paper}>
                 <form onSubmit={this.login}>
                   <h1 className = {classes.login}>LOG IN</h1>
