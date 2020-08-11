@@ -134,7 +134,7 @@ class AddSkill extends Component {
                 {/* A link to the add self footage page will appear here if the user is not a coach */}
                 <TextField
                 id="title-in"
-                label="Title"
+                label="*Title"
                 name='title'
                 value = {this.state.title}
                 onChange = {this.handleChange}
@@ -151,7 +151,7 @@ class AddSkill extends Component {
                 margin="normal"/>
                 <TextField
                 id="url-in"
-                label="Youtube Url"
+                label="*Video Url"
                 name='url'
                 value = {this.state.url}
                 onChange = {this.handleChange}

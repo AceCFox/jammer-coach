@@ -102,6 +102,9 @@ class Nav extends Component{
             <ListItem button component = {Link} to = '/AddSkill'>
               <ListItemText primary ='Add A Skill'/>
             </ListItem>
+            <ListItem button component = {Link} to = '/footage'>
+              <ListItemText primary ='Add Footage of Myself'/>
+            </ListItem>
           </List>
           <Divider />
         </>

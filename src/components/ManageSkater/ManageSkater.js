@@ -107,14 +107,26 @@ class ManageSkater extends Component {
                     <Grid  container
                         direction="row"
                         justify="center"
-                        alignItems="flex-end">
+                        alignItems="flex-end"
+                        spacing = {2}>
                         <Grid item xs = {6}>
-                            { <h3>Bio</h3> &&
-                            this.state.viewing.bio }
+                            {this.state.viewing.bio 
+                            ? 
+                            <>
+                                <h3>Bio</h3> 
+                                <p>{this.state.viewing.bio}</p>
+                            </>
+                            :
+                            ''
+                            }
                         </Grid>
                         <Grid item xs = {6}>
-                            { <h3>Skater Goals</h3> &&
-                            this.state.viewing.goals }
+                            {this.state.viewing.goals ?
+                            <>
+                                <h3>Skater Goals</h3> 
+                                <p>{this.state.viewing.goals}</p>
+                            </>
+                        : '' }
                         </Grid>
                     </Grid>
                     </Paper>

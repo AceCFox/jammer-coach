@@ -90,7 +90,7 @@ class LoginPage extends Component {
                   <h1 className = {classes.login}>LOG IN</h1>
                   <i>Ready for practice?</i>
                   <br/>
-                    <TextField name="username"
+                    <TextField 
                     label = "username"
                     name="username"
                     value={this.state.username}
