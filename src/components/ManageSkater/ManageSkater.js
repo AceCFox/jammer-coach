@@ -10,7 +10,7 @@ import ManageSkaterItem from  '../ManageSkaterItem/ManageSkaterItem';
 
 const styles = theme => ({
     root: {
-        flexGrow: 2,
+        flexGrow: 2, 
         alignItems: 'center',
         backgroundColor: '#bbf0f3',
         backgroundImage: 'linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%)',
@@ -62,11 +62,12 @@ class ManageSkater extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
+          <br/>
       <Grid container
                 direction="row"
                 justify="center"
                 alignItems="center"
-                spacing = {4}>
+                spacing = {2}>
             <Grid item  xs = {12} lg = {9} xl = {7}>
             <Paper className = {classes.paper}>
                 <h1>Manage Skaters</h1>
@@ -142,10 +143,10 @@ class ManageSkater extends Component {
                      </Paper>
                     </Grid>
                 </Grid>
+                <br/>
              {this.state.viewing ? this.props.reduxState.curriculum.map((item, index) =>
              (<ManageSkaterItem key = {index} skater = {this.state.viewing} skill = {item}/>)) :
                  ''}
-        
       </div>
     );
   }

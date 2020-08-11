@@ -12,7 +12,7 @@ import FastRewindIcon from '@material-ui/icons/FastRewind';
 
 const styles = theme => ({
     root: {
-        flexGrow: 2,
+        flexGrow: 1,
         alignItems: 'center',
         justify: 'center'
     },

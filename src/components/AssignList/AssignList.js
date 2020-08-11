@@ -71,6 +71,7 @@ class AssignList extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
+          <br/>
           <Grid container
                 direction="row"
                 justify="center"
@@ -124,7 +125,7 @@ class AssignList extends Component {
         {this.state.viewing ? this.props.reduxState.skill.map((item) =>
         (<AssignListItem skill = {item} key = {item.id}/>)) :
             ''}
-          
+          <br/>
       </div>
     );
   }

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Paper, TextField, InputLabel, MenuItem, Select, FormControl} from '@material-ui/core';
+import {Button, Paper, TextField, Grid, InputLabel, MenuItem, Select, FormControl} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -10,6 +10,9 @@ const styles = theme => ({
         flexGrow: 1,
         alignItems: 'center',
         justify: 'center',
+        backgroundImage: 'linear-gradient(315deg, #d82020 0%, #c59169  74%)',
+        height: '800px',
+        backgroundColor: '#baba00',
     },
     paper: {
         width: '90%',
@@ -123,93 +126,101 @@ class AddSkill extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-          <Paper className = {classes.paper}>
-            {this.state.submitted &&
-            <i>Successfully submitted {this.state.lastTitle}
-            <Button onClick = {this.handelOk}>ok</Button>
-            </i> }
-                <h2>Add A Skill</h2>
-                {/* Eventually, this next bit should be conditional upon user != coach */}
-                <p><i>Note: skill videos are accessable by all users</i></p>
-                {/* A link to the add self footage page will appear here if the user is not a coach */}
-                <TextField
-                id="title-in"
-                label="*Title"
-                name='title'
-                value = {this.state.title}
-                onChange = {this.handleChange}
-                className={classes.textField}
-                margin="normal"/>
-                {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                <TextField
-                id="author-in"
-                label="Creator"
-                name='author'
-                value = {this.state.author}
-                onChange = {this.handleChange}
-                className={classes.textField}
-                margin="normal"/>
-                <TextField
-                id="url-in"
-                label="*Video Url"
-                name='url'
-                value = {this.state.url}
-                onChange = {this.handleChange}
-                className={classes.longField}
-                margin="normal"/>
-                <br/>
-                <FormControl className={classes.formControl}>
-                    <InputLabel htmlFor="age-simple">Category</InputLabel>
-                    {/* TO DO: CONTROLL ALL THESE INPUTS */}
-                    <Select
-                        value = {this.state.category}
-                        onChange={this.handleChange}
-                        inputProps={{
-                            name: 'category',
-                            id: 'category-in',  
-                        }}>
-                            <MenuItem value="">
-                            <em></em>
-                            </MenuItem>
-                            {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
-                            {this.props.reduxState.category.map((category) =>(
-                                <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
-                            ))}
-                        </Select>
-                        <Button color = "primary" onClick = {this.handleAdd}>Add category</Button>
-                    </FormControl>
-                    <ul className = {classes.categoryList} >
-                        <label>Selected Categories</label>
-                        {this.state.thisCategory.map((category, index)=>(
-                           <li key = {category.id}>{category.name} 
-                           <Button value = {category.id} color="secondary" onClick = {this.handleRemove(index)}>
-                               Remove
-                            </Button></li> 
-                        ))}
-                    </ul>
-                <TextField
-                id="standard-multiline-flexible"
-                label="Description"
-                name ='description'
-                value = {this.state.description}
-                onChange = {this.handleChange}
-                multiline
-                rowsMax="4"
-                className={classes.longField}
-                margin="normal"
-                />
-                <br/>
-                <br/>
-                {(this.state.title&& this.state.url) ?
-            <Button variant ='contained' color = 'primary' size = "large" onClick = {this.handleSubmit}>
-                Submit
-            </Button>
-                :
-                <Button variant ='contained' disabled size = "large">
-                Submit
-                </Button>
-                 }
-          </Paper> 
+           <Grid container
+           direction = "column"
+           alignItems = "center"
+           justify = 'space-between'
+           >
+            <Grid item xs = {12} md = {10} lg = {8} >
+                <Paper className = {classes.paper}>
+                    {this.state.submitted &&
+                    <i>Successfully submitted {this.state.lastTitle}
+                    <Button onClick = {this.handelOk}>ok</Button>
+                    </i> }
+                        <h2>Add A Skill</h2>
+                        {/* Eventually, this next bit should be conditional upon user != coach */}
+                        <p><i>Note: skill videos are accessable by all users</i></p>
+                        {/* A link to the add self footage page will appear here if the user is not a coach */}
+                        <TextField
+                        id="title-in"
+                        label="*Title"
+                        name='title'
+                        value = {this.state.title}
+                        onChange = {this.handleChange}
+                        className={classes.textField}
+                        margin="normal"/>
+                        {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                        <TextField
+                        id="author-in"
+                        label="Creator"
+                        name='author'
+                        value = {this.state.author}
+                        onChange = {this.handleChange}
+                        className={classes.textField}
+                        margin="normal"/>
+                        <TextField
+                        id="url-in"
+                        label="*Video Url"
+                        name='url'
+                        value = {this.state.url}
+                        onChange = {this.handleChange}
+                        className={classes.longField}
+                        margin="normal"/>
+                        <br/>
+                        <FormControl className={classes.formControl}>
+                            <InputLabel htmlFor="age-simple">Category</InputLabel>
+                            {/* TO DO: CONTROLL ALL THESE INPUTS */}
+                            <Select
+                                value = {this.state.category}
+                                onChange={this.handleChange}
+                                inputProps={{
+                                    name: 'category',
+                                    id: 'category-in',  
+                                }}>
+                                    <MenuItem value="">
+                                    <em></em>
+                                    </MenuItem>
+                                    {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
+                                    {this.props.reduxState.category.map((category) =>(
+                                        <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
+                                    ))}
+                                </Select>
+                                <Button color = "primary" onClick = {this.handleAdd}>Add category</Button>
+                            </FormControl>
+                            <ul className = {classes.categoryList} >
+                                <label>Selected Categories</label>
+                                {this.state.thisCategory.map((category, index)=>(
+                                <li key = {category.id}>{category.name} 
+                                <Button value = {category.id} color="secondary" onClick = {this.handleRemove(index)}>
+                                    Remove
+                                    </Button></li> 
+                                ))}
+                            </ul>
+                        <TextField
+                        id="standard-multiline-flexible"
+                        label="Description"
+                        name ='description'
+                        value = {this.state.description}
+                        onChange = {this.handleChange}
+                        multiline
+                        rowsMax="4"
+                        className={classes.longField}
+                        margin="normal"
+                        />
+                        <br/>
+                        <br/>
+                        {(this.state.title&& this.state.url) ?
+                    <Button variant ='contained' color = 'primary' size = "large" onClick = {this.handleSubmit}>
+                        Submit
+                    </Button>
+                        :
+                        <Button variant ='contained' disabled size = "large">
+                        Submit
+                        </Button>
+                        }
+                </Paper> 
+            </Grid>
+        </Grid>
       </div>
     );
   }

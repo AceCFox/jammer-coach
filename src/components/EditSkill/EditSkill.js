@@ -17,7 +17,7 @@ const styles = theme => ({
         backgroundImage: 'linear-gradient(315deg, #003b64 0%, #fff200 74%)',
     },
     paper: {
-        width: '95%',
+        width: '96%',
         padding: theme.spacing(2),
         textAlign: 'center',
         alignItems: 'canter',
@@ -76,11 +76,12 @@ class EditSkill extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
+          <br/>
            <Grid container
                 direction="column"
                 justify="center"
                 alignItems="center"
-                spacing = {4}>
+                spacing = {2}>
                <Grid item  xs = {12} sm = {11} lg = {10} xl = {9}>
                  <Paper className = {classes.paper}>
                     <p><i>Note: you are currently editing the GENREAL DIRECTORY
@@ -136,7 +137,7 @@ class EditSkill extends Component {
         {this.state.viewing ? this.props.reduxState.skill.map((item) =>
         (<EditSkillItem skill = {item} key = {item.id}/>)) :
             ''}
-          
+          <br/>
       </div>
     );
   }
