@@ -83,6 +83,7 @@ class FootageItem extends Component {
                            `Skater `
                            }
                            Footage</h2>
+                          <h3>of {this.props.skill.title}</h3>
                         <p>{this.props.footage.notes}</p>
                         <Button variant = 'outlined' color = 'secondary'
                         onClick = {this.handleOpen}>

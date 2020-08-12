@@ -147,6 +147,8 @@ class ManageSkater extends Component {
                     </Grid>
                 </Grid>
                 <br/>
+            {/* This next block renders the skills of a skater's curriculum.
+            Followed by that skater's footage of that skill if it exists */}
              {this.state.viewing ? 
              this.props.reduxState.curriculum.map((item, index) =>
                 (
@@ -155,7 +157,7 @@ class ManageSkater extends Component {
                             {this.props.reduxState.footage.map((footage, index) => (
                             (footage.user_skill_id === item.id)
                             ?
-                            <FootageItem key = {index} footage = {footage}/> 
+                            <FootageItem key = {index} footage = {footage} skill={item}/> 
                             :
                             ''
                         ))}
