@@ -46,6 +46,9 @@ const styles = theme => ({
     height: 50,
     width: 'auto',
   },
+  grow: {
+    flexGrow: 1,
+  },
 });
 
 
@@ -68,11 +71,9 @@ class Nav extends Component{
             <ListItemIcon>
             <img className = "icon" src = {require ('./favicon.ico') }alt = 'roller skate icon'/>
             </ListItemIcon>
-            <ListItemText primary ='Jammer Coach'/>
+            {/* <ListItemText primary ='Jammer Coach'/> */}
           </ListItem>
-        </List>
-        
-        
+        </List>   
         <Divider />
         {this.props.reduxState.user.is_coach && (
           <>
@@ -127,6 +128,7 @@ class Nav extends Component{
             >
               <MenuIcon />
           </IconButton>
+          <div className = {classes.grow}> </div>
           <h3>Jammer Coach</h3>
           {'\u00A0'}{'\u00A0'}
           <img className = {classes.icon} src = {require ('./favicon_white.png') }alt = 'roller skate icon'/>

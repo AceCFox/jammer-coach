@@ -23,6 +23,7 @@ import EditSkill from '../EditSkill/EditSkill';
 import Curriculum  from '../Curriculum/Curriculum';
 import ManageSkater from '../ManageSkater/ManageSkater';
 import AddSelfFootage from '../AddSelfFootage/AddSelfFootage'
+import { CssBaseline } from '@material-ui/core';
 
 class App extends Component {
   componentDidMount () {
@@ -32,6 +33,7 @@ class App extends Component {
   render() {
     return (
       <Router>
+        <CssBaseline/>
         <div>
           <Nav />
           <Switch>

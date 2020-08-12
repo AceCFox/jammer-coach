@@ -17,7 +17,7 @@ const styles = theme => ({
         minHeight: '800px',
     },
     paper: {
-        width: '95%',
+        width: '100%',
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary, 
@@ -74,13 +74,13 @@ class AssignList extends Component {
       <div className={classes.root}>
           <br/>
           <Grid container
-                direction="row"
+                direction="column"
                 justify="center"
                 alignItems="center"
                 spacing = {2}>
             <Grid item  xs = {12} lg = {9} xl = {7}>
                 <Paper className = {classes.paper}>
-                    <h1>Assign a Skill:</h1>
+                    <h1>Assign Skills</h1>
                     <Grid  container
                         direction="row"
                         justify="center"

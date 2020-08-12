@@ -9,11 +9,12 @@ import ReactPlayer from 'react-player/lazy'
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        justify: 'center',
     },
     paper: {
-        width: '95%',
-        padding: theme.spacing(2),
+        width: '100%',
+        padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
@@ -89,7 +90,7 @@ class CurriculumItem extends Component {
                 justify="center"
                 alignItems="center"
                 spacing = {4}>
-            <Grid item  xs = {12} lg = {9} xl = {7}>
+            <Grid item  xs = {12} lg = {10} xl = {9}>
                 <Paper className = {classes.paper}>
                     <Grid container
                         direction="row"

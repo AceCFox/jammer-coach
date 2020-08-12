@@ -9,13 +9,15 @@ import ReactPlayer from 'react-player/lazy'
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        alignItems: 'center',  
+        alignItems: 'center',
+        justify:'center,'
     },
     paper: {
-        width: '97%',
+        width: '100%',
         padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        justify: 'center'
     },
     video :{
         maxWidth: '100%',
@@ -72,7 +74,7 @@ class AssignListItem extends Component {
     return (
       <div className={classes.root}>
          <Grid container
-            direction="row"
+            direction="column"
             justify="center"
             alignItems="center"
             spacing = {4}>
