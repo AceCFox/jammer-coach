@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ManageSkaterItem from  '../ManageSkaterItem/ManageSkaterItem';
+import FootageItem from '../FootageItem/FootageItem';
 
 //TO DO: make the skill select hold the id value and worry about the name for display (may need new function)
 
@@ -40,6 +41,7 @@ class ManageSkater extends Component {
     componentDidMount(){
         //dispatch saga to fetch categories
         this.props.dispatch({type: 'GET_SKATER'})
+        this.props.dispatch({type: 'FETCH_FOOTAGE'})
     }
 
     handleChange = (event) => {
@@ -145,9 +147,23 @@ class ManageSkater extends Component {
                     </Grid>
                 </Grid>
                 <br/>
-             {this.state.viewing ? this.props.reduxState.curriculum.map((item, index) =>
-             (<ManageSkaterItem key = {index} skater = {this.state.viewing} skill = {item}/>)) :
-                 ''}
+             {this.state.viewing ? 
+             this.props.reduxState.curriculum.map((item, index) =>
+                (
+                    <div key = {index}>
+                        <ManageSkaterItem skater = {this.state.viewing} skill = {item}/>     
+                            {this.props.reduxState.footage.map((footage, index) => (
+                            (footage.user_skill_id === item.id)
+                            ?
+                            <FootageItem key = {index} footage = {footage}/> 
+                            :
+                            ''
+                        ))}
+                    </div>
+                )) 
+             :
+            ''
+            }
       </div>
     );
   }

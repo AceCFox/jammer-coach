@@ -16,7 +16,8 @@ const styles = theme => ({
         width: '100%',
         padding: theme.spacing(1),
         textAlign: 'center',
-        color: theme.palette.text.secondary,
+        color: '#616161',
+        backgroundColor: '#c5cae9',
         justify: 'center'
     },
     video :{
@@ -30,7 +31,8 @@ class FootageItem extends Component {
     };
 
     componentDidMount(){
-       
+      this.props.dispatch({type: 'FETCH_FOOTAGE'})
+       console.log(this.props.footage)
     }
     
     handleOpen = () =>{
@@ -54,7 +56,7 @@ class FootageItem extends Component {
                         direction="row"
                         justify="center"
                         alignItems="center"
-                        spacing = {0}>
+                        spacing = {3}>
                         <Grid item xs = {12} md = {8}>
                             <Grid container
                                 direction="column"
@@ -66,7 +68,7 @@ class FootageItem extends Component {
                                     className = {classes.video}/> 
                             </Grid>
                         </Grid>
-                    <Grid item xs = {12} md = {3}> 
+                    <Grid item xs = {12} md = {4}> 
                         <h2>{this.props.footage.added_by}'s Footage</h2>
                         <p>{this.props.footage.notes}</p>
                         <Button variant = 'outlined' color = 'secondary'

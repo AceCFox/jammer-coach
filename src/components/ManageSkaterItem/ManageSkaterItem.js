@@ -51,6 +51,7 @@ class ManageSkaterItem extends Component {
                 submitted: true
             })
         } 
+       // console.log(this.props.skill)
     }
 
     componentDidUpdate(previousProps){
