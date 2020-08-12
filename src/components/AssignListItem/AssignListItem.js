@@ -39,7 +39,7 @@ class AssignListItem extends Component {
     componentDidMount(){
         //dispatch saga to fetch username list
         //displatch saga to fetch skaters
-        this.props.dispatch({type: 'GET_SKATER'})
+        this.props.dispatch({type: 'GET_SKATER'}) 
     }
   
     handleChange = (event) => {
@@ -47,7 +47,7 @@ class AssignListItem extends Component {
       }
 
     handleAssign =()=>{
-       const postObject = {skill_id: this.props.skill.skill_id,
+       const postObject = {skill_id: this.props.skill.id,
                             user_id: this.state.selected.id,
                             coach_notes: this.state.notes }
        console.log(postObject);

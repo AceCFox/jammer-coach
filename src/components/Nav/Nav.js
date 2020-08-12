@@ -9,7 +9,7 @@ import PropTypes from 'prop-types';
 import MenuIcon from '@material-ui/icons/Menu';
 
 
-const drawerWidth = 240;
+const drawerWidth = 250;
 
 const styles = theme => ({
   root: {
@@ -68,7 +68,7 @@ class Nav extends Component{
             <ListItemIcon>
             <img className = "icon" src = {require ('./favicon.ico') }alt = 'roller skate icon'/>
             </ListItemIcon>
-            <ListItemText primary ='JammerCoach'/>
+            <ListItemText primary ='Jammer Coach'/>
           </ListItem>
         </List>
         
@@ -129,7 +129,7 @@ class Nav extends Component{
           </IconButton>
           <h3>Jammer Coach</h3>
           {'\u00A0'}{'\u00A0'}
-          <img className = {classes.icon} src = {require ('./favicon.ico') }alt = 'roller skate icon'/>
+          <img className = {classes.icon} src = {require ('./favicon_white.png') }alt = 'roller skate icon'/>
           
           {/* <LogOutButton /> */}
          

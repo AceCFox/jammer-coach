@@ -60,7 +60,7 @@ class CurriculumItem extends Component {
     submitNotes= () => {
        
         const submitObject = {
-            user_id: this.props.skill.user.id,
+            user_id: this.props.skill.user_id,
             skill_id: this.props.skill.id,
             notes: this.state.notes,
         };
