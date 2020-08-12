@@ -4,7 +4,7 @@ const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
 
 /**
- * GET route template
+ * GET all user footage
  */
 router.get('/', rejectUnauthenticated, (req, res) => {
     const queryString = `SELECT * FROM "user_footage";`;
@@ -37,5 +37,19 @@ router.post('/', rejectUnauthenticated, (req, res) => {
      console.log(error);
    }) 
 });
+
+//DELETE a row from user_footage
+router.delete('/:id', rejectUnauthenticated, (req, res) => {
+  const queryText = `DELETE FROM "user_footage"
+  WHERE id = $1`;
+  pool.query(queryText, [req.params.id])
+  .then(() => {res.sendStatus(200) 
+})    
+  .catch((error) => {res.sendStatus(500);
+    console.log(error);
+  });
+
+});
+
 
 module.exports = router;

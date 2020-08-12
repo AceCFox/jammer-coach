@@ -88,20 +88,26 @@ router.put('/coachnote', rejectUnauthenticated, (req, res) => {
 /**
  delete a row from skater_skill
  */
-router.delete('/skill', rejectUnauthenticated, (req, res) => {
-    const queryString = `DELETE FROM "user_skill"
-    WHERE "user_id" = $1 AND "skill_id"= $2;`;
-    const postValues = [
-        req.body.user_id,
-        req.body.skill_id,
-    ]
-   // console.log('in delete /api/skater/skill with', req.body)
-    pool.query(queryString, postValues)
-    .then(()=>{res.sendStatus(200)})
-    .catch((error)=>{
-     res.sendStatus(500)
-     console.log(error);
-   })
+router.delete('/skill/:id', rejectUnauthenticated, async (req, res) => {
+    const client = await pool.connect()
+    const queryText = `
+    DELETE FROM "user_footage"
+    WHERE "user_skill_id" = $1;`
+    const query2 = `DELETE FROM "user_skill" 
+    WHERE "id" = $1;`;
+    try{
+      await client.query('BEGIN')
+      await client.query(queryText, [req.params.id])
+      await client.query (query2, [req.params.id])
+      await client.query('COMMIT')
+      res.sendStatus(201)
+    } catch (error) {
+      await client.query('ROLLBACK')
+      console.log(error)
+      res.sendStatus(500);
+    } finally {
+      client.release()
+    }  
 });
 
 module.exports = router;

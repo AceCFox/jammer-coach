@@ -85,10 +85,11 @@ class ManageSkaterItem extends Component {
 
     handleDelete = () =>{
         const deleteObject = {
-            user_id: this.props.skill.user_id,
-            skill_id: this.props.skill.id,  
+           user_id: this.props.skill.user_id,
+           id:this.props.skill.id
         }
-        console.log('deleting', deleteObject);
+        console.log(deleteObject);
+       
         this.props.dispatch({type: 'DELETE_USER_SKILL', payload: deleteObject})
         //dispatch saga to delete row from skater_skill
         this.handleClose();
@@ -198,6 +199,7 @@ class ManageSkaterItem extends Component {
               <DialogContent>
                   <DialogContentText>
                      Are you sure you want to remove {this.props.skill.title} from {this.props.skater.username}'s curriculum?
+                     (This will also delete any footage of {this.props.skater.username} completing this skill)
                   </DialogContentText>
               </DialogContent>
               <DialogActions>

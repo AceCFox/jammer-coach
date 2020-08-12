@@ -52,10 +52,10 @@ function* updateCoachNote(action){
 //it will fire with every 'DELETE_USER_SKILL' action
 function* deleteUserSkill(action){
     try {
-        yield axios.delete('/api/skater/skill', {data: action.payload} );
-        let id = action.payload.user_id;
-        yield put({ type: 'GET_CURRICULUM', payload: id });
-       console.log('in deleteSaga with', action.payload)
+        yield axios.delete('/api/skater/skill/'+ action.payload.id );
+        let user_id = action.payload.user_id;
+        yield put({ type: 'GET_CURRICULUM', payload: user_id });
+       //console.log('in deleteSaga with', action.payload)
     }  catch (error) {
         console.log('Error on update skater note:', error);
     }

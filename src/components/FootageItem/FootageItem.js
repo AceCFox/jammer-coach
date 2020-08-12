@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Button, Paper,  Grid} from '@material-ui/core';
+import {Button, Paper,  Grid, Dialog, DialogContent, DialogActions, DialogContentText} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player/lazy'
+import DeleteIcon from '@material-ui/icons/Delete';
+import FastRewindIcon from '@material-ui/icons/FastRewind';
 
 
 const styles = theme => ({
@@ -32,7 +34,7 @@ class FootageItem extends Component {
 
     componentDidMount(){
       this.props.dispatch({type: 'FETCH_FOOTAGE'})
-       console.log(this.props.footage)
+       //console.log(this.props.footage)
     }
     
     handleOpen = () =>{
@@ -40,6 +42,12 @@ class FootageItem extends Component {
             open: true,
         })
     }
+
+   handleDelete = () => {
+     const id = this.props.footage.id
+  // console.log(id);
+    this.props.dispatch({type: 'DELETE_FOOTAGE', payload: id})
+   } 
 
   render() {
     const {classes} = this.props;
@@ -69,17 +77,39 @@ class FootageItem extends Component {
                             </Grid>
                         </Grid>
                     <Grid item xs = {12} md = {4}> 
-                        <h2>{this.props.footage.added_by}'s Footage</h2>
+                        <h2>{this.props.footage.added_by ?
+                           this.props.footage.added_by + `'s `
+                           :
+                           `Skater `
+                           }
+                           Footage</h2>
                         <p>{this.props.footage.notes}</p>
                         <Button variant = 'outlined' color = 'secondary'
                         onClick = {this.handleOpen}>
-                            Delete this footage
+                           <DeleteIcon/> Delete this Footage
                         </Button>
                     </Grid>
                   </Grid>
                 </Paper>
              </Grid>  
           </Grid>
+          <Dialog
+          open={this.state.open}
+          onClose={this.handleClose}>
+              <DialogContent>
+                  <DialogContentText>
+                     Are you sure you want to delete this footage?
+                  </DialogContentText>
+              </DialogContent>
+              <DialogActions>
+                <Button variant = "outlined" color = "primary" onClick = {this.handleClose}>
+                    <FastRewindIcon/> Oops, NO
+                </Button>
+                <Button variant = "outlined" color = "secondary" onClick = {this.handleDelete}>
+                    <DeleteIcon/> YES, delete
+                </Button>
+              </DialogActions>
+          </Dialog>
       </div>
     );
   }
