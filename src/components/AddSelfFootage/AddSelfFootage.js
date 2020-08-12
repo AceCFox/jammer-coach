@@ -8,15 +8,15 @@ import { connect } from 'react-redux';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        backgroundColor: '#f39f86',
-        backgroundImage: 'linear-gradient(315deg, #f39f86 0%, #f9d976 74%)',
-        height: '700px',
+        backgroundColor: '#91d370',
+        backgroundImage: 'linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%)',
+        height: '800px',
         alignItems: 'center',
         justify: 'center',
     },
     paper: {
         width: '95%',
-        padding: theme.spacing(2),
+        padding: theme.spacing(3),
         textAlign: 'center',
         color: theme.palette.text.secondary,
         justify: 'center',

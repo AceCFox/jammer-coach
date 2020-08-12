@@ -13,6 +13,7 @@ const styles = theme => ({
         flexGrow: 1,
         alignItems: 'center',
         justify: 'center',
+        minHeight: '800px',
         backgroundColor: '#003b64',
         backgroundImage: 'linear-gradient(315deg, #003b64 0%, #fff200 74%)',
     },

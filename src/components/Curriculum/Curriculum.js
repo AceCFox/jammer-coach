@@ -11,7 +11,8 @@ import CurriculumItem from '../CurriculumItem/CurriculumItem';
 const styles = theme => ({
     root: {
         flexGrow: 1,
-        alignItems: 'center'
+        alignItems: 'center',
+        minHeight: '800px',
     },
     paper1: {
         width: '99%',
