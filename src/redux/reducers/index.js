@@ -7,6 +7,7 @@ import skill from './skillReducer';
 import allSkater from './allSkaterReducer';
 import skillCategory from './skillCategoryReducer';
 import curriculum from './curriculumReducer';
+import footage from './footageReducer'
 
 // rootReducer is the primary reducer for our entire project
 // It bundles up all of the other reducers so our project can use them.
@@ -23,6 +24,7 @@ const rootReducer = combineReducers({
   allSkater,//will have an array of skater obejcts (id, username, bio, goals)
   skillCategory,//has an array of objects {skill_id, category_id, name, id}
   curriculum,//has an array of skill objects joined to a user
+  footage,//has an array of footage objects with a .id, .url, .added_by, .user_skill_id, .notes
 });
 
 export default rootReducer;

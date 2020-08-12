@@ -6,8 +6,15 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 /**
  * GET route template
  */
-router.get('/', (req, res) => {
-    
+router.get('/', rejectUnauthenticated, (req, res) => {
+    const queryString = `SELECT * FROM "user_footage";`;
+    pool.query(queryString)
+      .then((result) => {res.send(result.rows)
+    //  console.log(result.rows)  
+    })    
+      .catch((error) => {res.sendStatus(500);
+        console.log(error);
+      });    
 });
 
 /**
