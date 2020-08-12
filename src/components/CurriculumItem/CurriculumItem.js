@@ -85,11 +85,12 @@ class CurriculumItem extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
+          <br/>
           <Grid container
                 direction="row"
                 justify="center"
                 alignItems="center"
-                spacing = {4}>
+                spacing = {2}>
             <Grid item  xs = {12} lg = {10} xl = {9}>
                 <Paper className = {classes.paper}>
                     <Grid container
@@ -151,6 +152,7 @@ class CurriculumItem extends Component {
                 </Paper>
             </Grid>
           </Grid>
+          <br/>
       </div>
     );
   }

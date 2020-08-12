@@ -17,7 +17,7 @@ const styles = theme => ({
         backgroundImage: 'linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%)',
     },
     paper: {
-        width: '96%',
+        width: '100%',
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,    
@@ -69,7 +69,7 @@ class ManageSkater extends Component {
                 justify="center"
                 alignItems="center"
                 spacing = {2}>
-            <Grid item  xs = {12} lg = {9} xl = {7}>
+            <Grid item  xs = {12} sm = {11} md = {10} lg = {9} xl = {8}>
             <Paper className = {classes.paper}>
                 <h1>Manage Skaters</h1>
                 <Grid  container

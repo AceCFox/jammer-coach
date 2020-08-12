@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 
-
 const styles = theme => ({
     root: {
         flexGrow: 1,
@@ -59,6 +58,16 @@ class AddSelfFootage extends Component {
    
     handleSubmit = () =>{
        console.log(this.state.skill)
+       const postObject = {
+            user_skill_id: this.state.skill.id,
+            url: this.state.url,
+            added_by: this.state.skater,
+            notes: this.state.notes,
+       } 
+       //call post saga
+       if (postObject.url&&postObject.user_skill_id){
+        this.props.dispatch({type: 'ADD_FOOTAGE', payload: postObject})
+        }
        //clear inputs
        this.setState({
            submitted: true,
@@ -95,15 +104,15 @@ class AddSelfFootage extends Component {
                     </i> }
                         <h2>Add Self Footage</h2>
                         {/* Eventually, this next bit should be conditional upon user != coach */}
-                        <Typography nowrap>Your coach will be able to view this video of yourself completing a skill</Typography>
+                        <Typography nowrap='text'>Your coach will be able to view this video of yourself completing a skill</Typography>
                         {/* A link to the add self footage page will appear here if the user is not a coach */}
                        
                         {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
                         <TextField
-                        id="author-in"
+                        id="skater-in"
                         label="My Name"
-                        name='author'
-                        value = {this.state.author}
+                        name='skater'
+                        value = {this.state.skater}
                         onChange = {this.handleChange}
                         className={classes.textField}
                         margin="normal"/>

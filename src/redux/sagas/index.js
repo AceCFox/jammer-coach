@@ -10,6 +10,7 @@ import curriculumSaga from './curriculumSaga';
 import skillCategorySaga from './skillCategorySaga';
 import updateSkillSaga from './updateSkillSaga';
 import profileSaga from './profileSaga';
+import footageSaga from './footageSaga';
 
 // rootSaga is the primary saga.
 // It bundles up all of the other sagas so our project can use them.
@@ -31,5 +32,6 @@ export default function* rootSaga() {
     skillCategorySaga(),
     updateSkillSaga(),
     profileSaga(),
+    footageSaga(),
   ]);
 }

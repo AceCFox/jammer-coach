@@ -23,10 +23,10 @@ router.get('/', rejectUnauthenticated, (req, res) => {
  * GET skills of a specific category (by category id)
  */
 router.get('/category:id', rejectUnauthenticated, (req, res) => {
-    const queryText = `SELECT * FROM "skill" 
-    JOIN skill_category  on skill.id = skill_category.skill_id
+    const queryText = `SELECT * FROM "skill_category" 
+    JOIN "skill"  on "skill"."id" = "skill_category"."skill_id"
     WHERE skill_category.category_id = $1
-    ORDER BY "skill"."id" ASC;`;
+    ORDER BY "skill"."title" ASC;`;
     pool.query(queryText, [req.params.id])
     .then((result) => {res.send(result.rows)
    // console.log(result.rows)  

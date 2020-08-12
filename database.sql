@@ -38,3 +38,10 @@ INSERT INTO "category" ("name") VALUES('hockey stop')
     ('juke'), ('cut'), ('weave'), ('level change'), 
     ('single foot'), ('assist'), ('spread eagle'); 
 
+CREATE TABLE "user_footage" 
+     ( "id" SERIAL PRIMARY KEY, 
+          "added_by" VARCHAR(100),
+          "user_skill_id" INT REFERENCES "user_skill", 
+          "url" VARCHAR(500), 
+          "notes" VARCHAR(500) 
+     );

@@ -16,8 +16,8 @@ const styles = theme => ({
         alignItems: 'center'
     },
     paper: {
-        width: '96%',
-        padding: theme.spacing(2),
+        width: '100%',
+        padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
     },
@@ -70,7 +70,7 @@ class ManageSkaterItem extends Component {
         })
         const submitObject = {
             user_id: this.props.skill.user_id,
-            skill_id: this.props.skill.id,
+            skill_id: this.props.skill.skill_id,
             notes: this.state.notes,
         };
         console.log(submitObject);
@@ -116,31 +116,32 @@ class ManageSkaterItem extends Component {
                 direction="row"
                 justify="center"
                 alignItems="center"
-                spacing = {4}>
-            <Grid item  xs = {12} lg = {9} xl = {7}>
+                spacing = {6}>
+            <Grid item  xs = {12} sm = {11} md = {10} lg = {9} xl = {8}>
                 <Paper className = {classes.paper}>
                     <Grid container
-                            direction="row"
-                            justify="center"
-                            alignItems="center"
-                            spacing = {4}>
-                            <Grid item xs = {12} md = {8}>
-                                <ReactPlayer url= {this.props.skill.url} 
-                                    controls = {true} 
-                                    alt = {this.props.skill.description} 
-                                    className = {classes.video}/>
-                                <br/>
-                                <Button variant = "contained" color = "secondary"
-                                    onClick = {this.handleOpen}>
-                                     <DeleteIcon/>Remove skill
-                                </Button> 
+                        direction="row"
+                        justify="center"
+                        alignItems="center"
+                        spacing = {1}>
+                        <Grid item xs = {12} md = {8}>
+                            <ReactPlayer url= {this.props.skill.url} 
+                                controls = {true} 
+                                alt = {this.props.skill.description} 
+                                className = {classes.video}/>
+                            <br/>
+                            <Button variant = "contained" color = "secondary"
+                                onClick = {this.handleOpen}>
+                                    <DeleteIcon/>Remove skill
+                            </Button> 
                         </Grid>
                         <Grid item xs = {12} md = {4}> 
                             <Grid container
-                                direction="column"
+                                direction="row"
                                 justify="center"
                                 alignItems="center"
-                                spacing = {2}>
+                                spacing = {9}
+                                >
                                     <Grid item xs = {12}>
                                         <h2>{this.props.skill.title}</h2>
                                         {this.state.submitted ?

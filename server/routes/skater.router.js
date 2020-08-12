@@ -28,10 +28,13 @@ router.post('/assign', rejectUnauthenticated, (req, res) => {
  */
 router.get('/skill/:id', rejectUnauthenticated, (req, res) => {
     const user_id = [req.params.id];
-    const queryText  = `SELECT * FROM "user_skill"
+    const queryText  = 
+    `SELECT "user_skill"."id", "user_id", "skill_id", "coach_notes", 
+    "skater_notes", "title", "url", "favorite", "author", "description"
+    FROM "user_skill"
     JOIN "skill" on "user_skill"."skill_id" = "skill"."id"
     WHERE "user_skill"."user_id" = $1
-    ORDER BY "skill"."id" ASC;`;
+    ORDER BY "skill"."title" ASC;`;
     pool.query(queryText, user_id)
     .then((result)=>{res.send(result.rows)})
     .catch((error)=>{
