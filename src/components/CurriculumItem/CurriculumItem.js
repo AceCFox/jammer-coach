@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player/lazy'
 
+//this component is a single
 
 const styles = theme => ({
     root: {
