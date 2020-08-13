@@ -24,6 +24,7 @@ import Curriculum  from '../Curriculum/Curriculum';
 import ManageSkater from '../ManageSkater/ManageSkater';
 import AddSelfFootage from '../AddSelfFootage/AddSelfFootage'
 import { CssBaseline } from '@material-ui/core';
+import Landing from '../Landing/Landing';
 
 class App extends Component {
   componentDidMount () {
@@ -53,14 +54,14 @@ class App extends Component {
             <ProtectedRoute
               exact
               path="/home"
-              component={UserPage}
+              component={Landing}
             />
             {/* This works the same as the other protected route, except that if the user is logged in,
             they will see the info page instead. */}
             <ProtectedRoute
               exact
-              path="/info"
-              component={InfoPage}
+              path="/profile"
+              component={UserPage}
             />
             <ProtectedRoute
               exact

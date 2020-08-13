@@ -7,7 +7,14 @@ import { Toolbar, AppBar, List, ListItem, Drawer, Divider, ListItemIcon, ListIte
 import { withStyles } from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import MenuIcon from '@material-ui/icons/Menu';
-
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import EditIcon from '@material-ui/icons/Edit';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import VideocamIcon from '@material-ui/icons/Videocam';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import AddIcon from '@material-ui/icons/Add';
+import PersonIcon from '@material-ui/icons/Person';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 const drawerWidth = 250;
 
@@ -67,11 +74,11 @@ class Nav extends Component{
       <div>
         <div className={classes.toolbar} />
         <List>
-          <ListItem>
+          <ListItem button component = {Link} to ="/profile" >
             <ListItemIcon>
-            <img className = "icon" src = {require ('./favicon.ico') }alt = 'roller skate icon'/>
+              <AccountCircleIcon/>
             </ListItemIcon>
-            {/* <ListItemText primary ='Jammer Coach'/> */}
+             <ListItemText primary ={this.props.reduxState.user.username}/> 
           </ListItem>
         </List>   
         <Divider />
@@ -79,12 +86,17 @@ class Nav extends Component{
           <>
           <List>
             <ListItem button component = {Link} to ="/AssignList" >
+            <ListItemIcon><AssignmentIcon/></ListItemIcon>
               <ListItemText primary ='Assign Skills'/>
             </ListItem>     
             <ListItem button component = {Link} to = '/manage'>
+              <ListItemIcon><SupervisorAccountIcon/></ListItemIcon>
               <ListItemText primary ='Manage Skaters'/>
             </ListItem>     
             <ListItem button component = {Link} to = '/EditSkill'>
+            <ListItemIcon>
+              <EditIcon/>
+            </ListItemIcon>
               <ListItemText primary ='Edit Skills'/>
             </ListItem>   
           </List>
@@ -94,16 +106,20 @@ class Nav extends Component{
          {this.props.reduxState.user.id && (
           <>
           <List>
-            <ListItem button component = {Link} to ='/home'>
+            <ListItem button component = {Link} to ='/profile'>
+            <ListItemIcon><PersonIcon/></ListItemIcon>
               <ListItemText primary ='Profile'/>
             </ListItem>
             <ListItem button component = {Link} to = '/curriculum'>
+            <ListItemIcon><VideocamIcon/></ListItemIcon>
               <ListItemText primary ='My Curriculum'/>
             </ListItem>
             <ListItem button component = {Link} to = '/AddSkill'>
+              <ListItemIcon><AddIcon/></ListItemIcon>
               <ListItemText primary ='Add A Skill'/>
             </ListItem>
             <ListItem button component = {Link} to = '/footage'>
+              <ListItemIcon><AddAPhotoIcon/></ListItemIcon>
               <ListItemText primary ='Add Footage of Myself'/>
             </ListItem>
           </List>
