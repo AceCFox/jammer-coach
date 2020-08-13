@@ -2,12 +2,13 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const { rejectNonCoach } = require('../modules/authorization-coach');
 
 
 /**
  * GET all skills
  */
-router.get('/', rejectUnauthenticated, (req, res) => {
+router.get('/', rejectNonCoach, (req, res) => {
     const queryText = `SELECT * FROM "skill"
       ORDER BY "title" ASC;`;
     pool.query(queryText)
@@ -22,7 +23,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * GET skills of a specific category (by category id)
  */
-router.get('/category/:id', rejectUnauthenticated, (req, res) => {
+router.get('/category/:id', rejectNonCoach, (req, res) => {
     const queryText = `SELECT * FROM "skill_category" 
     JOIN "skill"  on "skill"."id" = "skill_category"."skill_id"
     WHERE skill_category.category_id = $1
@@ -69,7 +70,7 @@ router.post('/', rejectUnauthenticated, async (req, res) =>  {
 /**
  * UPDATE a skill from edit component
  */
-router.put('/', rejectUnauthenticated, (req, res) => {
+router.put('/', rejectNonCoach, (req, res) => {
   const queryText = 
   `UPDATE "skill"
   SET "title" = $1,
@@ -96,7 +97,7 @@ router.put('/', rejectUnauthenticated, (req, res) => {
 
 //transactional post into skill_category to allow multiple
 //rows added simultaneously from edit view
-router.post('/category/', rejectUnauthenticated, async (req, res) =>  {
+router.post('/category/', rejectNonCoach, async (req, res) =>  {
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
@@ -117,7 +118,7 @@ router.post('/category/', rejectUnauthenticated, async (req, res) =>  {
 })
 
 //transactional delete multiple rows from skill_category from edit component
-router.delete('/category/', rejectUnauthenticated, async (req, res) =>  {
+router.delete('/category/', rejectNonCoach, async (req, res) =>  {
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
@@ -140,7 +141,7 @@ router.delete('/category/', rejectUnauthenticated, async (req, res) =>  {
 //delete a skill
 //this also deletes the dependant rows in skill_category before 
 //deleting the skill itself from the skill table
-router.delete('/:id', rejectUnauthenticated, async (req, res)=>{
+router.delete('/:id', rejectNonCoach, async (req, res)=>{
     const client = await pool.connect()
     const queryText = `
     DELETE FROM "skill_category"

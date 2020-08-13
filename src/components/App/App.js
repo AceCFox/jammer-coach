@@ -4,6 +4,7 @@ import {
   Route,
   Redirect,
   Switch,
+  Link
 } from 'react-router-dom';
 
 import {connect} from 'react-redux';
@@ -11,11 +12,11 @@ import {connect} from 'react-redux';
 import Nav from '../Nav/Nav';
 import Footer from '../Footer/Footer';
 
-import ProtectedRoute from '../ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import CoachRoute from '../CoachRoute/CoachRoute';
 
 import AboutPage from '../AboutPage/AboutPage';
 import UserPage from '../UserPage/UserPage';
-import InfoPage from '../InfoPage/InfoPage';
 import AddSkill from '../AddSkill/AddSkill';
 import AssignList from '../AssignList/AssignList';
 import './App.css';
@@ -25,6 +26,7 @@ import ManageSkater from '../ManageSkater/ManageSkater';
 import AddSelfFootage from '../AddSelfFootage/AddSelfFootage'
 import { CssBaseline } from '@material-ui/core';
 import Landing from '../Landing/Landing';
+import SportsIcon from '@material-ui/icons/Sports';
 
 class App extends Component {
   componentDidMount () {
@@ -68,11 +70,12 @@ class App extends Component {
               path="/addSkill"
               component={AddSkill}
             />
-            <ProtectedRoute 
+            {/* Only coaches can assign and edit skills */}
+            <CoachRoute 
               path = "/AssignList"
               component = {AssignList}
               />
-              <ProtectedRoute 
+              <CoachRoute 
               path = "/EditSkill"
               component = {EditSkill}
               />
@@ -80,7 +83,8 @@ class App extends Component {
               path = "/curriculum"
               component = {Curriculum}
               />
-               <ProtectedRoute 
+              {/* Only coaches can manage skater curriculi */}
+               <CoachRoute 
               path = "/manage"
               component = {ManageSkater}
               />
@@ -89,7 +93,11 @@ class App extends Component {
               component = {AddSelfFootage}
               />
             {/* If none of the other routes matched, we will show a 404. */}
-            <Route render={() => <h1>404</h1>} />
+            <Route render={() =>
+              <center>
+                <h1> 404 </h1>        
+                  <h2> <SportsIcon/> <Link to='/home'>   Skater, return to track! </Link></h2>   
+              </center>} />
           </Switch>
           <Footer />
         </div>

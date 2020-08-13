@@ -3,6 +3,7 @@ const { rejectUnauthenticated } = require('../modules/authentication-middleware'
 const encryptLib = require('../modules/encryption');
 const pool = require('../modules/pool');
 const userStrategy = require('../strategies/user.strategy');
+const { rejectNonCoach } = require('../modules/authorization-coach');
 
 const router = express.Router();
 
@@ -13,7 +14,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 });
 
 //get ALL user data from database (except password info)
-router.get('/all', rejectUnauthenticated, (req,res) => {
+router.get('/all', rejectNonCoach, (req,res) => {
    const queryText = `SELECT "id", "username", "email", "bio", "goals"  FROM "user";`;
    pool.query(queryText)
    .then((result)=>{res.send(result.rows)})

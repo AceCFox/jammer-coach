@@ -2,11 +2,12 @@ const express = require('express');
 const pool = require('../modules/pool');
 const router = express.Router();
 const { rejectUnauthenticated } = require('../modules/authentication-middleware');
+const { rejectNonCoach } = require('../modules/authorization-coach');
 
 /**
  POST new skill to skater curriculum
  */
-router.post('/assign', rejectUnauthenticated, (req, res) => {
+router.post('/assign', rejectNonCoach, (req, res) => {
     const queryString = `INSERT INTO "user_skill"
     ("user_id", "skill_id", "coach_notes")
     VALUES($1, $2, $3)`
@@ -67,7 +68,7 @@ router.put('/skatenote', rejectUnauthenticated, (req, res) => {
 /**
  update coach_notes
  */
-router.put('/coachnote', rejectUnauthenticated, (req, res) => {
+router.put('/coachnote', rejectNonCoach, (req, res) => {
     const queryString = `UPDATE "user_skill"
     SET "coach_notes" = $1
     WHERE "skill_id" = $2 AND "user_id"= $3;`;
@@ -88,7 +89,7 @@ router.put('/coachnote', rejectUnauthenticated, (req, res) => {
 /**
  delete a row from skater_skill
  */
-router.delete('/skill/:id', rejectUnauthenticated, async (req, res) => {
+router.delete('/skill/:id', rejectNonCoach, async (req, res) => {
     const client = await pool.connect()
     const queryText = `
     DELETE FROM "user_footage"
