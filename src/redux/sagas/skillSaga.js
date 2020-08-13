@@ -17,7 +17,7 @@ function* allSkill() {
 function* categorySkill(action) {
   try {
     //get all skills from database/server
-    const response = yield axios.get('/api/skill/category'+ action.payload);
+    const response = yield axios.get('/api/skill/category/'+ action.payload);
     // store all skills in skill reducer
     yield put({ type: 'SET_SKILL', payload: response.data });
   } catch (error) {

@@ -22,7 +22,7 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 /**
  * GET skills of a specific category (by category id)
  */
-router.get('/category:id', rejectUnauthenticated, (req, res) => {
+router.get('/category/:id', rejectUnauthenticated, (req, res) => {
     const queryText = `SELECT * FROM "skill_category" 
     JOIN "skill"  on "skill"."id" = "skill_category"."skill_id"
     WHERE skill_category.category_id = $1
@@ -96,7 +96,7 @@ router.put('/', rejectUnauthenticated, (req, res) => {
 
 //transactional post into skill_category to allow multiple
 //rows added simultaneously from edit view
-router.post('/cat/', rejectUnauthenticated, async (req, res) =>  {
+router.post('/category/', rejectUnauthenticated, async (req, res) =>  {
   const client = await pool.connect()
   try {
     await client.query('BEGIN')
@@ -117,7 +117,7 @@ router.post('/cat/', rejectUnauthenticated, async (req, res) =>  {
 })
 
 //transactional delete multiple rows from skill_category from edit component
-router.delete('/cat/', rejectUnauthenticated, async (req, res) =>  {
+router.delete('/category/', rejectUnauthenticated, async (req, res) =>  {
   const client = await pool.connect()
   try {
     await client.query('BEGIN')

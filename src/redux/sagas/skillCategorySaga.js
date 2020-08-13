@@ -13,7 +13,7 @@ function* getJunction(){
 
 function* postJunction(action){
     try{
-        yield axios.post('/api/skill/cat', action.payload);
+        yield axios.post('/api/skill/category', action.payload);
     }catch (error) {
         console.log('Error with skill_category POST:', error);
     }
@@ -21,7 +21,7 @@ function* postJunction(action){
 
 function* deleteJunction(action){
     try{
-        yield axios.delete('/api/skill/cat', action.payload);
+        yield axios.delete('/api/skill/category', action.payload);
     }catch (error) {
         console.log('Error with skill_category DELETE:', error);
     }
