@@ -10,7 +10,8 @@ const styles = theme => ({
       alignItems: 'center',
       justify: 'center',
       backgroundImage: 'url(https://s3.amazonaws.com/ezusrevent/EFBB7EBD90553C784141DD8D25197029D540EE1F92DAF3EC12.jpg)',
-      height: "1360px"
+      // backgroundPosition:'center bottom',
+      height: "1365px"
       
   },
   paper: {

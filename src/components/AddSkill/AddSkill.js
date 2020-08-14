@@ -10,9 +10,9 @@ const styles = theme => ({
         flexGrow: 1,
         alignItems: 'center',
         justify: 'center',
-        backgroundImage: 'linear-gradient(315deg, #d82020 0%, #c59169  74%)',
+        backgroundColor: '#2f4353',
+        backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
         height: '800px',
-        backgroundColor: '#baba00',
     },
     paper: {
         width: '90%',

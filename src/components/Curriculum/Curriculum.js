@@ -13,19 +13,13 @@ const styles = theme => ({
         flexGrow: 1,
         alignItems: 'center',
         minHeight: '800px',
-    },
-    paper1: {
-        width: '99%',
-        padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary, 
-        backgroundColor: '#52a7c1',
-        backgroundImage: 'linear-gradient(315deg, #52a7c1 0%, #b3f6d8 74%)',
-        alignItems: "center",
-        borderRadius:0,
+        backgroundColor: '#2f4353',
+        backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
     },
     paper2: {
-        width: '98%',
+        width: '100%',
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,    
@@ -51,25 +45,24 @@ class Curriculum extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
-          <Paper className = {classes.paper1}>
-            <Grid container
-                    direction="column"
-                    justify="center"
-                    alignItems="center"
-                    spacing = {2}>
-                <Grid item xs = {12}>
-                    <Paper className = {classes.paper2}>
-                        <h1>{this.state.skater.username}'s  Skating Curriculum</h1> 
-                    </Paper> 
-                </Grid>  
-                <Grid item xs = {12}>   
-                    {/* TO DO: REPLACE skill with user_skill */}
-                    {this.state.skater ? this.props.reduxState.curriculum.map((item, index) =>
-                    (<CurriculumItem skill = {item} key = {index}/>)) :
-                        ''} 
-                </Grid> 
-            </Grid>          
-          </Paper>
+        <br/>
+          <Grid container
+                  direction="column"
+                  justify="center"
+                  alignItems="center"
+                  spacing = {2}>
+              <Grid item xs = {12}>
+                  <Paper className = {classes.paper2}>
+                      <h1>{this.state.skater.username}'s  Skating Curriculum</h1> 
+                  </Paper> 
+              </Grid>  
+              <Grid item xs = {12}>   
+                  {/* Maps each skill in user's curriuculum onto a CurriculumItem component */}
+                  {this.state.skater ? this.props.reduxState.curriculum.map((item, index) =>
+                  (<CurriculumItem skill = {item} key = {index}/>)) :
+                      ''} 
+              </Grid> 
+          </Grid>          
       </div>
     );
   }

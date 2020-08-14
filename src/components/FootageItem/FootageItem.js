@@ -19,7 +19,7 @@ const styles = theme => ({
         padding: theme.spacing(1),
         textAlign: 'center',
         color: '#616161',
-        backgroundColor: '#c5cae9',
+        backgroundColor: '#f0f4c3',
         justify: 'center'
     },
     video :{

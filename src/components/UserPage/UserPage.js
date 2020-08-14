@@ -11,8 +11,9 @@ const styles = theme => ({
       flexGrow: 1,
       alignItems: 'center',
       justify: 'center',
-      backgroundColor: '#726cf8',
-      backgroundImage: 'linear-gradient(315deg, #726cf8 0%, #e975a8 74%)'
+      backgroundColor: '#2f4353',
+      backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
+      minHeight: '800px'
       
   },
   paper: {

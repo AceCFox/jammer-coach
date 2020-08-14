@@ -18,6 +18,7 @@ const styles = theme => ({
         padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
+        ustify: 'center'
     },
     video :{
         maxWidth: '100%',
@@ -91,32 +92,34 @@ class CurriculumItem extends Component {
                 direction="row"
                 justify="center"
                 alignItems="center"
-                spacing = {2}>
-            <Grid item  xs = {12} lg = {10} xl = {9}>
+                spacing = {4}>
+            <Grid item  xs = {12} lg = {9} xl = {7}>
                 <Paper className = {classes.paper}>
                     <Grid container
                         direction="row"
                         justify="center"
                         alignItems="center"
-                        spacing = {4}>
-                        <Grid item xs = {12} md = {8}>
+                        spacing = {0}>
+                         <Grid item xs = {12} md = {8}>
+                            <Grid container
+                                direction="column"
+                                justify="center"
+                                alignItems="center">
                                 <ReactPlayer url= {this.props.skill.url} 
                                     controls = {true} 
                                     alt = {this.props.skill.description} 
                                     className = {classes.video}
-                                    />
+                                />
+                            </Grid>
                         </Grid>
                         <Grid item xs = {12} md = {4}> 
                             <Grid container
                                 direction="column"
                                 justify="center"
                                 alignItems="center"
-                                spacing = {2}>
-                                    <Grid item xs = {12}>
+                                spacing = {0}>
                                         <h2>{this.props.skill.title}</h2>
                                         <p>{this.props.skill.coach_notes}</p>
-                                    </Grid>
-                                    <Grid item xs = {12} >
                                       {this.state.submitted ?
                                          <>
                                             <i>Note Submitted:</i>
@@ -147,7 +150,7 @@ class CurriculumItem extends Component {
                                             </Button>
                                         }
                                     </Grid>
-                                </Grid>
+                                {/* </Grid> */}
                             </Grid>      
                     </Grid>
                 </Paper>

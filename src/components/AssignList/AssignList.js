@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import AssignListItem from '../AssignListItem/AssignListItem';
+import { Link } from 'react-router-dom';
 
 //TO DO: make the skill select hold the id value and worry about the name for display (may need new function)
 
@@ -12,8 +13,8 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         alignItems: 'center',
-        backgroundColor: '#e288f9',
-        backgroundImage: 'linear-gradient(315deg, #e288f9 0%, #ffc988 74%)',
+        backgroundColor: '#2f4353',
+        backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
         minHeight: '800px',
     },
     paper: {
@@ -29,7 +30,14 @@ const styles = theme => ({
     },
     formControl:{
         width: 200
-    }
+    },
+    paper2: {
+        width: '100%',
+        padding: theme.spacing(2),
+        textAlign: 'center',
+        color: theme.palette.text.secondary, 
+        margin: 2   
+    },
   });
 
 class AssignList extends Component {
@@ -123,9 +131,25 @@ class AssignList extends Component {
                  </Paper>
             </Grid>
           </Grid>
-        {this.state.viewing ? this.props.reduxState.skill.map((item) =>
-        (<AssignListItem skill = {item} key = {item.id}/>)) :
-            ''}
+            {this.state.viewing ? 
+            this.props.reduxState.skill.length > 0 ?
+            this.props.reduxState.skill.map((item) =>
+            (<AssignListItem skill = {item} key = {item.id}/>)) 
+            : 
+            <Grid container direction = 'column' 
+                justify="center"
+                alignItems="center"
+                spacing = {2}>
+                <Grid item xs = {12} lg = {9} xl = {7}>
+                <Paper className = {classes.paper2}>
+                    <h3>sorry, there are no {this.state.viewing} skill videos yet...
+                    {'\u00A0'} {'\u00A0'}
+                    <Link to = '/AddSkill'>Add Some here</Link></h3>
+                </Paper>
+                </Grid>
+            </Grid>
+            :
+                ''}
           <br/>
       </div>
     );

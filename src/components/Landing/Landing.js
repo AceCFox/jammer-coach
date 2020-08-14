@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import {Button, Paper, Grid,} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-import VideocamIcon from '@material-ui/icons/Videocam';
+//import VideocamIcon from '@material-ui/icons/Videocam';
 import { Link } from 'react-router-dom';
 
 
@@ -75,9 +75,9 @@ class Landing extends Component {
                         </Grid>
                         <Grid item  xs = {12} sm = {6} md = {3}>
                         
-                        <Button variant ='contained' color = 'primary'
+                        <Button variant ='contained'
                         component = {Link} to = '/footage'>
-                            Add My Footage
+                            Add Self-Footage
                         </Button>
                         </Grid>
                     </>

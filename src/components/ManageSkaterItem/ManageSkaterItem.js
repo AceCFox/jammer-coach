@@ -193,6 +193,7 @@ class ManageSkaterItem extends Component {
                 </Paper>
             </Grid>
           </Grid>
+          
           <Dialog
           open={this.state.open}
           onClose={this.handleClose}>

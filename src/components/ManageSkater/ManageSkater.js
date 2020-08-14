@@ -14,8 +14,10 @@ const styles = theme => ({
         flexGrow: 2, 
         alignItems: 'center',
         minHeight: '800px',
-        backgroundColor: '#bbf0f3',
-        backgroundImage: 'linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%)',
+        backgroundColor: '#2f4353',
+        backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
+        // backgroundColor: '#bbf0f3',
+        // backgroundImage: 'linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%)',
     },
     paper: {
         width: '100%',
@@ -166,6 +168,7 @@ class ManageSkater extends Component {
              :
             ''
             }
+            <br/>
       </div>
     );
   }
