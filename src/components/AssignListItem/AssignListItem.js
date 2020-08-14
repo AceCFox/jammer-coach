@@ -1,9 +1,10 @@
 import React, {Component} from 'react';
-import {Button, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid} from '@material-ui/core';
+import {Button, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid, Snackbar, IconButton} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player/lazy'
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const styles = theme => ({
@@ -63,10 +64,14 @@ class AssignListItem extends Component {
             submitted: true,})
     }
 
-    handleOk = () =>{
-        this.setState({
-            ...this.state,
-            submitted:false})
+    handleOk = (event, reason) =>{
+        if (reason === 'clickaway') {
+            return;
+          } else { 
+              this.setState({
+            ...this.state,  
+            submitted: false,})
+        }
     }
 
   render() {
@@ -97,14 +102,7 @@ class AssignListItem extends Component {
                             </Grid>
                         </Grid>
                     <Grid item xs = {12} md = {4}> 
-                        
-                            {this.state.submitted ? 
-                            <i>Successsfully submitted to {this.state.lastSelected}'s curriculum
-                                <Button onClick = {this.handleOk}>ok</Button>    
-                            </i> 
-                            : ''
-                            }
-                            <h2>{this.props.skill.title}</h2>
+                        <h2>{this.props.skill.title}</h2>
                         <FormControl className={classes.formControl}>     
                         <InputLabel>Skater</InputLabel>
                             <Select
@@ -143,6 +141,32 @@ class AssignListItem extends Component {
                 </Paper>
              </Grid>  
           </Grid>
+          {/* This snackbar lets a use know they have assigned a skill */}
+          <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.submitted}
+          autoHideDuration={6000}
+          onClose={this.handleOk}
+          cvariant="success"
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">
+                Successfully assigned to {this.state.lastSelected}'s curriculum
+              </span>}
+          action={[
+            <IconButton
+              color="inherit"
+              onClick={this.handleOk}
+              key="close"
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
       </div>
     );
   }

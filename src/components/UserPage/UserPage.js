@@ -147,7 +147,7 @@ class UserPage extends Component {
          
           <Paper className ={classes.paper}>
           <h1 id="welcome">
-            Welcome, {this.props.user.is_coach && <b>coach </b>}{this.props.user.username}!
+            Welcome, {this.props.user.is_coach && <b>Coach </b>}{this.props.user.username}!
           </h1>
             {this.state.editEmail? 
             <Grid  container
@@ -177,7 +177,7 @@ class UserPage extends Component {
               <i>Your Email address is saved as <b>{this.state.email}</b></i>
               {/* {'\u00A0'}{'\u00A0'} */}
               <br/>
-              <Button variant = "outlined"
+              <Button 
                onClick = {this.handleEditEmail}>
                 Edit Email
               </Button>
@@ -228,7 +228,7 @@ class UserPage extends Component {
              alignItems="center">
                 <h3>My Saved Bio</h3>
                 <p>{this.state.bio}</p>
-                <Button variant = 'outlined'
+                <Button
                   onClick = {this.editBio}
                 >
                   Edit bio
@@ -279,7 +279,7 @@ class UserPage extends Component {
             alignItems="center">
                <h3>My Season Goals</h3>
                <p>{this.state.goals}</p>
-               <Button variant = 'outlined'
+               <Button
                  onClick = {this.editGoals}
                >
                  Edit Goals

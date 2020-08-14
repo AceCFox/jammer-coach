@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Button, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid, Typography} from '@material-ui/core';
+import {Button, Snackbar, IconButton, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid, Typography} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import CloseIcon from '@material-ui/icons/Close';
 
 const styles = theme => ({
     root: {
@@ -98,10 +99,6 @@ class AddSelfFootage extends Component {
            >
             <Grid item xs = {12} md = {10} lg = {8} >
                 <Paper className = {classes.paper}>
-                    {this.state.submitted &&
-                    <i className = {classes.success}>Successfully submitted your footage of {this.state.lastSkill}
-                    <Button onClick = {this.handelOk}>ok</Button>
-                    </i> }
                         <h2>Add Self Footage</h2>
                         {/* Eventually, this next bit should be conditional upon user != coach */}
                         <Typography nowrap='text'>Your coach will be able to view this video of yourself completing a skill</Typography>
@@ -167,6 +164,31 @@ class AddSelfFootage extends Component {
                 </Paper> 
             </Grid>
           </Grid>
+          {/* This snackbar lets a user know they have submitted footage*/}
+        <Snackbar
+            anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'left',
+            }}
+            open={this.state.submitted}
+            autoHideDuration={6000}
+            onClose={this.handelOk}
+            ContentProps={{
+                'aria-describedby': 'message-id',
+            }}
+            message={<span id="message-id">
+                    Successfully submitted  your footage of {this.state.lastSkill}
+                </span>}
+            action={[
+                <IconButton
+                color="inherit"
+                onClick={this.handelOk}
+                key="close"
+                >
+                <CloseIcon />
+                </IconButton>,
+            ]}
+          />
       </div>
     );
   }

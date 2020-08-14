@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import {Button, Paper, TextField, Grid, InputLabel, MenuItem, Select, FormControl} from '@material-ui/core';
+import {Button, Paper, TextField, Grid, InputLabel, MenuItem, Select, FormControl, Snackbar, IconButton} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
+import CloseIcon from '@material-ui/icons/Close';
 
 
 const styles = theme => ({
@@ -114,11 +115,14 @@ class AddSkill extends Component {
         })
     }
 
-    handelOk = () =>{
-        this.setState({
-            ...this.state,
-            submitted:false,
-        })
+    handelOk = (event, reason) =>{
+        if (reason === 'clickaway') {
+            return;
+          } else { 
+              this.setState({
+            ...this.state,  
+            submitted: false,})
+        }
     }
 
 
@@ -133,10 +137,10 @@ class AddSkill extends Component {
            >
             <Grid item xs = {12} md = {10} lg = {8} >
                 <Paper className = {classes.paper}>
-                    {this.state.submitted &&
-                    <i>Successfully submitted {this.state.lastTitle}
+                    {/* {this.state.submitted &&
+                    <i>
                     <Button onClick = {this.handelOk}>ok</Button>
-                    </i> }
+                    </i> } */}
                         <h2>Add A Skill</h2>
                         {/* Eventually, this next bit should be conditional upon user != coach */}
                         <p><i>Note: skill videos are accessable by all users</i></p>
@@ -221,6 +225,32 @@ class AddSkill extends Component {
                 </Paper> 
             </Grid>
         </Grid>
+        {/* This snackbar lets a user know they have submitted a new skill */}
+        <Snackbar
+          anchorOrigin={{
+            vertical: 'bottom',
+            horizontal: 'left',
+          }}
+          open={this.state.submitted}
+          autoHideDuration={6000}
+          onClose={this.handelOk}
+          variant="success"
+          ContentProps={{
+            'aria-describedby': 'message-id',
+          }}
+          message={<span id="message-id">
+                Successfully submitted {this.state.lastTitle}
+              </span>}
+          action={[
+            <IconButton
+              color="inherit"
+              onClick={this.handelOk}
+              key="close"
+            >
+              <CloseIcon />
+            </IconButton>,
+          ]}
+        />
       </div>
     );
   }
