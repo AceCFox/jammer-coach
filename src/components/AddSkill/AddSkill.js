@@ -19,7 +19,7 @@ const styles = theme => ({
     },
     paper: {
         width: '100%',
-        padding: theme.spacing(2),
+        padding: theme.spacing(3),
         textAlign: 'center',
         color: theme.palette.text.secondary,
         justify: 'center',
@@ -28,7 +28,7 @@ const styles = theme => ({
         width: 200,
     },
     longField:{
-        width: '85%',
+        width: '90%',
     },
     categoryList:{
         alignItems: "flex-start",
@@ -156,7 +156,7 @@ class AddSkill extends Component {
                     {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
                     <TextField
                     id="author-in"
-                    label="Creator"
+                    label="Trainer"
                     name='author'
                     value = {this.state.author}
                     onChange = {this.handleChange}
@@ -174,12 +174,13 @@ class AddSkill extends Component {
                     <br/>
                     <Grid container
                         alignItems = "center"
-                        justify = 'space-evenly'
-                        spacing = {1}
+                        justify = 'center'
+                        alignContent = 'center'
+                        spacing = {0}
                     >
                         <Grid item xs = {12} sm = {6}>
                             <FormControl className={classes.formControl}>
-                                <InputLabel htmlFor="age-simple">Category</InputLabel>
+                                <InputLabel htmlFor="age-simple">Categories</InputLabel>
                                 {/* Inputs all controlled*/}
                                 <Select
                                     value = {this.state.category}
@@ -202,30 +203,30 @@ class AddSkill extends Component {
                             </FormControl>
                         </Grid>
                         {/* {'\u00A0'}{'\u00A0'}{'\u00A0'} */}
-                        <Grid item xs = {12} sm = {6} alignContent = 'center'>
+                        <Grid item xs = {12} sm = {6} >
                         {this.state.thisCategory.length 
                         ?  
                             <List className = {classes.categoryList}
                             subheader = {<ListSubheader>Selected Categories</ListSubheader>} >
                                 {this.state.thisCategory.map((category, index)=>(
-                                <>
-                                    <ListItem key = {category.id} >
+                                <div key = {category.id}>
+                                    <ListItem>
                                         <ListItemText primary ={category.name} />
                                         {'\u00A0'}
-                                        <ListItemIcon button onClick = {this.handleRemove(index)} >
+                                        <ListItemIcon button = '' onClick = {this.handleRemove(index)} >
                                             <DeleteIcon color = 'secondary'/>
-                                        </ListItemIcon>
+                                        </ListItemIcon>  
                                     </ListItem> 
                                     <Divider/>
-                                </>
+                                </div>
                                 ))}
                             </List>
                             :
-                                <>
-                                <i>Click 'add category'</i>{'\u00A0'}
-                                <br/>
-                                <i> to include selected category</i>
-                                </>
+                                <center>
+                                    <i>Click 'add category'</i>{'\u00A0'}
+                                    <br/>
+                                    <i> to include selected category</i>
+                                </center>
                             }
                         </Grid>
                     </Grid>
