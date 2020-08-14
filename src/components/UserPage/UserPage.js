@@ -66,6 +66,28 @@ class UserPage extends Component {
     }
   }
 
+  //this checks for updates made in redux and sets it to state
+  componentDidUpdate(previousProps){
+    if (previousProps.user.email !== this.props.user.email){
+        this.setState({
+            ...this.state,
+            email: this.props.user.email,
+        })
+    }
+    if (previousProps.user.bio !== this.props.user.bio){
+      this.setState({
+          ...this.state,
+          bio: this.props.user.bio,
+      })
+    }
+    if (previousProps.user.goals !== this.props.user.goals){
+      this.setState({
+          ...this.state,
+          goals: this.props.user.goals,
+      })
+  }
+}
+
   handleChange = (event) => {
     this.setState({
         ...this.state,
@@ -79,6 +101,8 @@ class UserPage extends Component {
     })
   }
 
+//creates an object of the user's id and new email address and
+//uses it to update the user row in the email column
   saveEmail = () => {
     //dispatch Saga to UPDATE EMAIL
     const putObject = {
@@ -99,6 +123,9 @@ class UserPage extends Component {
     })
   }
 
+
+  //saveBio creates an object containing the user id and new bio
+  //and uses it to update the user row in the bio column
   saveBio = () => {
     const putObject = {
       bio: this.state.bio,
@@ -120,6 +147,8 @@ class UserPage extends Component {
     })
   }
 
+  //saveGoals creates an object from the new goals and user id and
+  //dispatches a saga to update the user row in the goals column
   saveGoals = () => {
     const putObject = {
       goals: this.state.goals,
@@ -141,13 +170,16 @@ class UserPage extends Component {
     return (
       <div className = {classes.root}>
          <br/>
-        <Grid container direction="row"
+         <br/>
+        <Grid container direction="column"
             justify="center"
-            alignItems="flex-end">
+            alignItems="center"
+            spacing = {4}>
          
           <Paper className ={classes.paper}>
           <h1 id="welcome">
-            Welcome, {this.props.user.is_coach && <b>Coach </b>}{this.props.user.username}!
+          {this.props.user.username}'s 
+          {this.props.user.is_coach? <b> Coach </b> : <b> Skater </b>} Profile
           </h1>
             {this.state.editEmail? 
             <Grid  container
@@ -155,7 +187,6 @@ class UserPage extends Component {
             justify="center"
             alignItems="flex-end">
                <TextField
-                id="email-in"
                 label="email"
                 name='email'
                 value = {this.state.email}

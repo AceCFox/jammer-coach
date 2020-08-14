@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
-import {Button, Paper, TextField, Grid, InputLabel, MenuItem, Select, FormControl, Snackbar, IconButton} from '@material-ui/core';
+import {Button, Paper, TextField, Grid, InputLabel, MenuItem, Select, ListSubheader, Divider, } from '@material-ui/core';
+import {FormControl, Snackbar, IconButton, List, ListItem, ListItemText,  ListItemIcon} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 
 const styles = theme => ({
@@ -16,7 +18,7 @@ const styles = theme => ({
         height: '800px',
     },
     paper: {
-        width: '90%',
+        width: '100%',
         padding: theme.spacing(2),
         textAlign: 'center',
         color: theme.palette.text.secondary,
@@ -29,7 +31,9 @@ const styles = theme => ({
         width: '85%',
     },
     categoryList:{
-        listStyle: 'inside',
+        alignItems: "flex-start",
+        allignContent: 'center',
+        // border: 'ridge'
     }
   });
 
@@ -137,70 +141,95 @@ class AddSkill extends Component {
            >
             <Grid item xs = {12} md = {10} lg = {8} >
                 <Paper className = {classes.paper}>
-                    {/* {this.state.submitted &&
-                    <i>
-                    <Button onClick = {this.handelOk}>ok</Button>
-                    </i> } */}
-                        <h2>Add A Skill</h2>
-                        {/* Eventually, this next bit should be conditional upon user != coach */}
-                        <p><i>Note: skill videos are accessable by all users</i></p>
-                        {/* A link to the add self footage page will appear here if the user is not a coach */}
-                        <TextField
-                        id="title-in"
-                        label="*Title"
-                        name='title'
-                        value = {this.state.title}
-                        onChange = {this.handleChange}
-                        className={classes.textField}
-                        margin="normal"/>
-                        {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
-                        <TextField
-                        id="author-in"
-                        label="Creator"
-                        name='author'
-                        value = {this.state.author}
-                        onChange = {this.handleChange}
-                        className={classes.textField}
-                        margin="normal"/>
-                        <TextField
-                        id="url-in"
-                        label="*Video Url"
-                        name='url'
-                        value = {this.state.url}
-                        onChange = {this.handleChange}
-                        className={classes.longField}
-                        margin="normal"/>
-                        <br/>
-                        <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="age-simple">Category</InputLabel>
-                            {/* TO DO: CONTROLL ALL THESE INPUTS */}
-                            <Select
-                                value = {this.state.category}
-                                onChange={this.handleChange}
-                                inputProps={{
-                                    name: 'category',
-                                    id: 'category-in',  
-                                }}>
+                    <h1>Add A Skill</h1>
+                    {/* Eventually, this next bit should be conditional upon user != coach */}
+                    <p><i>Note: skill videos are accessable by all users</i></p>
+                    {/* A link to the add self footage page will appear here if the user is not a coach */}
+                    <TextField
+                    id="title-in"
+                    label="*Title"
+                    name='title'
+                    value = {this.state.title}
+                    onChange = {this.handleChange}
+                    className={classes.textField}
+                    margin="normal"/>
+                    {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                    <TextField
+                    id="author-in"
+                    label="Creator"
+                    name='author'
+                    value = {this.state.author}
+                    onChange = {this.handleChange}
+                    className={classes.textField}
+                    margin="normal"/>
+                    <TextField
+                    id="url-in"
+                    label="*Video Url"
+                    name='url'
+                    value = {this.state.url}
+                    onChange = {this.handleChange}
+                    className={classes.longField}
+                    margin="normal"/>
+                    <br/>
+                    <br/>
+                    <Grid container
+                        alignItems = "center"
+                        justify = 'space-evenly'
+                        spacing = {1}
+                    >
+                        <Grid item xs = {12} sm = {6}>
+                            <FormControl className={classes.formControl}>
+                                <InputLabel htmlFor="age-simple">Category</InputLabel>
+                                {/* Inputs all controlled*/}
+                                <Select
+                                    value = {this.state.category}
+                                    onChange={this.handleChange}
+                                    inputProps={{
+                                        name: 'category',
+                                        id: 'category-in',  
+                                    }}>
                                     <MenuItem value="">
                                     <em></em>
                                     </MenuItem>
-                                    {/* TO DO: CHANGE this.state.allcategory to the category reducer props */}
+                                    {/* categories populated by reduxState */}
                                     {this.props.reduxState.category.map((category) =>(
                                         <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
                                     ))}
                                 </Select>
-                                <Button color = "primary" onClick = {this.handleAdd}>Add category</Button>
+                                <Button color = "primary" onClick = {this.handleAdd} variant = 'outlined'>
+                                    Add Category
+                                </Button>
                             </FormControl>
-                            <ul className = {classes.categoryList} >
-                                <label>Selected Categories</label>
+                        </Grid>
+                        {/* {'\u00A0'}{'\u00A0'}{'\u00A0'} */}
+                        <Grid item xs = {12} sm = {6} alignContent = 'center'>
+                        {this.state.thisCategory.length 
+                        ?  
+                            <List className = {classes.categoryList}
+                            subheader = {<ListSubheader>Selected Categories</ListSubheader>} >
                                 {this.state.thisCategory.map((category, index)=>(
-                                <li key = {category.id}>{category.name} 
-                                <Button value = {category.id} color="secondary" onClick = {this.handleRemove(index)}>
-                                    Remove
-                                    </Button></li> 
+                                <>
+                                    <ListItem key = {category.id} >
+                                        <ListItemText primary ={category.name} />
+                                        {'\u00A0'}
+                                        <ListItemIcon button onClick = {this.handleRemove(index)} >
+                                            <DeleteIcon color = 'secondary'/>
+                                        </ListItemIcon>
+                                    </ListItem> 
+                                    <Divider/>
+                                </>
                                 ))}
-                            </ul>
-                        <TextField
+                            </List>
+                            :
+                                <>
+                                <i>Click 'add category'</i>{'\u00A0'}
+                                <br/>
+                                <i> to include selected category</i>
+                                </>
+                            }
+                        </Grid>
+                    </Grid>
+                    <TextField
                         id="standard-multiline-flexible"
                         label="Description"
                         name ='description'
@@ -210,18 +239,18 @@ class AddSkill extends Component {
                         rowsMax="4"
                         className={classes.longField}
                         margin="normal"
-                        />
-                        <br/>
-                        <br/>
-                        {(this.state.title&& this.state.url) ?
-                    <Button variant ='contained' color = 'primary' size = "large" onClick = {this.handleSubmit}>
-                        Submit
-                    </Button>
-                        :
-                        <Button variant ='contained' disabled size = "large">
-                        Submit
+                    />
+                    <br/>
+                    <br/>
+                    {(this.state.title&& this.state.url) ?
+                        <Button variant ='contained' color = 'primary' size = "large" onClick = {this.handleSubmit}>
+                            Submit
                         </Button>
-                        }
+                            :
+                        <Button variant ='contained' disabled size = "large">
+                            Submit
+                        </Button>
+                    }
                 </Paper> 
             </Grid>
         </Grid>

@@ -16,7 +16,7 @@ import AddIcon from '@material-ui/icons/Add';
 import PersonIcon from '@material-ui/icons/Person';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
-const drawerWidth = 250;
+const drawerWidth = 230;
 
 const styles = theme => ({
   root: {
@@ -73,15 +73,27 @@ class Nav extends Component{
     const drawer = (
       <div>
         <div className={classes.toolbar} />
+       {this.props.reduxState.user.id
+       ?
         <List>
-          <ListItem button component = {Link} to ="/profile" >
-            <ListItemIcon>
-              <AccountCircleIcon/>
-            </ListItemIcon>
-             <ListItemText primary ={this.props.reduxState.user.username}/> 
-          </ListItem>
-        </List>   
-        <Divider />
+        <ListItem button component = {Link} to ="/profile" >
+          <ListItemIcon>
+            <AccountCircleIcon/>
+          </ListItemIcon>
+            <ListItemText primary ={this.props.reduxState.user.username}/> 
+        </ListItem>
+      </List>
+        :
+         <List>
+         <ListItem button component = {Link} to ="/home" >
+           <ListItemIcon>
+             <AccountCircleIcon/>
+           </ListItemIcon>
+            <ListItemText primary ='Log in'/> 
+         </ListItem>
+       </List>     
+        }
+         <Divider />
         {this.props.reduxState.user.is_coach && (
           <>
           <List>

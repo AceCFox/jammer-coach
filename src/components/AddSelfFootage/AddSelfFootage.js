@@ -15,7 +15,7 @@ const styles = theme => ({
         justify: 'center',
     },
     paper: {
-        width: '95%',
+        width: '100%',
         padding: theme.spacing(3),
         textAlign: 'center',
         color: theme.palette.text.secondary,
@@ -50,6 +50,8 @@ class AddSelfFootage extends Component {
         this.props.dispatch({type: 'GET_CURRICULUM', payload: this.props.reduxState.user.id})
     }
 
+    //handleChange is a multi-use function that manages the state change
+    //any time an input is edited
     handleChange = (event) => {
         this.setState({ 
             ...this.state,
@@ -57,7 +59,10 @@ class AddSelfFootage extends Component {
       };
 
    
-    handleSubmit = () =>{
+ //handleSubmit creates a post object from the inputted name, url,
+ //skill id (from user_skill), and notes and posts it to the
+ //user_footage table if required fields are present
+      handleSubmit = () =>{
        console.log(this.state.skill)
        const postObject = {
             user_skill_id: this.state.skill.id,
@@ -80,6 +85,7 @@ class AddSelfFootage extends Component {
        })
     }
 
+    //dismisses the snackbar that informs user of submit
     handelOk = () =>{
         this.setState({
             ...this.state,
@@ -92,10 +98,11 @@ class AddSelfFootage extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
+          <br/>
           <Grid container
            direction = "column"
            alignItems = "center"
-           justify = 'space-between'
+           justify = 'center'
            >
             <Grid item xs = {12} md = {10} lg = {8} >
                 <Paper className = {classes.paper}>
