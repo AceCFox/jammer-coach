@@ -90,6 +90,7 @@ class EditSkillItem extends Component {
         this.setState({ [event.target.name]: event.target.value });
       };
 
+    //set component to edit mode
     handleEditTrue = () =>{
         this.setState({
             ...this.state,
@@ -104,6 +105,8 @@ class EditSkillItem extends Component {
         })
     }
 
+    //create objects for posting and deleting skill_categories
+    //and dispatch sagas to make the server calls
     handleSave = () =>{
         const addObject = {
             categories: this.state.addCategories,
@@ -179,6 +182,9 @@ class EditSkillItem extends Component {
        // console.log(addArray);
     }
  
+    //handleRemove will remove a category from the dom and set it up
+    //to be deleted from skill_catagory on save, or removed from the
+    //add array if it was set to be posted on save
     handleRemove = (thisCat) =>(event) =>{
        // console.log(thisCat);
         const viewArray = this.state.viewCategories;

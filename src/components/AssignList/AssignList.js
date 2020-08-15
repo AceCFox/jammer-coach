@@ -6,8 +6,6 @@ import { connect } from 'react-redux';
 import AssignListItem from '../AssignListItem/AssignListItem';
 import { Link } from 'react-router-dom';
 
-//TO DO: make the skill select hold the id value and worry about the name for display (may need new function)
-
 
 const styles = theme => ({
     root: {
@@ -82,10 +80,10 @@ class AssignList extends Component {
       <div className={classes.root}>
           <br/>
           <Grid container
-                direction="column"
-                justify="center"
-                alignItems="center"
-                spacing = {2}>
+            direction="column"
+            justify="center"
+            alignItems="center"
+            spacing = {2}>
             <Grid item  xs = {12} lg = {9} xl = {7}>
                 <Paper className = {classes.paper}>
                     <h1>Assign Skills</h1>

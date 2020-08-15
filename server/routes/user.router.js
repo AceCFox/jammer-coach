@@ -15,7 +15,8 @@ router.get('/', rejectUnauthenticated, (req, res) => {
 
 //get ALL user data from database (except password info)
 router.get('/all', rejectNonCoach, (req,res) => {
-   const queryText = `SELECT "id", "username", "email", "bio", "goals"  FROM "user";`;
+   const queryText = `SELECT "id", "username", "email", "bio", "goals"  
+   FROM "user" ORDER BY "username" ASC;`;
    pool.query(queryText)
    .then((result)=>{res.send(result.rows)})
    .catch((error)=>{

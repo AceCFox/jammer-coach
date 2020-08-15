@@ -4,6 +4,9 @@ import LogOutButton from "../LogOutButton/LogOutButton";
 import {Button, Paper, Grid, TextField} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
+import EditIcon  from '@material-ui/icons/Edit';
+import AddIcon from '@material-ui/icons/Add';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 
 
 const styles = theme => ({
@@ -196,6 +199,7 @@ class UserPage extends Component {
                 {'\u00A0'}{'\u00A0'}
               <Button variant = "outlined" color = "primary"
                 onClick = {this.saveEmail}>
+                <SaveAltIcon/>
                 Save Email
               </Button>
             </Grid>
@@ -210,6 +214,7 @@ class UserPage extends Component {
               <br/>
               <Button 
                onClick = {this.handleEditEmail}>
+                <EditIcon/>
                 Edit Email
               </Button>
              </Grid>
@@ -223,6 +228,7 @@ class UserPage extends Component {
               <br/>
               <Button variant = "outlined" color = "secondary"
                 onClick = {this.handleEditEmail}>
+                <AddIcon/>
                 Add Email
               </Button>
              </Grid>
@@ -248,6 +254,7 @@ class UserPage extends Component {
                 />
               <Button variant = "outlined" color = "primary"
                 onClick = {this.saveBio}>
+                <SaveAltIcon/>
                 Save Bio
               </Button>
              </Grid>
@@ -262,6 +269,7 @@ class UserPage extends Component {
                 <Button
                   onClick = {this.editBio}
                 >
+                  <EditIcon/>
                   Edit bio
                 </Button>
             </Grid>
@@ -274,6 +282,7 @@ class UserPage extends Component {
                <br/>
                <Button variant = 'outlined' color = 'secondary'
                   onClick = {this.editBio}>
+                  <AddIcon/>
                   Add Bio
                </Button>
             </Grid>
@@ -299,6 +308,7 @@ class UserPage extends Component {
                />
              <Button variant = "outlined" color = "primary"
                onClick = {this.saveGoals}>
+               <SaveAltIcon/>
                Save Goals
              </Button>
             </Grid>
@@ -313,6 +323,7 @@ class UserPage extends Component {
                <Button
                  onClick = {this.editGoals}
                >
+                 <EditIcon/>
                  Edit Goals
                </Button>
            </Grid>
@@ -325,6 +336,7 @@ class UserPage extends Component {
               <br/>
               <Button variant = 'outlined' color = 'secondary'
                  onClick = {this.editGoals}>
+                <AddIcon/>
                  Add Goals
               </Button>
            </Grid> 

@@ -24,17 +24,33 @@ import EditSkill from '../EditSkill/EditSkill';
 import Curriculum  from '../Curriculum/Curriculum';
 import ManageSkater from '../ManageSkater/ManageSkater';
 import AddSelfFootage from '../AddSelfFootage/AddSelfFootage'
-import { CssBaseline } from '@material-ui/core';
+import { CssBaseline, MuiThemeProvider, createMuiTheme, } from '@material-ui/core';
 import Landing from '../Landing/Landing';
 import SportsIcon from '@material-ui/icons/Sports';
+import { blue, deepOrange, green,} from '@material-ui/core/colors';
+
+const theme = createMuiTheme({
+  palette:{
+    primary: blue,
+    secondary: deepOrange,
+    success: green, 
+  },
+  overrides: {
+    Snackbar: {
+      backgroundColor: green,
+    }
+  }
+})
 
 class App extends Component {
   componentDidMount () {
     this.props.dispatch({type: 'FETCH_USER'})
+    console.log(theme);
   }
 
   render() {
     return (
+      <MuiThemeProvider theme = {theme}>
       <Router>
         <CssBaseline/>
         <div>
@@ -102,6 +118,7 @@ class App extends Component {
           <Footer />
         </div>
       </Router>
+      </MuiThemeProvider>
   )}
 }
 

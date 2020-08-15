@@ -1,10 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {Button, Paper, Grid,} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
-//import VideocamIcon from '@material-ui/icons/Videocam';
-import { Link } from 'react-router-dom';
+import SupervisorAccountIcon from '@material-ui/icons/SupervisorAccount';
+import VideocamIcon from '@material-ui/icons/Videocam';
+import AssignmentIcon from '@material-ui/icons/Assignment';
+import AddIcon from '@material-ui/icons/Add';
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 
 const styles = theme => ({
@@ -17,7 +21,7 @@ const styles = theme => ({
       minHeight: '840px',
       backgroundPosition:'center bottom',
       backgroundRepeat: 'no-repeat',
-      backgrountAttachment: 'fixed',
+      backgroundAttachment: 'fixed',
   },
   paper: {
       width: '100%',
@@ -54,18 +58,21 @@ class Landing extends Component {
                         <Grid item xs = {12} sm = {6} md ={3}>
                             <Button variant = 'contained' color = 'primary'
                             component = {Link} to = '/manage'>
+                                <SupervisorAccountIcon/>
                                 Manage Skaters
                             </Button>
                         </Grid>
                         <Grid item xs = {12} sm = {6} md ={3}>
-                            <Button variant = 'contained' color = 'secondary'
+                            <Button variant = 'contained' color ='primary'
                             component = {Link} to = '/AssignList'>
+                                <AssignmentIcon/>
                                 Assign Skills
                             </Button>
                         </Grid>
                         <Grid item xs = {12} sm = {12} md ={3}>
-                            <Button variant = 'contained'
+                            <Button variant = 'contained' color ='primary'
                             component = {Link} to = '/AddSkill'>
+                                <AddIcon/>
                                 Add Skills
                             </Button>
                         </Grid>
@@ -75,13 +82,15 @@ class Landing extends Component {
                         <Grid item xs = {12} sm = {6} md ={3}>
                             <Button variant ='contained' color = 'primary'
                             component = {Link} to = '/curriculum'>
+                                <VideocamIcon/>
                                 View My Curriculum
                             </Button>
                         </Grid>
                         <Grid item  xs = {12} sm = {6} md = {3}>
                         
-                        <Button variant ='contained'
+                        <Button variant ='contained' color ='primary'
                         component = {Link} to = '/footage'>
+                            <AddAPhotoIcon/>
                             Add Self-Footage
                         </Button>
                         </Grid>

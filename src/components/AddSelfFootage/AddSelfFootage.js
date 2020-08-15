@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
+import green from '@material-ui/core/colors/green';
 
 const styles = theme => ({
     root: {
@@ -31,7 +32,7 @@ const styles = theme => ({
         width: '300px',
     },
     success:{
-        color:'#4caf50',
+        backgroundColor: green,
     }
   });
 
@@ -180,6 +181,7 @@ class AddSelfFootage extends Component {
             open={this.state.submitted}
             autoHideDuration={6000}
             onClose={this.handelOk}
+            className = {classes.success}
             ContentProps={{
                 'aria-describedby': 'message-id',
             }}

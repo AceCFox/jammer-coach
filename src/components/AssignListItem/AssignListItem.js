@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player/lazy'
 import CloseIcon from '@material-ui/icons/Close';
+import green from '@material-ui/core/colors/green';
 
 
 const styles = theme => ({
@@ -29,6 +30,9 @@ const styles = theme => ({
     longField:{
         width: '85%',
     },
+    success: {
+        backgroundColor: green[600],
+      },
   });
 
 class AssignListItem extends Component {
@@ -142,7 +146,7 @@ class AssignListItem extends Component {
              </Grid>  
           </Grid>
           {/* This snackbar lets a use know they have assigned a skill */}
-          <Snackbar
+          <Snackbar className = {classes.success}
           anchorOrigin={{
             vertical: 'bottom',
             horizontal: 'left',
