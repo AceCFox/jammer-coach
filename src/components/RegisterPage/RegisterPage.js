@@ -15,6 +15,7 @@ const styles = theme => ({
       //backgroundAttachment: 'fixed',
       backgroundColor: 'black',
       backgroundPosition:'28%, bottom',
+      backgroundSize: 'cover',
       
   },
   paper: {

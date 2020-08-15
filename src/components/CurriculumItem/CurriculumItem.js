@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player/lazy'
+import CreateIcon from '@material-ui/icons/Create';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 
 //this component is a single
 
@@ -141,11 +143,13 @@ class CurriculumItem extends Component {
                                         {this.state.submitted ?
                                             <Button variant = 'outlined'
                                                 onClick={this.handleEdit}>
+                                               <CreateIcon/>
                                                Edit Notes
                                             </Button>
                                         :
-                                            <Button variant = 'outlined' color = 'primary'
+                                            <Button variant = 'contained' color = 'primary'
                                                 onClick  = {this.submitNotes}>
+                                                 <SaveAltIcon/>   
                                                  Submit Notes
                                             </Button>
                                         }

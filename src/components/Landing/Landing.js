@@ -22,6 +22,7 @@ const styles = theme => ({
       backgroundPosition:'center bottom',
       backgroundRepeat: 'no-repeat',
       backgroundAttachment: 'fixed',
+      //backgroundSize: 'cover',
   },
   paper: {
       width: '100%',

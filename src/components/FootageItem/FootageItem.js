@@ -54,11 +54,11 @@ class FootageItem extends Component {
     return (
       <div className={classes.root}>
          <Grid container
-            direction="column"
+            direction="row"
             justify="center"
             alignItems="center"
-            spacing = {4}>
-             <Grid item xs = {12} sm = {11} md ={9} lg = {8} xl = {7}>         
+            spacing = {6}>
+             <Grid item xs = {12} sm = {11} md ={10} lg = {9} xl = {8}>         
                 <Paper className = {classes.paper}>
                     <Grid container
                         direction="row"
@@ -85,7 +85,7 @@ class FootageItem extends Component {
                            Footage</h2>
                           <h3>of {this.props.skill.title}</h3>
                         <p>{this.props.footage.notes}</p>
-                        <Button variant = 'outlined' color = 'secondary'
+                        <Button variant = 'contained' color = 'secondary'
                         onClick = {this.handleOpen}>
                            <DeleteIcon/> Delete this Footage
                         </Button>

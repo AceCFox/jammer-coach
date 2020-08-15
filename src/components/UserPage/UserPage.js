@@ -14,14 +14,15 @@ const styles = theme => ({
       flexGrow: 1,
       alignItems: 'center',
       justify: 'center',
-      backgroundColor: '#2f4353',
-      backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
+      backgroundColor: '#91d370',
+      backgroundImage: 'linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%)',
+      backgroundAttachment: 'fixed',
       minHeight: '800px'
       
   },
   paper: {
       width: '90%',
-      padding: theme.spacing(2),
+      padding: theme.spacing(3),
       textAlign: 'center',
       color: theme.palette.text.secondary,
       justify: 'center',

@@ -17,7 +17,7 @@ const styles = theme => ({
     },
     paper: {
         width: '100%',
-        padding: theme.spacing(3),
+        padding: theme.spacing(5),
         textAlign: 'center',
         color: theme.palette.text.secondary,
         justify: 'center',
@@ -101,11 +101,11 @@ class AddSelfFootage extends Component {
       <div className={classes.root}>
           <br/>
           <Grid container
-           direction = "column"
+           direction = "row"
            alignItems = "center"
            justify = 'center'
            >
-            <Grid item xs = {12} md = {10} lg = {8} >
+            <Grid item xs = {12} md = {11} lg = {10} >
                 <Paper className = {classes.paper}>
                         <h2>Add Self Footage</h2>
                         {/* Eventually, this next bit should be conditional upon user != coach */}

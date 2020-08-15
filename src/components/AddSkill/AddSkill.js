@@ -6,15 +6,16 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import CloseIcon from '@material-ui/icons/Close';
 import DeleteIcon from '@material-ui/icons/Delete';
-
+import AddIcon from '@material-ui/icons/Add';
+import SaveAltIcon from '@material-ui/icons/SaveAlt';
 
 const styles = theme => ({
     root: {
         flexGrow: 1,
         alignItems: 'center',
         justify: 'center',
-        backgroundColor: '#2f4353',
-        backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
+        backgroundColor: '#91d370',
+        backgroundImage: 'linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%)',
         height: '800px',
     },
     paper: {
@@ -134,12 +135,14 @@ class AddSkill extends Component {
     const {classes} = this.props;
     return (
       <div className={classes.root}>
+          <br/>
            <Grid container
-           direction = "column"
+           direction = "row"
            alignItems = "center"
-           justify = 'space-between'
+           justify = 'center'
            >
-            <Grid item xs = {12} md = {10} lg = {8} >
+            <br/>
+            <Grid item xs = {12} md = {11} lg = {10} >
                 <Paper className = {classes.paper}>
                     <h1>Add A Skill</h1>
                     {/* Eventually, this next bit should be conditional upon user != coach */}
@@ -197,7 +200,8 @@ class AddSkill extends Component {
                                         <MenuItem value={category} key ={category.id}>{category.name}</MenuItem>
                                     ))}
                                 </Select>
-                                <Button color = "primary" onClick = {this.handleAdd} variant = 'outlined'>
+                                <Button color = "primary" onClick = {this.handleAdd} variant = 'contained'>
+                                   <AddIcon/>
                                     Add Category
                                 </Button>
                             </FormControl>
@@ -245,10 +249,12 @@ class AddSkill extends Component {
                     <br/>
                     {(this.state.title&& this.state.url) ?
                         <Button variant ='contained' color = 'primary' size = "large" onClick = {this.handleSubmit}>
+                           <SaveAltIcon/>
                             Submit
                         </Button>
                             :
                         <Button variant ='contained' disabled size = "large">
+                            <SaveAltIcon/>
                             Submit
                         </Button>
                     }

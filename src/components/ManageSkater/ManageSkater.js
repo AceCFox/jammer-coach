@@ -14,10 +14,9 @@ const styles = theme => ({
         flexGrow: 2, 
         alignItems: 'center',
         minHeight: '800px',
-        backgroundColor: '#2f4353',
-        backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
-        // backgroundColor: '#bbf0f3',
-        // backgroundImage: 'linear-gradient(315deg, #bbf0f3 0%, #f6d285 74%)',
+        backgroundColor: '#91d370',
+        backgroundImage: 'linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%)',
+        backgroundAttachment: 'fixed',
     },
     paper: {
         width: '100%',
@@ -73,7 +72,7 @@ class ManageSkater extends Component {
                 justify="center"
                 alignItems="center"
                 spacing = {2}>
-            <Grid item  xs = {12} sm = {11} md = {10} lg = {9} xl = {8}>
+            <Grid item  xs = {12} sm = {11} lg = {10} xl = {9}>
             <Paper className = {classes.paper}>
                 <h1>Manage Skaters</h1>
                 <Grid  container

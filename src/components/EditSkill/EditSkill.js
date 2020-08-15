@@ -16,8 +16,9 @@ const styles = theme => ({
         alignItems: 'center',
         justify: 'center',
         minHeight: '800px',
-        backgroundColor: '#2f4353',
-        backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
+        backgroundColor: '#91d370',
+        backgroundImage: 'linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%)',
+        backgroundAttachment: 'fixed',
     },
     paper: {
         width: '96%',

@@ -77,6 +77,7 @@ class AssignListItem extends Component {
             submitted: true,})
     }
 
+    //this handler banashes the snackbar
     handleOk = (event, reason) =>{
         if (reason === 'clickaway') {
             return;
@@ -102,17 +103,17 @@ class AssignListItem extends Component {
     return (
       <div className={classes.root}>
          <Grid container
-            direction="column"
+            direction="row"
             justify="center"
             alignItems="center"
             spacing = {4}>
-             <Grid item xs = {12} lg = {9} xl = {7}>         
+             <Grid item xs = {12} md ={11} xl = {10}>         
                 <Paper className = {classes.paper}>
                     <Grid container
                         direction="row"
                         justify="center"
                         alignItems="center"
-                        spacing = {0}>
+                        spacing = {1}>
                         <Grid item xs = {12} md = {8}>
                             <Grid container
                                 direction="column"
@@ -130,13 +131,11 @@ class AssignListItem extends Component {
                             justify="flex-end"
                             alignItems="flex-start"
                             spacing = {0}>
-                           
-                                    <Checkbox icon={<FavoriteBorder />} 
+                                <Checkbox icon={<FavoriteBorder />} 
                                     checkedIcon={<Favorite />} 
                                     value={this.state.favorite}
                                     onChange= {this.handleFavorite}
-                                    checked = {this.state.favorite} />
-                                
+                                    checked = {this.state.favorite} />      
                         </Grid>
                         <h2>{this.props.skill.title}</h2>
                         <FormControl className={classes.formControl}>     

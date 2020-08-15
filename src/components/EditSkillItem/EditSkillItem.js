@@ -353,7 +353,7 @@ class EditSkillItem extends Component {
                                             {category.name} 
                                             <Button value = {category.id} color="secondary" 
                                                 onClick = {this.handleRemove(category)}>
-                                                Remove
+                                                <DeleteIcon/>
                                             </Button>
                                         </li> 
                                         ))}

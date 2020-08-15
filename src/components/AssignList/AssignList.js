@@ -12,13 +12,14 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         alignItems: 'center',
-        backgroundColor: '#2f4353',
-        backgroundImage: 'linear-gradient(315deg, #2f4353 0%, #d2ccc4 74%)',
+        backgroundColor: '#91d370',
+        backgroundImage: 'linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%)',
+        backgroundAttachment: 'fixed',
         minHeight: '800px',
     },
     paper: {
         width: '100%',
-        padding: theme.spacing(2),
+        padding: theme.spacing(3),
         textAlign: 'center',
         color: theme.palette.text.secondary, 
         margin: 2   
@@ -81,11 +82,11 @@ class AssignList extends Component {
       <div className={classes.root}>
           <br/>
           <Grid container
-            direction="column"
+            direction="row"
             justify="center"
             alignItems="center"
             spacing = {2}>
-            <Grid item  xs = {12} lg = {9} xl = {7}>
+            <Grid item  xs = {12} md = {11} lg = {10}>
                 <Paper className = {classes.paper}>
                     <h1>Assign Skills</h1>
                     <Grid  container

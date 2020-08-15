@@ -119,23 +119,28 @@ class ManageSkaterItem extends Component {
                 justify="center"
                 alignItems="center"
                 spacing = {6}>
-            <Grid item  xs = {12} sm = {11} md = {10} lg = {9} xl = {8}>
+            <Grid item xs = {12} md= {11} lg = {10} xl = {9}>
                 <Paper className = {classes.paper}>
                     <Grid container
                         direction="row"
                         justify="center"
                         alignItems="center"
-                        spacing = {1}>
+                        spacing = {0}>
                         <Grid item xs = {12} md = {8}>
-                            <ReactPlayer url= {this.props.skill.url} 
-                                controls = {true} 
-                                alt = {this.props.skill.description} 
-                                className = {classes.video}/>
-                            <br/>
-                            <Button variant = "contained" color = "secondary"
-                                onClick = {this.handleOpen}>
-                                    <DeleteIcon/>Remove skill
-                            </Button> 
+                            <Grid container
+                                    direction="column"
+                                    justify="center"
+                                    alignItems="center">
+                                <ReactPlayer url= {this.props.skill.url} 
+                                    controls = {true} 
+                                    alt = {this.props.skill.description} 
+                                    className = {classes.video}/>
+                                <br/>
+                                <Button variant = "contained" color = "secondary"
+                                    onClick = {this.handleOpen}>
+                                        <DeleteIcon/>Remove skill
+                                </Button> 
+                            </Grid>
                         </Grid>
                         <Grid item xs = {12} md = {4}> 
                             <Grid container
@@ -186,6 +191,7 @@ class ManageSkaterItem extends Component {
                                         </>
                                         : ''
                                         }
+                                    <br/>
                                     </Grid>
                                 </Grid>
                             </Grid>      
