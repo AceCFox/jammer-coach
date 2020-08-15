@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import EditSkillItem from '../EditSkillItem/EditSkillItem';
 import { Link } from 'react-router-dom';
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 
 //TO DO: make the skill select hold the id value and worry about the name for display (may need new function)
 
@@ -88,7 +89,7 @@ class EditSkill extends Component {
                  <Paper className = {classes.paper}>
                     <p><i>Note: you are currently editing the GENREAL DIRECTORY
                         of skills, and changes made here will be reflected in all 
-                        skaters' curriculi.
+                        skaters' curricula.
                         {/* To edit the curriculum of a single skater, please visit th
                         LINK TO MANAGE SKATERS PAGE */}
                     </i></p>
@@ -126,6 +127,7 @@ class EditSkill extends Component {
                             }
                             {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'}
                             <Button variant = 'outlined' color = 'primary' onClick = {this.handleViewAll}>
+                                <AllInclusiveIcon/>
                                 View All Skills
                             </Button>
                         </Grid>

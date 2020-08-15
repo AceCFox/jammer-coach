@@ -5,6 +5,7 @@ import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import AssignListItem from '../AssignListItem/AssignListItem';
 import { Link } from 'react-router-dom';
+import AllInclusiveIcon from '@material-ui/icons/AllInclusive';
 
 
 const styles = theme => ({
@@ -120,6 +121,7 @@ class AssignList extends Component {
                             }   
                             {'\u00A0'} {'\u00A0'} {'\u00A0'} {'\u00A0'}
                             <Button variant = 'outlined' color = 'primary' onClick = {this.handleViewAll}>
+                                <AllInclusiveIcon/>
                                 View All Skills
                             </Button>
                         </Grid>
