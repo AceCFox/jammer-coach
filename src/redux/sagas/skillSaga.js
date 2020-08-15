@@ -25,6 +25,7 @@ function* categorySkill(action) {
   }
 }
 
+//this saga fires on "DELETE_SKILL" actions
 function* deleteSkill(action){
   try{
     yield axios.delete('/api/skill/' + action.payload);
@@ -34,11 +35,23 @@ function* deleteSkill(action){
   }
 }
 
+//this saga fires on 'FAVORITE SKILL' action
+function* favoriteSkill(action){
+  try{
+    const response = yield axios.put('/api/skill/favorite/' + action.payload);
+   // yield put({type: 'GET_ALL_SKILL'});
+   console.log(response);
+  } catch (error){
+    console.log('error favoriting skill:', error);
+  }
+}
+
 
 function* skillSaga() {
   yield takeLatest('GET_ALL_SKILL', allSkill);
   yield takeLatest('GET_SKILL_CATEGORY', categorySkill);
   yield takeLatest('DELETE_SKILL', deleteSkill);
+  yield takeLatest('FAVORITE_SKILL', favoriteSkill);
 }
 
 export default skillSaga;

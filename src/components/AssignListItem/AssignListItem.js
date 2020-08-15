@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {Button, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid, Snackbar, IconButton} from '@material-ui/core';
+import Checkbox from '@material-ui/core/Checkbox';
+import Favorite from '@material-ui/icons/Favorite';
+import FavoriteBorder from '@material-ui/icons/FavoriteBorder';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import ReactPlayer from 'react-player/lazy'
 import CloseIcon from '@material-ui/icons/Close';
 import green from '@material-ui/core/colors/green';
+
 
 
 const styles = theme => ({
@@ -40,13 +44,18 @@ class AssignListItem extends Component {
     selected: '',
     notes: '',
     submitted: false,
-    lastSelected: ''
+    lastSelected: '',
+    favorite: false,
     };
 
     componentDidMount(){
         //dispatch saga to fetch username list
         //displatch saga to fetch skaters
         this.props.dispatch({type: 'GET_SKATER'}) 
+        this.setState({
+            ...this.state,
+            favorite: this.props.skill.favorite
+        })
     }
   
     handleChange = (event) => {
@@ -78,6 +87,16 @@ class AssignListItem extends Component {
         }
     }
 
+    handleFavorite = () => {
+        this.setState({
+            ...this.state,
+            favorite: !this.state.favorite,
+        })
+        //dispatch a toggle saga 
+        const id = this.props.skill.id;
+        this.props.dispatch({type:'FAVORITE_SKILL', payload: id})
+    }
+
   render() {
     const {classes} = this.props;
     return (
@@ -106,6 +125,19 @@ class AssignListItem extends Component {
                             </Grid>
                         </Grid>
                     <Grid item xs = {12} md = {4}> 
+                        <Grid container
+                            direction="row"
+                            justify="flex-end"
+                            alignItems="flex-start"
+                            spacing = {0}>
+                           
+                                    <Checkbox icon={<FavoriteBorder />} 
+                                    checkedIcon={<Favorite />} 
+                                    value={this.state.favorite}
+                                    onChange= {this.handleFavorite}
+                                    checked = {this.state.favorite} />
+                                
+                        </Grid>
                         <h2>{this.props.skill.title}</h2>
                         <FormControl className={classes.formControl}>     
                         <InputLabel>Skater</InputLabel>

@@ -10,7 +10,7 @@ const { rejectNonCoach } = require('../modules/authorization-coach');
  */
 router.get('/', rejectNonCoach, (req, res) => {
     const queryText = `SELECT * FROM "skill"
-      ORDER BY "title" ASC;`;
+    ORDER BY "favorite" DESC, "title" ASC;`;
     pool.query(queryText)
       .then((result) => {res.send(result.rows)
      // console.log(result.rows)  
@@ -27,7 +27,7 @@ router.get('/category/:id', rejectNonCoach, (req, res) => {
     const queryText = `SELECT * FROM "skill_category" 
     JOIN "skill"  on "skill"."id" = "skill_category"."skill_id"
     WHERE skill_category.category_id = $1
-    ORDER BY "skill"."title" ASC;`;
+    ORDER BY "skill"."favorite" DESC, "skill"."title" ASC;`;
     pool.query(queryText, [req.params.id])
     .then((result) => {res.send(result.rows)
    // console.log(result.rows)  
@@ -162,6 +162,22 @@ router.delete('/:id', rejectNonCoach, async (req, res)=>{
       client.release()
     }
  
+})
+
+//this toggles the favorite field to be either true or false
+router.put('/favorite/:id', rejectNonCoach, (req,res) =>{
+    const id = req.params.id;
+    console.log(id);
+    const queryText = `UPDATE "skill"
+    SET "favorite" = NOT "favorite"
+    WHERE id = $1;`;
+    pool.query(queryText, [id])
+    .then((result) => {res.sendStatus(200);
+     console.log(id, result)})
+    .catch((error) => {res.sendStatus(500);
+      console.log(error);
+    });
+
 })
 
 
