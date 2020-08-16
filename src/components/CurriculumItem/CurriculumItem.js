@@ -66,7 +66,7 @@ class CurriculumItem extends Component {
        
         const submitObject = {
             user_id: this.props.skill.user_id,
-            skill_id: this.props.skill.id,
+            skill_id: this.props.skill.skill_id,
             notes: this.state.notes,
         };
         console.log(submitObject);
