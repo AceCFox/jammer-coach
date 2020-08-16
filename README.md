@@ -38,16 +38,17 @@ Jammer Coach is a training app for roller derby skaters and coaches to be used e
 
 ## Usage
 
-1. Register a new account - select COACH user type for access to full functionality
-2. Click the HAMBURGER MENU icon in the upper left hand corner to open the NAVIGATION MENU
-3. Click ADD A SKILL and input data to reference hosted video skills (YouTube, Vimeo, etc.)
-4. EDIT SKILLS allows you to edit skill information or categories or delete skill videos
-5. ASSIGN SKILLS allows you to assign skills to another user's curriculum
-6. In MY CURRICULUM, A skater can view their assigned skills and leave notes for their coach
-7. A skater can ADD FOOTAGE of themself completing a skill. 
-8. This footage is then visible to a coach in the MANAGE SKATER view, along with notes and curriculum skills.
-9. A coach or skater can view and update their email, goals, and bio in their PROFILE
-10. All views of this app are flexible and functional on a mobile device.
+1. Register a new account - select COACH user type for access to full functionality.
+2. Log in with your username and password to gain access to app features.
+3. Click the HAMBURGER MENU icon in the upper left hand corner to open the NAVIGATION MENU.
+4. Click ADD A SKILL and input data to reference hosted video skills (YouTube, Vimeo, etc.)
+5. EDIT SKILLS allows you to edit skill information or categories or delete skill videos.
+6. ASSIGN SKILLS allows you to assign skills to another user's curriculum.
+7. In MY CURRICULUM, A skater can view their assigned skills and leave notes for their coach
+8. A skater can ADD FOOTAGE of themself completing a skill. 
+9. This footage is then visible to a coach in the MANAGE SKATER view, along with notes and curriculum skills.
+10. A coach or skater can view and update their email, goals, and bio in their PROFILE
+11. All views of this app are flexible and functional on a mobile device.
 
 
 ### Prerequisites
@@ -82,7 +83,7 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 
 ## Built With
 
-* [React-Player](https://www.npmjs.com/package/react-player) - The video framework used
+ - [React-Player](https://www.npmjs.com/package/react-player) - The video framework used
  -  React.js
  -  React-redux
  -  Sagas
