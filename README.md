@@ -3,17 +3,26 @@
 Jammer Coach is a training app for roller derby skaters and coaches to be used either in supplement to in-person training, or in its place when physically meeting up to skate and train together is impossible.  A coach can view, and add to a list of short videos showing skating skills for a skater to practice.  The coach can then assign each skater an assortment of these skills each week, with notes outlining the frequency and form for each movement.  The skater in training can then view and leave comments about  each of the drill videos. Skaters can also add to the stored list of videos in a collaborative effort to build derby knowledge
 
 
--Duration: Two Week Sprint-
+*Duration: Two Week Sprint*
 
 ## Screen Shots
 
+**Log in View**
 ![Log in View](public/screenshot/login.png)
+**Registration Page**
 ![New User - Register](public/screenshot/register.png)
-![Landing View - Open Menu](public/screenshot/landingMenu.png)
-![Curriculum View - Desktop](public/screenshot/curriculumView.png)
+**Landing View with Open Menu**
+![Landing View - Open Menu](public/screenshot/LandingMenu.png)
+**Curriculum View on Desktop**
+![Curriculum View - Desktop](public/screenshot/CurriculumView.png)
+**Curriculum View on Mobile**
 ![Curriculum View - Mobile](public/screenshot/curriculumMobile.png)
-![Coach View - Edit Skills](public/screenshot/editView.png)
+**Coach View - Edit Skills**
+![Coach View - Edit Skills](public/screenshot/EditView.png)
+**Add Skill View**
 ![Add A Skill](public/screenshot/addSkill.png)
+**Coach View - Manage Skaters with Footage**
+![Manage Skater - Curriculum and Footage](public/screenshot/manageSkater.png)
 
 ## Usage
 
@@ -70,12 +79,14 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
 
 ## Authors
 
-* **Ace Fox** - *Initial work* - [Gay of Reckoning](https://github.com/Gay of Reckoning)
+* **Ace Fox** - *Initial work* - [Gay of Reckoning](https://github.com/GayofReckoning)
 
 ## Acknowledgments
 
 * Thanks to Prime Digital Academy, especially instructors Dev Jana and Mary Mosman for providing me with the knowlege needed to make this app a reality
 * Thanks to the Paxos Cohort, especially Carl Wilcoxon and Audrey Woltors for all of the help and support
+* Photography of Minnesota Roller Derby athletes by Ron Wilbur and Workhorse Photography - Thank you for you work
+* Thank you to the strong community of Roller Derby athletes and trainers committed to Open Source resources
 * Bird Up!
 
 
