@@ -1,30 +1,40 @@
 # Jammer Coach
 
-Jammer Coach is a training app for roller derby skaters and coaches to be used either in supplement to in-person training, or in its place when physically meeting up to skate and train together is impossible.  A coach can view, and add to a list of short videos showing skating skills for a skater to practice.  The coach can then assign each skater an assortment of these skills each week, with notes outlining the frequency and form for each movement.  The skater in training can then view and leave comments about  each of the drill videos. Skaters can also add to the stored list of videos in a collaborative effort to build derby knowledge
-
+Jammer Coach is a training app for roller derby skaters and coaches to be used either in supplement to in-person training, or in its place when physically meeting up to skate and train together is impossible.  A coach can view, and add to a list of short videos showing skating skills for a skater to practice.  The coach can then assign each skater an assortment of these skills each week, with notes outlining the frequency and form for each movement.  The skater in training can then view and leave comments about  each of the drill videos. Skaters can also add to the stored list of videos in a collaborative effort to build derby knowledge.
 
 *Duration: Two Week Sprint*
 
+
 ## Screen Shots
+
 
 **Log in View**
 ![Log in View](public/screenshot/login.png)
+
 **Registration Page**
 ![New User - Register](public/screenshot/register.png)
+
 **Landing View with Open Menu**
 ![Landing View - Open Menu](public/screenshot/LandingMenu.png)
+
 **Curriculum View on Desktop**
 ![Curriculum View - Desktop](public/screenshot/CurriculumView.png)
+
 **Curriculum View on Mobile**
 ![Curriculum View - Mobile](public/screenshot/curriculumMobile.png)
 
 
+
 **Coach View - Edit Skills**
 ![Coach View - Edit Skills](public/screenshot/EditView.png)
+
 **Add Skill View**
 ![Add A Skill](public/screenshot/addSkill.png)
+
 **Coach View - Manage Skaters with Footage**
 ![Manage Skater - Curriculum and Footage](public/screenshot/manageSkater.png)
+
+
 
 ## Usage
 
@@ -38,6 +48,7 @@ Jammer Coach is a training app for roller derby skaters and coaches to be used e
 8. This footage is then visible to a coach in the MANAGE SKATER view, along with notes and curriculum skills.
 9. A coach or skater can view and update their email, goals, and bio in their PROFILE
 10. All views of this app are flexible and functional on a mobile device.
+
 
 ### Prerequisites
 
@@ -68,6 +79,7 @@ Before you get started, make sure you have the following software installed on y
 
 Before pushing to Heroku, run `npm run build` in terminal. This will create a build folder that contains the code Heroku will be pointed at. You can test this build by typing `npm start`. Keep in mind that `npm start` will let you preview the production build but will **not** auto update.
 
+
 ## Built With
 
 * [React-Player](https://www.npmjs.com/package/react-player) - The video framework used
@@ -79,9 +91,11 @@ Before pushing to Heroku, run `npm run build` in terminal. This will create a bu
  -  Material-UI
  -  PostgreSql
 
+
 ## Authors
 
 * **Ace Fox** - *Initial work* - [Gay of Reckoning](https://github.com/GayofReckoning)
+
 
 ## Acknowledgments
 
