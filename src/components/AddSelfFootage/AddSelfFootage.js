@@ -112,7 +112,7 @@ class AddSelfFootage extends Component {
                         <i>Your coach will be able to view this video of yourself completing a skill</i>
                         {/* A link to the add self footage page will appear here if the user is not a coach */}
                        
-                        {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
+                        <br/>
                         <TextField
                         id="skater-in"
                         label="My Name"
