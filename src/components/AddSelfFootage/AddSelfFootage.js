@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Button, Snackbar, IconButton, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid, Typography} from '@material-ui/core';
+import {Button, Snackbar, IconButton, Paper, TextField, InputLabel, MenuItem, Select, FormControl, Grid } from '@material-ui/core';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
@@ -109,7 +109,7 @@ class AddSelfFootage extends Component {
                 <Paper className = {classes.paper}>
                         <h2>Add Self Footage</h2>
                         {/* Eventually, this next bit should be conditional upon user != coach */}
-                        <Typography nowrap='text'>Your coach will be able to view this video of yourself completing a skill</Typography>
+                        <i>Your coach will be able to view this video of yourself completing a skill</i>
                         {/* A link to the add self footage page will appear here if the user is not a coach */}
                        
                         {'\u00A0'}{'\u00A0'}{'\u00A0'}{'\u00A0'}
