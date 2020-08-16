@@ -22,7 +22,7 @@ const styles = theme => ({
         color: theme.palette.text.secondary,
     },
     video :{
-        maxWidth: '95%',
+        maxWidth: '99%',
     },
     formControl: {
         minWidth: 200,

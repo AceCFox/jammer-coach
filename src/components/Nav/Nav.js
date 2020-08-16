@@ -23,6 +23,7 @@ const styles = theme => ({
   root: {
     display: 'flex',
     flexGrow: 1,
+    backgroundColor: 'black',
   },
   drawer: {
     [theme.breakpoints.up('sm')]: {
@@ -151,7 +152,7 @@ class Nav extends Component{
       </div>
     )
     return (
-    <div >
+    <div className = {classes.root}>
       <AppBar position="fixed">
         <Toolbar>
           <IconButton

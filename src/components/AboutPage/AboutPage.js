@@ -17,12 +17,15 @@ const styles = theme => ({
       
   },
   paper: {
-      width: '90%',
+      width: '100%',
       padding: theme.spacing(3),
       textAlign: 'center',
       color: theme.palette.text.secondary,
       justify: 'center',
 
+  },
+  img:{
+    maxWidth: '100%'
   }
 });
 
@@ -46,7 +49,8 @@ class AboutPage extends Component {
                   Redux, Sagas, Express, Node, PostgreSql, and React-Player
                 </i>
                 <h3>Thank You, Prime Digital Academy, and Paxos Cohort</h3>
-                <img src = {paxos}/>
+                <img  className = {classes.img }src = {paxos}
+                  alt = 'paxos parakeet'/>
                 <h1>BIRD UP!</h1>
               </Paper>
             </Grid>

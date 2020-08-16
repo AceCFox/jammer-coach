@@ -13,23 +13,23 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         alignItems: 'center',
-        justify: 'center',
     },
     paper: {
         width: '100%',
         padding: theme.spacing(1),
         textAlign: 'center',
         color: theme.palette.text.secondary,
-        ustify: 'center'
+        justify: 'center'
     },
     video :{
         maxWidth: '100%',
+        height:'auto'
     },
     formControl: {
         minWidth: 200,
     },
     longField:{
-        width: '300',
+        width: '85%',
     },
   });
 
@@ -95,7 +95,7 @@ class CurriculumItem extends Component {
                 justify="center"
                 alignItems="center"
                 spacing = {4}>
-            <Grid item  xss = {12} md ={11} xl = {10}>
+            <Grid item  xs = {12} md ={11} xl = {10}>
                 <Paper className = {classes.paper}>
                     <Grid container
                         direction="row"
