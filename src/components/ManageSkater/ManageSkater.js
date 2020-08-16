@@ -14,8 +14,8 @@ const styles = theme => ({
         flexGrow: 2, 
         alignItems: 'center',
         minHeight: '800px',
-        backgroundColor: '#91d370',
-        backgroundImage: 'linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%)',
+        backgroundColor: '#923cb5',
+        backgroundImage: 'linear-gradient(147deg,  #000000 0%, #923cb5 74%)',
         backgroundAttachment: 'fixed',
     },
     paper: {
@@ -98,11 +98,11 @@ class ManageSkater extends Component {
                             </Select>
                         </FormControl>
                         {this.state.selectedSkater ?
-                        <Button color = "primary" variant = "outlined" onClick = {this.handleViewskater}>
+                        <Button color = "primary" variant = "contained" onClick = {this.handleViewskater}>
                                 View Skater's Curriculum
                             </Button>
                         :
-                        <Button  disabled variant = "outlined"> 
+                        <Button  disabled variant = "contained"> 
                                 View Skater's Curriculum
                             </Button>
                         }   

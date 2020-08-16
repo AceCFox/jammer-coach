@@ -16,12 +16,12 @@ const styles = theme => ({
         alignItems: 'center',
         justify: 'center',
         minHeight: '800px',
-        backgroundColor: '#91d370',
-        backgroundImage: 'linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%)',
+        backgroundColor: '#923cb5',
+        backgroundImage: 'linear-gradient(147deg,  #000000 0%, #923cb5 74%)',
         backgroundAttachment: 'fixed',
     },
     paper: {
-        width: '96%',
+        width: '100%',
         padding: theme.spacing(2),
         textAlign: 'center',
         alignItems: 'canter',
@@ -82,11 +82,11 @@ class EditSkill extends Component {
       <div className={classes.root}>
           <br/>
            <Grid container
-                direction="column"
+                direction="row"
                 justify="center"
                 alignItems="center"
                 spacing = {2}>
-               <Grid item  xs = {12} sm = {11} lg = {10} xl = {9}>
+               <Grid item  xs = {12} md = {11} xl = {10}>
                  <Paper className = {classes.paper}>
                     <p><i>Note: you are currently editing the GENREAL DIRECTORY
                         of skills, and changes made here will be reflected in all 
@@ -94,13 +94,13 @@ class EditSkill extends Component {
                         {/* To edit the curriculum of a single skater, please visit th
                         LINK TO MANAGE SKATERS PAGE */}
                     </i></p>
-                    <h1>Edit A Skill:</h1>
+                    <h1>Edit A Skill</h1>
                     <Grid  container
                         direction="row"
                         justify="center"
-                        alignItems="flex-end">
+                        alignItems="center">
                         <FormControl className={classes.formControl}>
-                            <InputLabel htmlFor="age-simple">Category</InputLabel>
+                            <InputLabel>Category</InputLabel>
                             <Select
                                 value = {this.state.selectedCategory}
                                 onChange={this.handleChange}
@@ -137,7 +137,7 @@ class EditSkill extends Component {
                     </Paper>
                 </Grid>
             </Grid>
-            <br/>
+            {/* <br/> */}
             <br/>
             {this.state.viewing ? 
             this.props.reduxState.skill ?
@@ -158,7 +158,7 @@ class EditSkill extends Component {
              </Grid>
             :
             ''}
-          <br/>
+          {/* <br/> */}
       </div>
     );
   }

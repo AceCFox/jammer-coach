@@ -10,7 +10,7 @@ const styles = theme => ({
       alignItems: 'center',
       justify: 'center',
       backgroundImage: 'url(https://images.squarespace-cdn.com/content/v1/54af52d4e4b0fb47dcafee40/1582580047535-8LZI1NFQYO9RLX8BMQ61/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/A+bout+to+Glow?format=1500w)',
-      height: "1100px",
+      height: "1300px",
       backgroundRepeat: 'no-repeat',
       //backgroundAttachment: 'fixed',
       backgroundColor: 'black',

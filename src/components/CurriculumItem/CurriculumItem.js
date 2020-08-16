@@ -29,7 +29,7 @@ const styles = theme => ({
         minWidth: 200,
     },
     longField:{
-        width: '85%',
+        width: '300',
     },
   });
 
@@ -95,7 +95,7 @@ class CurriculumItem extends Component {
                 justify="center"
                 alignItems="center"
                 spacing = {4}>
-            <Grid item  xs = {12} lg = {9} xl = {7}>
+            <Grid item  xss = {12} md ={11} xl = {10}>
                 <Paper className = {classes.paper}>
                     <Grid container
                         direction="row"

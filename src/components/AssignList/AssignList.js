@@ -12,8 +12,8 @@ const styles = theme => ({
     root: {
         flexGrow: 1,
         alignItems: 'center',
-        backgroundColor: '#91d370',
-        backgroundImage: 'linear-gradient(319deg, #91d370 0%, #bca0ff 37%, #f2cd54 100%)',
+        backgroundColor: '#923cb5',
+        backgroundImage: 'linear-gradient(147deg,  #000000 0%, #923cb5 74%)',
         backgroundAttachment: 'fixed',
         minHeight: '800px',
     },

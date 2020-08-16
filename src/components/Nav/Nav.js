@@ -15,6 +15,7 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 import AddIcon from '@material-ui/icons/Add';
 import PersonIcon from '@material-ui/icons/Person';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import InfoIcon from '@material-ui/icons/Info';
 
 const drawerWidth = 230;
 
@@ -139,6 +140,10 @@ class Nav extends Component{
         </>
         )}
         <List>
+          <ListItem button component = {Link} to = '/about'>
+              <ListItemIcon><InfoIcon/></ListItemIcon>
+              <ListItemText primary ='About'/>
+            </ListItem>
           <ListItem >
             <LogOutButton/>
           </ListItem>

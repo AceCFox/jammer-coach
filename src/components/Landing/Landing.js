@@ -18,10 +18,10 @@ const styles = theme => ({
       justify: 'center',
       backgroundColor: 'black',
       backgroundImage: 'url(https://images.squarespace-cdn.com/content/v1/5b7e168725bf02338601dd50/1534993658578-3NPEWQJERIOO4IX3B82Q/ke17ZwdGBToddI8pDm48kLkXF2pIyv_F2eUT9F60jBl7gQa3H78H3Y0txjaiv_0fDoOvxcdMmMKkDsyUqMSsMWxHk725yiiHCCLfrh8O1z4YTzHvnKhyp6Da-NYroOW3ZGjoBKy3azqku80C789l0iyqMbMesKd95J-X4EagrgU9L3Sa3U8cogeb0tjXbfawd0urKshkc5MgdBeJmALQKw/derby-13.jpg)',
-      minHeight: '840px',
+      minHeight: '820px',
       backgroundPosition:'center bottom',
       backgroundRepeat: 'no-repeat',
-      backgroundAttachment: 'fixed',
+      //backgroundAttachment: 'fixed',
       //backgroundSize: 'cover',
   },
   paper: {
