@@ -1,7 +1,7 @@
 import React from 'react';
 import './Footer.css'
 import PhotoCameraIcon from '@material-ui/icons/PhotoCamera';
-import Grid from '@material-ui/core/grid'
+import Grid from '@material-ui/core/Grid'
 // import TwitterIcon from '@material-ui/icons/Twitter';
 // import ArrowUpwardIcon from '@material-ui/icons/ArrowUpward';
 
