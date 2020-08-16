@@ -17,6 +17,8 @@ Jammer Coach is a training app for roller derby skaters and coaches to be used e
 ![Curriculum View - Desktop](public/screenshot/CurriculumView.png)
 **Curriculum View on Mobile**
 ![Curriculum View - Mobile](public/screenshot/curriculumMobile.png)
+
+
 **Coach View - Edit Skills**
 ![Coach View - Edit Skills](public/screenshot/EditView.png)
 **Add Skill View**
