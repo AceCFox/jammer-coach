@@ -151,8 +151,8 @@ class Nav extends Component{
       </div>
     )
     return (
-    <div className="nav">
-      <AppBar position = 'static'>
+    <div >
+      <AppBar position="fixed">
         <Toolbar>
           <IconButton
               color="inherit"
@@ -170,6 +170,9 @@ class Nav extends Component{
          
         </Toolbar>
       </AppBar>
+      <br/>
+      <br/>
+      <br/>
       <nav className={classes.drawer}>
             <Drawer
               container={this.props.container}
